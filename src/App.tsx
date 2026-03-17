@@ -7,6 +7,8 @@ import Process from './components/Process';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import FloatingButtons from './components/FloatingButtons';
+import ChatPopup from './components/ChatPopup';
 
 function App() {
   return (
@@ -22,6 +24,10 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      
+      {/* Sales Conversion Tools */}
+      <ChatPopup />
+      <FloatingButtons />
     </div>
   );
 }
