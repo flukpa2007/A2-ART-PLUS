@@ -4,92 +4,108 @@ import { Phone, Mail, MapPin, Facebook, MessageCircle } from 'lucide-react';
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-24 bg-zinc-50">
+    <section id="contact" className="py-32 bg-white border-t border-zinc-100">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-red-600 font-bold tracking-widest uppercase mb-4">Contact Us</h2>
-          <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-relaxed break-words">
-            เริ่มต้นโครงการของคุณกับเราวันนี้
-          </h3>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+          {/* Left Side: Header & Primary Contact */}
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-red-600 font-bold tracking-[0.2em] uppercase text-sm mb-6">Contact Us</h2>
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 mb-12 leading-[1.1] break-words">
+                เริ่มต้นโครงการ <br /> ของคุณกับเราวันนี้
+              </h3>
+              
+              <div className="space-y-10">
+                {/* Phone */}
+                <div className="flex items-start gap-6 group">
+                  <div className="w-12 h-12 flex-shrink-0 bg-zinc-50 rounded-full flex items-center justify-center text-red-600 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1">โทรศัพท์</p>
+                    <a href="tel:0876379997" className="text-2xl font-bold text-zinc-900 hover:text-red-600 transition-colors">087-637-9997</a>
+                  </div>
+                </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Phone Card */}
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="bg-white p-8 rounded-sm shadow-sm border border-zinc-100 flex flex-col items-center text-center group transition-all hover:shadow-xl hover:border-red-600/20"
-          >
-            <div className="relative mb-6">
-              <div className="absolute inset-0 bg-red-600/10 translate-x-1 translate-y-1 rounded-sm transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
-              <div className="relative w-16 h-16 bg-zinc-900 rounded-sm flex items-center justify-center shadow-lg">
-                <Phone className="w-8 h-8 text-red-600" />
-              </div>
-            </div>
-            <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-2">โทรศัพท์</p>
-            <p className="text-2xl font-bold text-zinc-900">087-637-9997</p>
-          </motion.div>
+                {/* LINE */}
+                <div className="flex items-start gap-6 group">
+                  <div className="w-12 h-12 flex-shrink-0 bg-zinc-50 rounded-full flex items-center justify-center text-red-600 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
+                    <MessageCircle className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1">LINE ID</p>
+                    <p className="text-2xl font-bold text-zinc-900">a2artplus1</p>
+                  </div>
+                </div>
 
-          {/* Line Card */}
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="bg-white p-8 rounded-sm shadow-sm border border-zinc-100 flex flex-col items-center text-center group transition-all hover:shadow-xl hover:border-red-600/20"
-          >
-            <div className="relative mb-6">
-              <div className="absolute inset-0 bg-red-600/10 translate-x-1 translate-y-1 rounded-sm transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
-              <div className="relative w-16 h-16 bg-zinc-900 rounded-sm flex items-center justify-center shadow-lg">
-                <MessageCircle className="w-8 h-8 text-red-600" />
+                {/* Facebook */}
+                <div className="flex items-start gap-6 group">
+                  <div className="w-12 h-12 flex-shrink-0 bg-zinc-50 rounded-full flex items-center justify-center text-red-600 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
+                    <Facebook className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1">Facebook</p>
+                    <p className="text-xl font-bold text-zinc-900 break-words max-w-xs">A2 Art Plus : ทำป้าย บิวท์อิน ชลบุรี</p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-2">LINE ID</p>
-            <p className="text-2xl font-bold text-zinc-900">a2artplus1</p>
-          </motion.div>
+            </motion.div>
+          </div>
 
-          {/* Facebook Card */}
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="bg-white p-8 rounded-sm shadow-sm border border-zinc-100 flex flex-col items-center text-center group transition-all hover:shadow-xl hover:border-red-600/20"
-          >
-            <div className="relative mb-6">
-              <div className="absolute inset-0 bg-red-600/10 translate-x-1 translate-y-1 rounded-sm transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
-              <div className="relative w-16 h-16 bg-zinc-900 rounded-sm flex items-center justify-center shadow-lg">
-                <Facebook className="w-8 h-8 text-red-600" />
-              </div>
-            </div>
-            <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-2">FACEBOOK</p>
-            <p className="text-xl font-bold text-zinc-900">A2 Art Plus : ทำป้าย บิวท์อิน ชลบุรี</p>
-          </motion.div>
+          {/* Right Side: Secondary Contact & Map/Address */}
+          <div className="lg:col-span-7 lg:pt-24">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-zinc-50 p-10 md:p-16 rounded-sm border border-zinc-100"
+            >
+              <div className="grid grid-cols-1 gap-12">
+                {/* Email */}
+                <div className="flex items-start gap-6">
+                  <Mail className="w-6 h-6 text-red-600 mt-1" />
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">อีเมล</p>
+                    <p className="text-xl md:text-2xl font-bold text-zinc-900 break-all">a2artbuiltin@gmail.com</p>
+                  </div>
+                </div>
 
-          {/* Email Card */}
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="bg-white p-8 rounded-sm shadow-sm border border-zinc-100 flex flex-col items-center text-center group transition-all hover:shadow-xl hover:border-red-600/20 md:col-span-1"
-          >
-            <div className="relative mb-6">
-              <div className="absolute inset-0 bg-red-600/10 translate-x-1 translate-y-1 rounded-sm transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
-              <div className="relative w-16 h-16 bg-zinc-900 rounded-sm flex items-center justify-center shadow-lg">
-                <Mail className="w-8 h-8 text-red-600" />
-              </div>
-            </div>
-            <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-2">อีเมล</p>
-            <p className="text-xl md:text-2xl font-bold text-zinc-900 break-all">a2artbuiltin@gmail.com</p>
-          </motion.div>
+                {/* Address */}
+                <div className="flex items-start gap-6">
+                  <MapPin className="w-6 h-6 text-red-600 mt-1" />
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">ที่อยู่สำนักงาน</p>
+                    <p className="text-lg md:text-xl font-medium text-zinc-700 leading-relaxed break-words">
+                      190/1 หมู่ที่ 11 ตำบลหนองขาม <br className="hidden md:block" />
+                      อำเภอศรีราชา จ.ชลบุรี 20230
+                    </p>
+                  </div>
+                </div>
 
-          {/* Address Card */}
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="bg-white p-8 rounded-sm shadow-sm border border-zinc-100 flex flex-col items-center text-center group transition-all hover:shadow-xl hover:border-red-600/20 md:col-span-2"
-          >
-            <div className="relative mb-6">
-              <div className="absolute inset-0 bg-red-600/10 translate-x-1 translate-y-1 rounded-sm transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
-              <div className="relative w-16 h-16 bg-zinc-900 rounded-sm flex items-center justify-center shadow-lg">
-                <MapPin className="w-8 h-8 text-red-600" />
+                <div className="pt-8 border-t border-zinc-200">
+                  <p className="text-zinc-500 text-sm leading-relaxed mb-6">
+                    เราพร้อมให้คำปรึกษาและประเมินราคาเบื้องต้นฟรี <br />
+                    ทีมงานของเราจะติดต่อกลับภายใน 24 ชั่วโมงในวันทำการ
+                  </p>
+                  <motion.a 
+                    href="https://line.me/ti/p/~a2artplus1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="inline-flex items-center justify-center px-10 py-4 bg-zinc-900 text-white font-bold rounded-sm hover:bg-red-600 transition-all shadow-lg"
+                  >
+                    ทักแชทปรึกษาผ่าน LINE
+                  </motion.a>
+                </div>
               </div>
-            </div>
-            <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-2">ที่อยู่</p>
-            <p className="text-lg md:text-xl font-bold text-zinc-900 max-w-2xl break-words leading-relaxed">
-              190/1 หมู่ที่ 11 ตำบลหนองขาม อำเภอศรีราชา จ.ชลบุรี 20230
-            </p>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
