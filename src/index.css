@@ -8,7 +8,9 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-white text-zinc-900 antialiased leading-relaxed;
+    @apply bg-white text-zinc-900 antialiased;
+    font-family: 'Prompt', sans-serif;
+    line-height: 1.625; /* leading-relaxed */
     word-break: keep-all;
     overflow-wrap: break-word;
   }

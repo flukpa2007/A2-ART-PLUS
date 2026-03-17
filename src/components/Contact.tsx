@@ -15,8 +15,8 @@ const Contact = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-red-600 font-bold tracking-[0.2em] uppercase text-sm mb-6">Contact Us</h2>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 mb-12 leading-[1.1] break-words">
-                เริ่มต้นโครงการ <br /> ของคุณกับเราวันนี้
+              <h3 className="text-5xl md:text-7xl lg:text-8xl font-bold text-zinc-900 mb-12 leading-tight break-words">
+                สนใจติดต่อ  
               </h3>
               
               <div className="space-y-10">

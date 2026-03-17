@@ -5,29 +5,24 @@ const Footer = () => {
   return (
     <footer className="bg-zinc-950 text-white py-24">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
-          <div className="col-span-1 lg:col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-24">
+          <div className="flex flex-col">
             <div className="mb-8 flex items-center gap-3">
-              <img 
-                src="/images/logo.png" 
-                alt="A2 ART PLUS Logo" 
-                className="h-10 w-auto"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
               <span className="text-3xl font-bold tracking-tighter">
                 A2 ART <span className="text-red-600">PLUS</span>
               </span>
             </div>
-            <p className="text-white/40 leading-relaxed mb-10">
-              เรารับออกแบบ ผลิต และติดตั้ง งานป้าย งานสติกเกอร์ และงานบิวท์อินสำหรับร้านค้า คลินิก ออฟฟิศ และธุรกิจต่าง ๆ โดยดูแลตั้งแต่แนวคิดการออกแบบจนถึงการติดตั้งหน้างาน
+            <p className="text-white/50 leading-relaxed mb-10 max-w-xs break-words">
+              เรารับออกแบบ ผลิต และติดตั้ง งานป้าย งานสติกเกอร์ <br className="hidden sm:block" /> 
+              และงานบิวท์อินสำหรับร้านค้า คลินิก ออฟฟิศ <br className="hidden sm:block" /> 
+              และธุรกิจต่าง ๆ โดยดูแลตั้งแต่แนวคิดการออกแบบ <br className="hidden sm:block" /> 
+              จนถึงการติดตั้งหน้างาน
             </p>
           </div>
           
           <div>
-            <h5 className="text-lg font-bold mb-8 text-white">เมนูหลัก</h5>
-            <ul className="space-y-5 text-white/40">
+            <h5 className="text-lg font-bold mb-8 text-white tracking-wide">เมนูหลัก</h5>
+            <ul className="space-y-4 text-white/50">
               <li><a href="#home" className="hover:text-red-600 transition-colors">หน้าแรก</a></li>
               <li><a href="#services" className="hover:text-red-600 transition-colors">บริการ</a></li>
               <li><a href="#portfolio" className="hover:text-red-600 transition-colors">ผลงาน</a></li>
@@ -36,27 +31,42 @@ const Footer = () => {
           </div>
 
           <div>
-            <h5 className="text-lg font-bold mb-8 text-white">ติดต่อเรา</h5>
-            <ul className="space-y-5 text-white/40">
-              <li className="flex items-center"><Phone size={18} className="mr-3 text-red-600" /> 087-637-9997</li>
-              <li className="flex items-center"><MessageCircle size={18} className="mr-3 text-red-600" /> a2artplus1</li>
-              <li className="flex items-center"><Facebook size={18} className="mr-3 text-red-600" /> A2 Art Plus</li>
-              <li className="flex items-center"><Mail size={18} className="mr-3 text-red-600" /> a2artbuiltin@gmail.com</li>
+            <h5 className="text-lg font-bold mb-8 text-white tracking-wide">ติดต่อเรา</h5>
+            <ul className="space-y-4 text-white/50">
+              <li className="flex items-center gap-3">
+                <Phone size={18} className="text-red-600 shrink-0" /> 
+                <span className="break-all">087-637-9997</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <MessageCircle size={18} className="text-red-600 shrink-0" /> 
+                <span>a2artplus1</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Facebook size={18} className="text-red-600 shrink-0" /> 
+                <span className="break-words">A2 Art Plus : ทำป้าย บิวท์อิน ชลบุรี</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail size={18} className="text-red-600 shrink-0" /> 
+                <span className="break-all">a2artbuiltin@gmail.com</span>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h5 className="text-lg font-bold mb-8 text-white">ที่อยู่</h5>
-            <p className="text-white/40 leading-relaxed flex items-start">
-              <MapPin size={18} className="mr-3 mt-1 text-red-600 shrink-0" />
-              190/1 หมู่ที่ 11 ตำบลหนองขาม อำเภอศรีราชา จ.ชลบุรี 20230
+            <h5 className="text-lg font-bold mb-8 text-white tracking-wide">ที่อยู่สำนักงาน</h5>
+            <p className="text-white/50 leading-relaxed flex items-start gap-3 max-w-xs break-words">
+              <MapPin size={18} className="text-red-600 shrink-0 mt-1" />
+              <span>
+                190/1 หมู่ที่ 11 ตำบลหนองขาม <br />
+                อำเภอศรีราชา จ.ชลบุรี 20230
+              </span>
             </p>
           </div>
         </div>
 
-        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-white/20 text-sm font-medium">
+        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-white/20 text-sm font-medium gap-6">
           <p>© {new Date().getFullYear()} A2 ART PLUS. All rights reserved.</p>
-          <p className="mt-5 md:mt-0 uppercase tracking-widest">Design • Fabrication • Installation</p>
+          <p className="uppercase tracking-widest text-xs">Design • Fabrication • Installation</p>
         </div>
       </div>
     </footer>

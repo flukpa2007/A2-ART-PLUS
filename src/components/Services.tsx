@@ -8,46 +8,56 @@ const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   return (
-    <section id="services" className="py-24 bg-zinc-50">
+    <section id="services" className="py-32 bg-black text-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16 text-center lg:text-left">
-          <h2 className="text-red-600 font-bold tracking-widest uppercase mb-4">Our Services</h2>
-          <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-relaxed break-words">
+        <div className="mb-20 text-center lg:text-left">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-red-600 font-bold tracking-widest uppercase mb-4"
+          >
+            Our Services
+          </motion.h2>
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-6xl font-bold leading-tight break-words"
+          >
             บริการออกแบบ ผลิต และติดตั้ง <br className="hidden lg:block" /> งานป้าย สติกเกอร์ และบิวท์อิน
-          </h3>
+          </motion.h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {SERVICES.map((service, index) => (
             <motion.div 
               key={service.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ y: -10 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               onClick={() => setSelectedService(service)}
-              className="bg-white rounded-sm overflow-hidden border border-zinc-100 shadow-sm hover:shadow-2xl transition-all group cursor-pointer flex flex-col"
+              className="bg-zinc-900 rounded-sm overflow-hidden border border-zinc-800 shadow-xl hover:shadow-red-600/10 transition-all group cursor-pointer flex flex-col"
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
                 <img 
                   src={service.image} 
                   alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    e.currentTarget.src = "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800";
-                  }}
                 />
-                <div className="absolute inset-0 bg-zinc-900/20 group-hover:bg-zinc-900/40 transition-colors" />
-                <div className="absolute top-4 left-4 bg-white p-3 rounded-sm shadow-lg text-red-600">
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
+                <div className="absolute top-6 left-6 bg-red-600 p-4 rounded-sm shadow-lg text-white">
                   {service.icon}
                 </div>
               </div>
               
-              <div className="p-8 flex-grow">
-                <h4 className="text-2xl font-bold mb-4 text-zinc-900 group-hover:text-red-600 transition-colors">{service.title}</h4>
-                <p className="text-zinc-500 leading-relaxed mb-6 line-clamp-3 break-words">
+              <div className="p-10 flex-grow">
+                <h4 className="text-2xl font-bold mb-4 group-hover:text-red-600 transition-colors">{service.title}</h4>
+                <p className="text-zinc-400 leading-relaxed mb-8 line-clamp-3 break-words">
                   {service.description}
                 </p>
                 
