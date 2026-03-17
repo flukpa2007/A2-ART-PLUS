@@ -61,20 +61,20 @@ const Hero = () => {
                 href="#portfolio" 
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-10 py-4 bg-red-600 text-white font-bold rounded-sm hover:bg-red-700 transition-all flex items-center justify-center group shadow-lg shadow-red-600/20"
+                className="w-full sm:w-auto px-10 py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-all flex items-center justify-center group shadow-lg shadow-red-600/20"
               >
                 ดูผลงานของเรา
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.a>
               <motion.a 
-                href="https://line.me/ti/p/~a2artplus1" 
+                href="https://www.facebook.com/profile.php?id=61566587472075"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-10 py-4 bg-green-500 text-white font-bold rounded-lg transition-all flex items-center justify-center shadow-md"
+                className="w-full sm:w-auto px-10 py-4 bg-white border border-zinc-900 text-zinc-900 font-bold rounded-lg hover:bg-zinc-900 hover:text-white transition-all flex items-center justify-center"
               >
-                ติดต่อผ่าน LINE
+                ติดต่อสอบถาม
               </motion.a>
             </div>
           </motion.div>

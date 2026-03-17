@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MessageCircle, X } from 'lucide-react';
+import { Facebook, X } from 'lucide-react';
 
 const ChatPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,12 +25,12 @@ const ChatPopup = () => {
           {/* Header */}
           <div className="flex justify-between items-start mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-green-500/20">
-                <MessageCircle size={20} />
+              <div className="w-10 h-10 bg-[#1877F2] rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+                <Facebook size={20} />
               </div>
               <div>
                 <p className="text-sm font-bold text-zinc-900">A2 ART PLUS</p>
-                <p className="text-[10px] text-green-500 font-bold uppercase tracking-wider">Online Now</p>
+                <p className="text-[10px] text-blue-500 font-bold uppercase tracking-wider">Online Now</p>
               </div>
             </div>
             <button 
@@ -50,13 +50,13 @@ const ChatPopup = () => {
 
           {/* Action Button */}
           <a
-            href="https://line.me/ti/p/~a2artplus1"
+            href="https://www.facebook.com/profile.php?id=61566587472075"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-3 bg-green-500 text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-green-600 transition-all shadow-lg shadow-green-500/20 active:scale-95"
+            className="w-full py-3 bg-[#1877F2] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-[#166fe5] transition-all shadow-lg shadow-blue-500/20 active:scale-95"
           >
-            <MessageCircle size={18} />
-            แอด LINE ปรึกษาฟรี
+            <Facebook size={18} />
+            ทัก Facebook ปรึกษาฟรี
           </a>
         </motion.div>
       )}

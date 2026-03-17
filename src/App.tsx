@@ -16,7 +16,6 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <div className="h-20 bg-gradient-to-b from-white to-black" />
         <Services />
         <Portfolio />
         <Process />

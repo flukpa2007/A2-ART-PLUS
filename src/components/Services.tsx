@@ -8,7 +8,7 @@ const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   return (
-    <section id="services" className="py-32 bg-black text-white">
+    <section id="services" className="pt-20 pb-32 bg-zinc-900 text-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-20 text-center lg:text-left">
           <motion.h2 
@@ -40,7 +40,7 @@ const Services = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               onClick={() => setSelectedService(service)}
-              className="bg-zinc-900 rounded-sm overflow-hidden border border-zinc-800 shadow-xl hover:shadow-red-600/10 transition-all group cursor-pointer flex flex-col"
+              className="bg-zinc-800 rounded-sm overflow-hidden border border-zinc-700 shadow-xl hover:shadow-red-600/10 transition-all group cursor-pointer flex flex-col"
             >
               <div className="relative h-64 overflow-hidden">
                 <img 
