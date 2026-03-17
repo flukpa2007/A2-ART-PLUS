@@ -16,6 +16,7 @@ export interface Project {
   title: string;
   category: string;
   image: string;
+  images: string[];
 }
 
 export interface ProcessStep {
