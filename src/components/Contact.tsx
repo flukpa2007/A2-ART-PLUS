@@ -68,7 +68,7 @@ const Contact = () => {
               <div className="grid grid-cols-1 gap-12">
                 {/* Email */}
                 <div className="flex items-start gap-6">
-                  <Mail className="w-6 h-6 text-red-600 mt-1" />
+                  <Mail className="w-8 h-8 md:w-6 md:h-6 text-red-600 mt-1 shrink-0" />
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">อีเมล</p>
                     <p className="text-xl md:text-2xl font-bold text-zinc-900 break-all">a2artbuiltin@gmail.com</p>
@@ -77,7 +77,7 @@ const Contact = () => {
 
                 {/* Address */}
                 <div className="flex items-start gap-6">
-                  <MapPin className="w-6 h-6 text-red-600 mt-1" />
+                  <MapPin className="w-8 h-8 md:w-6 md:h-6 text-red-600 mt-1 shrink-0" />
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">ที่อยู่สำนักงาน</p>
                     <p className="text-lg md:text-xl font-medium text-zinc-700 leading-relaxed break-words">

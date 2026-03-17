@@ -35,32 +35,32 @@ const Footer = () => {
             <ul className="space-y-4 text-white/50">
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-red-600 shrink-0" /> 
-                <span className="break-all">087-637-9997</span>
+                <a href="tel:0876379997" className="hover:text-red-600 transition-colors break-all">087-637-9997</a>
               </li>
               <li className="flex items-center gap-3">
                 <MessageCircle size={18} className="text-red-600 shrink-0" /> 
-                <span>a2artplus1</span>
+                <a href="https://line.me/ti/p/~a2artplus1" target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition-colors">a2artplus1</a>
               </li>
               <li className="flex items-center gap-3">
                 <Facebook size={18} className="text-red-600 shrink-0" /> 
-                <span className="break-words">A2 Art Plus : ทำป้าย บิวท์อิน ชลบุรี</span>
+                <a href="https://www.facebook.com/profile.php?id=61566587472075" target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition-colors break-words">A2 Art Plus : ทำป้าย บิวท์อิน ชลบุรี</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-red-600 shrink-0" /> 
-                <span className="break-all">a2artbuiltin@gmail.com</span>
+                <a href="mailto:a2artbuiltin@gmail.com" className="hover:text-red-600 transition-colors break-all">a2artbuiltin@gmail.com</a>
               </li>
             </ul>
           </div>
 
           <div>
             <h5 className="text-lg font-bold mb-8 text-white tracking-wide">ที่อยู่สำนักงาน</h5>
-            <p className="text-white/50 leading-relaxed flex items-start gap-3 max-w-xs break-words">
+            <a href="https://maps.app.goo.gl/eRDB8YVp3WXDck8v8" target="_blank" rel="noopener noreferrer" className="text-white/50 leading-relaxed flex items-start gap-3 max-w-xs break-words hover:text-red-600 transition-colors">
               <MapPin size={18} className="text-red-600 shrink-0 mt-1" />
               <span>
                 190/1 หมู่ที่ 11 ตำบลหนองขาม <br />
                 อำเภอศรีราชา จ.ชลบุรี 20230
               </span>
-            </p>
+            </a>
           </div>
         </div>
 

@@ -67,12 +67,14 @@ const Hero = () => {
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.a>
               <motion.a 
-                href="#contact" 
-                whileHover={{ scale: 1.02, backgroundColor: "#f4f4f5" }}
+                href="https://line.me/ti/p/~a2artplus1" 
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-10 py-4 border-2 border-zinc-900 text-zinc-900 font-bold rounded-sm transition-all flex items-center justify-center"
+                className="w-full sm:w-auto px-10 py-4 bg-green-500 text-white font-bold rounded-lg transition-all flex items-center justify-center shadow-md"
               >
-                ติดต่อสอบถาม
+                ติดต่อผ่าน LINE
               </motion.a>
             </div>
           </motion.div>
