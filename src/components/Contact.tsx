@@ -8,7 +8,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-red-600 font-bold tracking-widest uppercase mb-4">Contact Us</h2>
-          <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-relaxed break-words">
             เริ่มต้นโครงการของคุณกับเราวันนี้
           </h3>
         </div>
@@ -86,7 +86,7 @@ const Contact = () => {
               </div>
             </div>
             <p className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-2">ที่อยู่</p>
-            <p className="text-xl font-bold text-zinc-900 max-w-2xl">
+            <p className="text-lg md:text-xl font-bold text-zinc-900 max-w-2xl break-words leading-relaxed">
               190/1 หมู่ที่ 11 ตำบลหนองขาม อำเภอศรีราชา จ.ชลบุรี 20230
             </p>
           </motion.div>

@@ -12,7 +12,7 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 text-center lg:text-left">
           <h2 className="text-red-600 font-bold tracking-widest uppercase mb-4">Our Services</h2>
-          <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900">
+          <h3 className="text-3xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-relaxed break-words">
             บริการออกแบบ ผลิต และติดตั้ง <br className="hidden lg:block" /> งานป้าย สติกเกอร์ และบิวท์อิน
           </h3>
         </div>
@@ -47,7 +47,7 @@ const Services = () => {
               
               <div className="p-8 flex-grow">
                 <h4 className="text-2xl font-bold mb-4 text-zinc-900 group-hover:text-red-600 transition-colors">{service.title}</h4>
-                <p className="text-zinc-500 leading-relaxed mb-6 line-clamp-2">
+                <p className="text-zinc-500 leading-relaxed mb-6 line-clamp-3 break-words">
                   {service.description}
                 </p>
                 
@@ -95,7 +95,7 @@ const Services = () => {
                   <div className="w-16 h-1 bg-red-600 mb-8" />
                   
                   <div className="prose prose-zinc max-w-none">
-                    <p className="text-zinc-600 text-lg leading-relaxed mb-8">
+                    <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-8 break-words">
                       {selectedService.article}
                     </p>
                   </div>

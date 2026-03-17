@@ -30,11 +30,11 @@ const Hero = () => {
           >
             Premium Quality & Design
           </motion.span>
-          <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-white leading-[1.1] mb-8 uppercase">
-            Sign <span className="text-red-600">•</span> Furniture <span className="text-red-600">•</span> Built-in
+          <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[1.2] md:leading-[1.1] mb-8 uppercase break-words">
+            Sign <span className="text-red-600">•</span> Furniture <br className="md:hidden" /> <span className="text-red-600 md:inline">•</span> Built-in
           </h1>
-          <p className="max-w-2xl mx-auto text-lg md:text-xl opacity-70 mb-12 font-light leading-relaxed">
-            เรารับออกแบบ ผลิต และติดตั้ง งานป้าย งานสติกเกอร์ และงานบิวท์อินสำหรับร้านค้า คลินิก ออฟฟิศ และธุรกิจต่าง ๆ โดยดูแลตั้งแต่แนวคิดการออกแบบจนถึงการติดตั้งหน้างาน
+          <p className="max-w-2xl mx-auto text-base md:text-xl opacity-80 mb-12 font-light leading-relaxed break-words px-4">
+            เรารับออกแบบ ผลิต และติดตั้ง งานป้าย งานสติกเกอร์ <br className="hidden md:block" /> และงานบิวท์อินสำหรับร้านค้า คลินิก ออฟฟิศ และธุรกิจต่าง ๆ <br className="hidden md:block" /> โดยดูแลตั้งแต่แนวคิดการออกแบบจนถึงการติดตั้งหน้างาน
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <motion.a 

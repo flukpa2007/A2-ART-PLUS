@@ -8,6 +8,8 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-white text-zinc-900 antialiased;
+    @apply bg-white text-zinc-900 antialiased leading-relaxed;
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 }
