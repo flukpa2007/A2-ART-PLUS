@@ -1,0 +1,139 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ArrowRight, X, CheckCircle2 } from 'lucide-react';
+import { SERVICES } from '../constants';
+import { Service } from '../types';
+
+const Services = () => {
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+
+  return (
+    <section id="services" className="py-24 bg-zinc-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="mb-16 text-center lg:text-left">
+          <h2 className="text-red-600 font-bold tracking-widest uppercase mb-4">Our Services</h2>
+          <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900">
+            บริการออกแบบ ผลิต และติดตั้ง <br className="hidden lg:block" /> งานป้าย สติกเกอร์ และบิวท์อิน
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {SERVICES.map((service, index) => (
+            <motion.div 
+              key={service.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -10 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              onClick={() => setSelectedService(service)}
+              className="bg-white rounded-sm overflow-hidden border border-zinc-100 shadow-sm hover:shadow-2xl transition-all group cursor-pointer flex flex-col"
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={service.image} 
+                  alt={service.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800";
+                  }}
+                />
+                <div className="absolute inset-0 bg-zinc-900/20 group-hover:bg-zinc-900/40 transition-colors" />
+                <div className="absolute top-4 left-4 bg-white p-3 rounded-sm shadow-lg text-red-600">
+                  {service.icon}
+                </div>
+              </div>
+              
+              <div className="p-8 flex-grow">
+                <h4 className="text-2xl font-bold mb-4 text-zinc-900 group-hover:text-red-600 transition-colors">{service.title}</h4>
+                <p className="text-zinc-500 leading-relaxed mb-6 line-clamp-2">
+                  {service.description}
+                </p>
+                
+                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider">
+                  ดูรายละเอียดเพิ่มเติม <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-2" />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Service Detail Modal */}
+      <AnimatePresence>
+        {selectedService && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-zinc-900/95 backdrop-blur-sm"
+            onClick={() => setSelectedService(null)}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-sm relative shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <motion.button 
+                onClick={() => setSelectedService(null)}
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+                className="absolute top-6 right-6 z-10 p-2 bg-zinc-100 hover:bg-red-600 hover:text-white rounded-full transition-all"
+              >
+                <X className="w-6 h-6" />
+              </motion.button>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2">
+                <div className="p-8 md:p-12">
+                  <div className="text-red-600 mb-6">
+                    {selectedService.icon}
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6">{selectedService.title}</h2>
+                  <div className="w-16 h-1 bg-red-600 mb-8" />
+                  
+                  <div className="prose prose-zinc max-w-none">
+                    <p className="text-zinc-600 text-lg leading-relaxed mb-8">
+                      {selectedService.article}
+                    </p>
+                  </div>
+
+                  <motion.button 
+                    onClick={() => {
+                      setSelectedService(null);
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-red-600 text-white px-8 py-4 font-bold rounded-sm hover:bg-zinc-900 transition-all inline-flex items-center shadow-lg shadow-red-600/20"
+                  >
+                    ปรึกษาเราตอนนี้ <ArrowRight className="ml-2 w-5 h-5" />
+                  </motion.button>
+                </div>
+
+                <div className="bg-zinc-50 p-8 md:p-12">
+                  <h4 className="font-bold text-zinc-900 mb-6 uppercase tracking-wider text-sm">รูปภาพตัวอย่างงาน</h4>
+                  <div className="grid grid-cols-1 gap-4">
+                    <img 
+                      src={selectedService.image} 
+                      alt={selectedService.title}
+                      className="w-full aspect-video object-cover rounded-sm shadow-md"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        e.currentTarget.src = "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800";
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+};
+
+export default Services;
