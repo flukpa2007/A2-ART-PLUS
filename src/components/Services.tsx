@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // 1. เพิ่ม useEffect
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, X, CheckCircle2 } from 'lucide-react';
 import { SERVICES } from '../constants';
@@ -6,9 +6,32 @@ import { Service } from '../types';
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+  // 2. เพิ่ม State เก็บ Index ของรูปภาพปัจจุบันใน Modal
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // 3. Logic สำหรับสลับรูปภาพอัตโนมัติ (Image Slideshow)
+  useEffect(() => {
+    // ถ้าไม่ได้เปิด Modal หรือ Service นั้นไม่มีรูปใน Gallery ไม่ต้องทำอะไร
+    if (!selectedService || !selectedService.gallery || selectedService.gallery.length <= 1) {
+      setCurrentImageIndex(0); // Reset กลับไปรูปแรกทุกครั้งที่ปิด/เปิดใหม่
+      return;
+    }
+
+    // สร้าง Timer ให้สลับรูปทุกๆ 2 วินาที 2000ms)
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        // ถ้าถึงรูปสุดท้าย ให้วนกลับไปรูปแรก
+        (prevIndex + 1) % selectedService.gallery.length
+      );
+    }, 2000); 
+
+    // สำคัญ: Clean up timer ทุกครั้งที่ Modal ปิด เพื่อไม่ให้ Timer ค้างในเครื่อง
+    return () => clearInterval(timer);
+  }, [selectedService]); // สั่งให้ทำงานทุกครั้งที่ selectedService เปลี่ยน
 
   return (
     <section id="services" className="pt-20 pb-32 bg-zinc-900 text-white">
+      {/* ... โค้ดส่วน Our Services ด้านบนเหมือนเดิม ... */}
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-20 text-center lg:text-left">
           <motion.h2 
@@ -123,20 +146,45 @@ const Services = () => {
                   </motion.button>
                 </div>
 
-                <div className="bg-zinc-50 p-8 md:p-12">
+                {/* --- ส่วนขวา (รูปภาพ): ที่เราจะทำ Slideshow --- */}
+                <div className="bg-zinc-50 p-8 md:p-12 flex flex-col justify-center">
                   <h4 className="font-bold text-zinc-900 mb-6 uppercase tracking-wider text-sm">รูปภาพตัวอย่างงาน</h4>
-                  <div className="grid grid-cols-1 gap-4">
-                    <img 
-                      src={selectedService.image} 
-                      alt={selectedService.title}
-                      className="w-full aspect-video object-cover rounded-sm shadow-md"
-                      referrerPolicy="no-referrer"
-                      onError={(e) => {
-                        e.currentTarget.src = "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800";
-                      }}
-                    />
+                  
+                  {/* Container สำหรับรูปภาพ ต้องใส่ overflow-hidden */}
+                  <div className="relative w-full aspect-video rounded-sm overflow-hidden shadow-md bg-zinc-100">
+                    <AnimatePresence mode="wait">
+                      <motion.img 
+                        // **สำคัญ:** ใส่ key เพื่อให้ Framer Motion รู้ว่านี่คือรูปใหม่
+                        key={selectedService.gallery[currentImageIndex]}
+                        src={selectedService.gallery[currentImageIndex]} 
+                        alt={selectedService.title}
+                        // แอนิเมชัน Fade (opacity)
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.6, ease: "easeInOut" }}
+                        className="absolute inset-0 w-full h-full object-contain"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          e.currentTarget.src = "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800";
+                        }}
+                      />
+                    </AnimatePresence>
                   </div>
+                  
+                  {/* (Optional) ส่วนบ่งชี้ว่ามีกี่รูป และอยู่รูปที่เท่าไหร่ */}
+                  {selectedService.gallery && selectedService.gallery.length > 1 && (
+                    <div className="flex justify-center gap-2 mt-4">
+                        {selectedService.gallery.map((_, idx) => (
+                            <div 
+                                key={idx}
+                                className={`w-2 h-2 rounded-full transition-all ${idx === currentImageIndex ? 'bg-red-600' : 'bg-zinc-300'}`}
+                            />
+                        ))}
+                    </div>
+                  )}
                 </div>
+                {/* ----------------------------------------------- */}
               </div>
             </motion.div>
           </motion.div>

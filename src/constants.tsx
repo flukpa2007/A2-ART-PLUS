@@ -18,8 +18,11 @@ export const SERVICES: Service[] = [
     title: "ป้ายตัวอักษร (Signage Letters)",
     description: "รับผลิตและติดตั้งป้ายตัวอักษร อะคริลิค พลาสวูด ซิงค์ สแตนเลส",
     icon: <Layout className="w-8 h-8" />,
-    image: "/images/service-signage.jpg",
-    gallery: ["/images/gallery-1.jpg", "/images/gallery-2.jpg"],
+    image: "/images/letter/img-letter-01.jpg",
+    gallery: ["/images/letter/img-letter-02.jpg", 
+              "/images/letter/img-letter-03.jpg",
+              "/images/letter/img-letter-04.jpg",
+              "/images/letter/img-letter-05.jpg"],
     article: "ป้ายตัวอักษรช่วยเพิ่มความโดดเด่นให้กับธุรกิจของคุณ เราใช้วัสดุคุณภาพสูง ทนทานต่อสภาพอากาศ พร้อมทีมงานติดตั้งมืออาชีพ"
   },
   {
