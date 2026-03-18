@@ -22,7 +22,8 @@ export const SERVICES: Service[] = [
     gallery: ["/images/letter/img-letter-02.jpg", 
               "/images/letter/img-letter-03.jpg",
               "/images/letter/img-letter-04.jpg",
-              "/images/letter/img-letter-05.jpg"],
+              "/images/letter/img-letter-05.jpg",
+              "/images/letter/img-letter-06.jpg"],
     article: "ป้ายตัวอักษรช่วยเพิ่มความโดดเด่นให้กับธุรกิจของคุณ เราใช้วัสดุคุณภาพสูง ทนทานต่อสภาพอากาศ พร้อมทีมงานติดตั้งมืออาชีพ"
   },
   {

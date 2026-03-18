@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // 1. เพิ่ม useEffect
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, X, CheckCircle2 } from 'lucide-react';
 import { SERVICES } from '../constants';
@@ -6,32 +6,25 @@ import { Service } from '../types';
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  // 2. เพิ่ม State เก็บ Index ของรูปภาพปัจจุบันใน Modal
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // 3. Logic สำหรับสลับรูปภาพอัตโนมัติ (Image Slideshow)
   useEffect(() => {
-    // ถ้าไม่ได้เปิด Modal หรือ Service นั้นไม่มีรูปใน Gallery ไม่ต้องทำอะไร
     if (!selectedService || !selectedService.gallery || selectedService.gallery.length <= 1) {
-      setCurrentImageIndex(0); // Reset กลับไปรูปแรกทุกครั้งที่ปิด/เปิดใหม่
+      setCurrentImageIndex(0);
       return;
     }
 
-    // สร้าง Timer ให้สลับรูปทุกๆ 2 วินาที 2000ms)
     const timer = setInterval(() => {
       setCurrentImageIndex((prevIndex) => 
-        // ถ้าถึงรูปสุดท้าย ให้วนกลับไปรูปแรก
         (prevIndex + 1) % selectedService.gallery.length
       );
     }, 2000); 
 
-    // สำคัญ: Clean up timer ทุกครั้งที่ Modal ปิด เพื่อไม่ให้ Timer ค้างในเครื่อง
     return () => clearInterval(timer);
-  }, [selectedService]); // สั่งให้ทำงานทุกครั้งที่ selectedService เปลี่ยน
+  }, [selectedService]); 
 
   return (
     <section id="services" className="pt-20 pb-32 bg-zinc-900 text-white">
-      {/* ... โค้ดส่วน Our Services ด้านบนเหมือนเดิม ... */}
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-20 text-center lg:text-left">
           <motion.h2 
@@ -93,7 +86,7 @@ const Services = () => {
         </div>
       </div>
 
-      {/* Service Detail Modal */}
+{/* Service Detail Modal */}
       <AnimatePresence>
         {selectedService && (
           <motion.div 
@@ -146,45 +139,70 @@ const Services = () => {
                   </motion.button>
                 </div>
 
-                {/* --- ส่วนขวา (รูปภาพ): ที่เราจะทำ Slideshow --- */}
-                <div className="bg-zinc-50 p-8 md:p-12 flex flex-col justify-center">
-                  <h4 className="font-bold text-zinc-900 mb-6 uppercase tracking-wider text-sm">รูปภาพตัวอย่างงาน</h4>
-                  
-                  {/* Container สำหรับรูปภาพ ต้องใส่ overflow-hidden */}
-                  <div className="relative w-full aspect-video rounded-sm overflow-hidden shadow-md bg-zinc-100">
+                {/* --- ส่วนขวา (รูปภาพ): Slideshow พร้อมปุ่มควบคุม --- */}
+                <div className="bg-zinc-50 p-8 md:p-12 flex flex-col justify-center min-h-[400px]">
+        
+                  {/* Image Container พร้อมระบบ Hover group */}
+                  <div className="group relative w-full aspect-video rounded-sm overflow-hidden shadow-md bg-zinc-200 flex items-center justify-center">
                     <AnimatePresence mode="wait">
                       <motion.img 
-                        // **สำคัญ:** ใส่ key เพื่อให้ Framer Motion รู้ว่านี่คือรูปใหม่
                         key={selectedService.gallery[currentImageIndex]}
                         src={selectedService.gallery[currentImageIndex]} 
                         alt={selectedService.title}
-                        // แอนิเมชัน Fade (opacity)
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.6, ease: "easeInOut" }}
-                        className="absolute inset-0 w-full h-full object-contain"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="absolute inset-0 w-full h-full object-contain p-2"
                         referrerPolicy="no-referrer"
                         onError={(e) => {
                           e.currentTarget.src = "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800";
                         }}
                       />
                     </AnimatePresence>
+
+                    {/* ปุ่มควบคุม (จะโชว์เมื่อเมาส์ Hover) */}
+                    {selectedService.gallery && selectedService.gallery.length > 1 && (
+                      <>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentImageIndex((prev) => (prev - 1 + selectedService.gallery.length) % selectedService.gallery.length);
+                          }}
+                          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/90 hover:bg-red-600 hover:text-white rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 flex items-center justify-center"
+                        >
+                          <ArrowRight className="w-5 h-5 rotate-180" />
+                        </button>
+
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentImageIndex((prev) => (prev + 1) % selectedService.gallery.length);
+                          }}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/90 hover:bg-red-600 hover:text-white rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 flex items-center justify-center"
+                        >
+                          <ArrowRight className="w-5 h-5" />
+                        </button>
+                      </>
+                    )}
                   </div>
                   
-                  {/* (Optional) ส่วนบ่งชี้ว่ามีกี่รูป และอยู่รูปที่เท่าไหร่ */}
+                  {/* Pagination Dots แบบขยายได้ (คลิกได้) */}
                   {selectedService.gallery && selectedService.gallery.length > 1 && (
-                    <div className="flex justify-center gap-2 mt-4">
+                    <div className="flex justify-center gap-2 mt-8">
                         {selectedService.gallery.map((_, idx) => (
-                            <div 
+                            <button 
                                 key={idx}
-                                className={`w-2 h-2 rounded-full transition-all ${idx === currentImageIndex ? 'bg-red-600' : 'bg-zinc-300'}`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setCurrentImageIndex(idx);
+                                }}
+                                className={`h-1.5 transition-all rounded-full ${idx === currentImageIndex ? 'w-8 bg-red-600' : 'w-2 bg-zinc-300 hover:bg-zinc-400'}`}
                             />
                         ))}
                     </div>
                   )}
                 </div>
-                {/* ----------------------------------------------- */}
               </div>
             </motion.div>
           </motion.div>

@@ -15,7 +15,7 @@ const Hero = () => {
             className="w-full lg:w-1/2 flex justify-center lg:justify-start"
           >
             <img 
-              src="/images/logo-a2-black.png" 
+              src="/images/logo-a2.png" 
               alt="A2 ART PLUS Logo" 
               className="w-full max-w-[400px] lg:max-w-[500px] h-auto object-contain"
               referrerPolicy="no-referrer"
