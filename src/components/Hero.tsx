@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen w-full overflow-hidden bg-white flex items-center pt-20">
+    <section id="home" className="relative min-h-screen w-full overflow-hidden bg-white flex items-center pt-32 pb-20 md:pt-20 md:pb-0">
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Left Side: Large Logo */}

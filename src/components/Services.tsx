@@ -8,7 +8,7 @@ const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   return (
-    <section id="services" className="pt-20 pb-32 bg-zinc-900 text-white">
+    <section id="services" className="pt-32 pb-32 md:pt-20 bg-zinc-900 text-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-20 text-center lg:text-left">
           <motion.h2 
@@ -26,7 +26,7 @@ const Services = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-bold leading-tight break-words"
           >
-            บริการออกแบบ ผลิต และติดตั้ง <br className="hidden lg:block" /> งานป้าย สติกเกอร์ และบิวท์อิน
+            งานป้าย สติกเกอร์ และบิวท์อิน
           </motion.h3>
         </div>
 
