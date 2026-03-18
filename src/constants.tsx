@@ -16,7 +16,7 @@ export const SERVICES: Service[] = [
   {
     id: 1,
     title: "ป้ายตัวอักษร (Signage Letters)",
-    description: "รับผลิตและติดตั้งป้ายตัวอักษร อะคริลิค พลาสวูด ซิงค์ สแตนเลส สำหรับหน้าร้านและอาคาร",
+    description: "รับผลิตและติดตั้งป้ายตัวอักษร อะคริลิค พลาสวูด ซิงค์ สแตนเลส",
     icon: <Layout className="w-8 h-8" />,
     image: "/images/service-signage.jpg",
     gallery: ["/images/gallery-1.jpg", "/images/gallery-2.jpg"],
