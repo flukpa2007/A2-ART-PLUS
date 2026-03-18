@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -27,6 +28,7 @@ function App() {
       {/* Sales Conversion Tools */}
       <ChatPopup />
       <FloatingButtons />
+      <Analytics />
     </div>
   );
 }
