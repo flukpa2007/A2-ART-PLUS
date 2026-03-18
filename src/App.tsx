@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
 import React from 'react';
 import Navbar from './components/Navbar';
@@ -29,6 +30,7 @@ function App() {
       <ChatPopup />
       <FloatingButtons />
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
