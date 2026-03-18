@@ -87,6 +87,7 @@ const Services = () => {
       </div>
 
 {/* Service Detail Modal */}
+      {/* Service Detail Modal */}
       <AnimatePresence>
         {selectedService && (
           <motion.div 
@@ -141,7 +142,8 @@ const Services = () => {
 
                 {/* --- ส่วนขวา (รูปภาพ): Slideshow พร้อมปุ่มควบคุม --- */}
                 <div className="bg-zinc-50 p-8 md:p-12 flex flex-col justify-center min-h-[400px]">
-        
+                  <h4 className="font-bold text-zinc-900 mb-6 uppercase tracking-wider text-sm">รูปภาพตัวอย่างงาน</h4>
+                  
                   {/* Image Container พร้อมระบบ Hover group */}
                   <div className="group relative w-full aspect-video rounded-sm overflow-hidden shadow-md bg-zinc-200 flex items-center justify-center">
                     <AnimatePresence mode="wait">
