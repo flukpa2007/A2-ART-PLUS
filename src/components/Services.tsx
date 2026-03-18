@@ -26,7 +26,7 @@ const Services = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-bold leading-tight break-words"
           >
-            บริการออกแบบ ผลิต และติดตั้ง <br className="hidden lg:block" /> งานป้าย สติกเกอร์ และบิวท์อิน
+            บริการออกแบบ ผลิต และติดตั้ง
           </motion.h3>
         </div>
 
