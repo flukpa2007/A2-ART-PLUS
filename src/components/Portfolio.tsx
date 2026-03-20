@@ -50,8 +50,8 @@ const Portfolio = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
-            <h2 className="text-red-600 font-bold tracking-widest uppercase mb-4">Our Portfolio</h2>
-            <h3 className="text-4xl md:text-6xl font-bold text-zinc-900 leading-tight">
+            <h2 className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Portfolio</h2>
+            <h3 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900">
               รวมผลงานจากทุกบริการ
             </h3>
           </div>

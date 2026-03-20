@@ -12,8 +12,8 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-red-600 font-bold tracking-widest uppercase mb-4">About Us</h2>
-            <h3 className="text-4xl md:text-6xl font-bold text-zinc-900 mb-8 leading-relaxed break-words">
+            <h2 className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">About Us</h2>
+            <h3 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900 mb-8">
               A2 ART PLUS <br /> ป้ายดี บิวท์เด่น
             </h3>
             <p className="text-base md:text-lg text-zinc-600 leading-relaxed mb-8 break-words">
