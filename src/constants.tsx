@@ -95,7 +95,7 @@ export const SERVICES: Service[] = [
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    title: "งานตกแต่งคลินิกทันตกรรม",
+    title: "งานตกแต่งภายใน Dr.Milk Clinic",
     category: "Medical / Clinic",
     image: "/images/project-1.jpg",
     images: [
@@ -106,8 +106,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    title: "ป้ายไฟอาคารสำนักงานใหญ่",
-    category: "Corporate / Office",
+    title: "งานตกแต่งภายใน Kamon Coffee",
+    category: "Interior / Cafe",
     image: "/images/project-2.jpg",
     images: [
       "/images/project-2.jpg",
@@ -117,8 +117,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 3,
-    title: "งานสติกเกอร์ตกแต่งร้านกาแฟ",
-    category: "Retail / Cafe",
+    title: "งานตกแต่งภายใน ห้องประชุม The Brain",
+    category: "Interior / Coporate",
     image: "/images/project-3.jpg",
     images: [
       "/images/project-3.jpg",
@@ -128,8 +128,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 4,
-    title: "เฟอร์นิเจอร์บิวท์อินออฟฟิศสมัยใหม่",
-    category: "Interior / Office",
+    title: "งานตกแต่งภายใน Office MLP",
+    category: "School / Office",  
     image: "/images/project-4.jpg",
     images: [
       "/images/project-4.jpg",
