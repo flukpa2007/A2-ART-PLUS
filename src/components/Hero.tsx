@@ -17,7 +17,7 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen w-full overflow-hidden bg-white flex items-center pt-32 pb-20 md:pt-10 md:pb-0">
       
-      {/* --- Vertical Marquee (แสดงผลเฉพาะจอคอม) --- */}
+      {/* --- Vertical Marquee (Desktop Only) --- */}
       <div className="absolute right-0 top-0 bottom-0 w-[120px] lg:w-[420px] hidden md:block opacity-90 lg:opacity-90 z-0">
         <div className="relative h-full w-full overflow-hidden border-l border-zinc-50 bg-zinc-50/30">
           <motion.div 
@@ -38,17 +38,16 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
           
-          {/* --- ส่วนที่ 1: แถบรูปวิ่งในมือถือ (แสดงเฉพาะ Mobile แทนที่โลโก้เดิม) --- */}
+          {/* --- Mobile Marquee --- */}
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            // order-1: ให้ขึ้นก่อนในมือถือ | md:hidden: ซ่อนในคอม
             className="w-full order-1 md:hidden block mb-4"
           >
             <div className="relative h-[250px] w-full overflow-hidden rounded-xl border border-zinc-100 shadow-inner bg-zinc-50">
                <motion.div 
                 className="flex gap-4 p-4 absolute left-0"
-                animate={{ x: ["0%", "-50%"] }} // ในมือถือให้วิ่งแนวนอนจะดูสวยกว่าครับ
+                animate={{ x: ["0%", "-50%"] }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                >
                  {[...marqueeImages, ...marqueeImages].map((img, idx) => (
@@ -61,15 +60,14 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* --- ส่วนที่ 2: เนื้อหาหลัก --- */}
+          {/* --- Main Content (ชิดซ้าย + ขนาดใหญ่ + ความหนาเดิม) --- */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            // order-2: อยู่ตรงกลางเสมอ
-            className="w-full lg:w-[65%] text-center md:text-left lg:-ml-24 z-10 order-2"
+            className="w-full lg:w-[65%] text-left lg:-ml-24 z-10 order-2"
           >
             <motion.div
-              className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-sm bg-zinc-50 border border-zinc-100 text-zinc-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-10 mx-auto md:mx-0 shadow-inner"
+              className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-sm bg-zinc-50 border border-zinc-100 text-zinc-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-10 shadow-inner"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -78,17 +76,12 @@ const Hero = () => {
               Premium Quality & Design
             </motion.div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-[5.5rem] font-extrabold tracking-tight text-zinc-900 leading-[0.9] mb-10 uppercase">
+            {/* Headline: text-5xl ชิดซ้าย และ font-extrabold ตามเดิม */}
+            <h1 className="text-7xl md:text-6xl lg:text-[5.5rem] font-extrabold tracking-tight text-zinc-900 leading-[0.9] mb-10 uppercase text-left">
               Sign<br /> Furniture<br /> Built-in
             </h1>
 
-            <div className="max-w-md mx-auto md:mx-0">
-              <p className="text-sm md:text-lg text-zinc-500 mb-12 leading-relaxed text-center md:text-left">
-                เรารับออกแบบ ผลิต และติดตั้ง งานป้าย งานสติกเกอร์ และงานบิวท์อินระดับพรีเมียม
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-start gap-4">
               <a href="#services" className="w-full sm:w-auto px-8 py-4 bg-red-600 text-white text-sm font-bold rounded-sm flex items-center justify-center group shadow-xl shadow-red-600/10">
                 ดูผลงานของเรา <ArrowRight className="ml-2 w-4 h-4" />
               </a>
@@ -98,11 +91,10 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* --- ส่วนที่ 3: โลโก้ (ย้ายมาอยู่ล่างสุดในมือถือ) --- */}
+          {/* --- Logo (Bottom on Mobile) --- */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            // order-3: ให้มาอยู่ล่างสุดในมือถือ | md:order-none: ในคอมให้กลับไปที่เดิม
             className="w-full lg:w-[35%] flex justify-center lg:justify-start order-3 md:order-first"
           >
             <img 
