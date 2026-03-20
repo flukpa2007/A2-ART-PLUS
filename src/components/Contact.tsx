@@ -38,7 +38,9 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1">LINE ID</p>
-                    <p className="text-2xl font-bold text-zinc-900">a2artplus1</p>
+                    <a href="https://line.me/ti/p/@a2artplus1" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold text-zinc-900 hover:text-red-600 transition-colors">
+                      a2artplus1
+                    </a>
                   </div>
                 </div>
 
@@ -49,7 +51,9 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1">Facebook</p>
-                    <p className="text-xl font-bold text-zinc-900 break-words max-w-xs">A2 Art Plus : ทำป้าย บิวท์อิน ชลบุรี</p>
+                    <a href="https://www.facebook.com/profile.php?id=61566587472075" target="_blank" rel="noopener noreferrer" className="text-xl font-bold text-zinc-900 hover:text-red-600 transition-colors">
+                      A2 Art Plus : ทำป้าย บิวท์อิน ชลบุรี
+                    </a>
                   </div>
                 </div>
               </div>
@@ -71,7 +75,7 @@ const Contact = () => {
                   <Mail className="w-8 h-8 md:w-6 md:h-6 text-red-600 mt-1 shrink-0" />
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">อีเมล</p>
-                    <p className="text-xl md:text-2xl font-bold text-zinc-900 break-all">a2artbuiltin@gmail.com</p>
+                    <a href="mailto:a2artbuiltin@gmail.com" className="text-xl md:text-2xl font-bold text-zinc-900 break-all">a2artbuiltin@gmail.com</a>
                   </div>
                 </div>
 
@@ -80,10 +84,10 @@ const Contact = () => {
                   <MapPin className="w-8 h-8 md:w-6 md:h-6 text-red-600 mt-1 shrink-0" />
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">ที่อยู่สำนักงาน</p>
-                    <p className="text-lg md:text-xl font-medium text-zinc-700 leading-relaxed break-words">
+                    <a href="https://maps.app.goo.gl/A5mXkBewoCyHbKmT9" target="_blank" rel="noopener noreferrer" className="text-lg md:text-xl font-medium text-zinc-700 leading-relaxed break-words">
                       190/1 หมู่ที่ 11 ตำบลหนองขาม <br className="hidden md:block" />
                       อำเภอศรีราชา จ.ชลบุรี 20230
-                    </p>
+                    </a>
                   </div>
                 </div>
 
