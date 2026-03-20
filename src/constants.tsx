@@ -34,7 +34,7 @@ export const SERVICES: Service[] = [
     title: "ป้ายไฟ LED (LED Signage)",
     description: "ป้ายไฟตัวอักษร ตู้ไฟ LED ประหยัดพลังงาน สว่างสม่ำเสมอ โดดเด่นทั้งกลางวันและกลางคืน",
     icon: <Box className="w-8 h-8" />,
-    image: "/images/led/img-led-08.jpg",
+    image: "/images/led/img-led-08.png",
     gallery: ["/images/led/img-led-01.jpg",
               "/images/led/img-led-02.jpg",
               "/images/led/img-led-03.jpg",
@@ -42,7 +42,8 @@ export const SERVICES: Service[] = [
               "/images/led/img-led-05.jpg",
               "/images/led/img-led-06.jpg",
               "/images/led/img-led-07.jpg",
-              "/images/led/img-led-09.jpg"],
+              "/images/led/img-led-09.png",
+              "/images/led/img-led-10.jpg"],
     article: "เพิ่มการมองเห็นให้ร้านค้าของคุณด้วยป้ายไฟ LED ดีไซน์ทันสมัย เราใช้ชิป LED เกรดพรีเมียม ให้ความสว่างสูงและอายุการใช้งานที่ยาวนาน"
   },
   {
@@ -50,8 +51,18 @@ export const SERVICES: Service[] = [
     title: "งานสติกเกอร์ (Sticker Graphics)",
     description: "สติกเกอร์ติดกระจก สติกเกอร์ไดคัท สติกเกอร์ติดรถยนต์ งานพิมพ์คุณภาพสูง สีสดทนทาน",
     icon: <Monitor className="w-8 h-8" />,
-    image: "/images/service-sticker.jpg",
-    gallery: ["/images/gallery-5.jpg", "/images/gallery-6.jpg"],
+    image: "/images/stk/img-stk-09.jpg",
+    gallery: ["/images/stk/img-stk-02.jpg",
+              "/images/stk/img-stk-03.jpg",
+              "/images/stk/img-stk-04.jpg",
+              "/images/stk/img-stk-05.jpg",
+              "/images/stk/img-stk-06.jpg",
+              "/images/stk/img-stk-07.jpg",
+              "/images/stk/img-stk-08.jpg",
+              "/images/stk/img-stk-10.jpg",
+              "/images/stk/img-stk-01.jpg",
+              "/images/stk/img-stk-11.jpg",
+              "/images/stk/img-stk-12.jpg"],
     article: "ตกแต่งพื้นที่ของคุณด้วยงานสติกเกอร์คุณภาพสูง ทั้งงานตกแต่งภายในและภายนอกอาคาร ทนแดด ทนฝน ไม่ลอกง่าย"
   },
   {
@@ -59,8 +70,10 @@ export const SERVICES: Service[] = [
     title: "งานไวนิล (Vinyl Banners)",
     description: "ป้ายไวนิลโฆษณา สแตนดี้ ธงญี่ปุ่น งานพิมพ์ขนาดใหญ่สำหรับงานอีเวนต์และโปรโมชั่น",
     icon: <Paintbrush className="w-8 h-8" />,
-    image: "/images/service-vinyl.jpg",
-    gallery: ["/images/gallery-7.jpg", "/images/gallery-8.jpg"],
+    image: "/images/vn/img-vn-01.jpg",
+    gallery: ["/images/vn/img-vn-02.jpg",
+              "/images/vn/img-vn-03.jpg",
+              "/images/vn/img-vn-04.jpg",],
     article: "งานพิมพ์ไวนิลความละเอียดสูง สีสันคมชัด เหมาะสำหรับงานโฆษณาทุกรูปแบบ พร้อมบริการออกแบบและติดตั้ง"
   },
   {
