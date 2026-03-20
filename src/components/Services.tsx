@@ -8,7 +8,7 @@ const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // ระบบสลับรูปอัตโนมัติ (เผื่อคนไม่ลากก็นั่งดูเพลินๆ ได้)
+  // ระบบสลับรูปอัตโนมัติ (เปลี่ยนทุก 4 วินาที)
   useEffect(() => {
     if (!selectedService || !selectedService.gallery || selectedService.gallery.length <= 1) {
       setCurrentImageIndex(0);
@@ -93,42 +93,44 @@ const Services = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-zinc-900/95 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 bg-zinc-900/95 backdrop-blur-sm"
             onClick={() => setSelectedService(null)}
           >
             <motion.div 
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-sm relative shadow-2xl"
+              className="bg-white w-full max-w-7xl max-h-[95vh] overflow-y-auto rounded-md relative shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <motion.button 
                 onClick={() => setSelectedService(null)}
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
-                className="absolute top-6 right-6 z-20 p-2 bg-zinc-100 hover:bg-red-600 hover:text-white rounded-full transition-all"
+                className="absolute top-5 right-5 z-20 p-2 bg-zinc-100 hover:bg-red-600 hover:text-white rounded-full transition-all"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5" />
               </motion.button>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2">
-                {/* ฝั่งซ้าย: เนื้อหา + ปรับจูนหัวข้อภาษาอังกฤษ */}
-                <div className="p-8 md:p-12">
-                  <div className="text-red-600 mb-6">
+              {/* ปรับสัดส่วน Grid ให้รูปกว้างกว่าเนื้อหา */}
+              <div className="grid grid-cols-1 lg:grid-cols-[2fr,3fr]">
+                
+                {/* ฝั่งซ้าย: เนื้อหา */}
+                <div className="p-8 md:p-16 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-zinc-100">
+                  <div className="text-red-600 mb-6 scale-125 lg:scale-150 origin-left">
                     {selectedService.icon}
                   </div>
                   
-                  <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6 leading-tight">
+                  <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6 leading-tight">
                     {selectedService.title.split(' (')[0]}
-                    <span className="block text-xl md:text-2xl font-medium text-zinc-400 mt-2 tracking-normal normal-case">
+                    <span className="block text-xl md:text-3xl font-medium text-zinc-400 mt-2 tracking-normal normal-case">
                       {selectedService.title.match(/\(([^)]+)\)/)?.[1]}
                     </span>
                   </h2>
 
-                  <div className="w-16 h-1 bg-red-600 mb-8" />
-                  <div className="prose prose-zinc max-w-none">
-                    <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-10 break-words">
+                  <div className="w-20 h-1.5 bg-red-600 mb-10" />
+                  <div className="prose prose-zinc max-w-none mb-12">
+                    <p className="text-zinc-600 text-lg md:text-xl leading-relaxed break-words">
                       {selectedService.article}
                     </p>
                   </div>
@@ -140,26 +142,25 @@ const Services = () => {
                     }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="bg-red-600 text-white px-8 py-4 font-bold rounded-sm hover:bg-zinc-900 transition-all inline-flex items-center shadow-lg shadow-red-600/20"
+                    className="bg-red-600 text-white px-10 py-5 text-lg font-bold rounded-sm hover:bg-zinc-900 transition-all inline-flex items-center shadow-lg shadow-red-600/20 w-fit"
                   >
-                    ปรึกษาเราตอนนี้ <ArrowRight className="ml-2 w-5 h-5" />
+                    ปรึกษาเราตอนนี้ <ArrowRight className="ml-3 w-6 h-6" />
                   </motion.button>
                 </div>
 
-                {/* ฝั่งขวา: รูปภาพ ระบบลาก (Drag) ไร้ปุ่มกด */}
-                <div className="bg-zinc-50 p-8 md:p-12 flex flex-col justify-center min-h-[450px]">
-                  <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-4 text-center">
+                {/* ฝั่งขวา: รูปภาพ (ขยายพื้นที่สุดๆ) */}
+                <div className="bg-zinc-50 p-6 md:p-10 flex flex-col justify-center items-center">
+                  <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.25em] mb-5 text-center">
                     Click & Drag to Swipe
                   </p>
                   
-                  <div className="relative w-full aspect-video rounded-sm overflow-hidden shadow-md bg-zinc-200 flex items-center justify-center cursor-grab active:cursor-grabbing">
+                  <div className="relative w-full aspect-square max-h-[70vh] rounded-md overflow-hidden shadow-xl bg-zinc-200 flex items-center justify-center cursor-grab active:cursor-grabbing border-4 border-white">
                     <AnimatePresence mode="wait">
                       <motion.img 
                         key={selectedService.gallery[currentImageIndex]}
                         src={selectedService.gallery[currentImageIndex]} 
                         alt={selectedService.title}
                         
-                        // ระบบ Drag
                         drag="x"
                         dragConstraints={{ left: 0, right: 0 }}
                         onDragEnd={(_, info) => {
@@ -171,11 +172,11 @@ const Services = () => {
                           }
                         }}
 
-                        initial={{ opacity: 0, scale: 0.95, x: 30 }}
-                        animate={{ opacity: 1, scale: 1, x: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, x: -30 }}
-                        transition={{ duration: 0.3 }}
-                        className="absolute inset-0 w-full h-full object-contain p-2 select-none"
+                        initial={{ opacity: 0, scale: 1.05 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.05 }}
+                        transition={{ duration: 0.4, ease: "circOut" }}
+                        className="absolute inset-0 w-full h-full object-cover select-none"
                         referrerPolicy="no-referrer"
                         onError={(e) => {
                           e.currentTarget.src = "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800";
@@ -184,9 +185,9 @@ const Services = () => {
                     </AnimatePresence>
                   </div>
                   
-                  {/* Indicator ลำดับรูป */}
+                  {/* Indicator ปรับให้ยาวขึ้นดูพรีเมียม */}
                   {selectedService.gallery && selectedService.gallery.length > 1 && (
-                    <div className="flex justify-center gap-2 mt-8">
+                    <div className="flex justify-center gap-3 mt-10">
                         {selectedService.gallery.map((_, idx) => (
                             <button 
                                 key={idx}
@@ -194,7 +195,7 @@ const Services = () => {
                                   e.stopPropagation();
                                   setCurrentImageIndex(idx);
                                 }}
-                                className={`h-1 transition-all rounded-full ${idx === currentImageIndex ? 'w-10 bg-red-600' : 'w-2 bg-zinc-300 hover:bg-zinc-400'}`}
+                                className={`h-2 transition-all rounded-full ${idx === currentImageIndex ? 'w-12 bg-red-600' : 'w-2.5 bg-zinc-200 hover:bg-zinc-300'}`}
                             />
                         ))}
                     </div>
