@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, X, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
 import { SERVICES } from '../constants';
 import { Service } from '../types';
 
@@ -8,6 +8,7 @@ const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // ระบบสลับรูปอัตโนมัติ (เผื่อคนไม่ลากก็นั่งดูเพลินๆ ได้)
   useEffect(() => {
     if (!selectedService || !selectedService.gallery || selectedService.gallery.length <= 1) {
       setCurrentImageIndex(0);
@@ -76,7 +77,6 @@ const Services = () => {
                 <p className="text-zinc-400 leading-relaxed mb-8 line-clamp-3 break-words">
                   {service.description}
                 </p>
-                
                 <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider">
                   ดูรายละเอียดเพิ่มเติม <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-2" />
                 </div>
@@ -86,7 +86,6 @@ const Services = () => {
         </div>
       </div>
 
-{/* Service Detail Modal */}
       {/* Service Detail Modal */}
       <AnimatePresence>
         {selectedService && (
@@ -108,21 +107,28 @@ const Services = () => {
                 onClick={() => setSelectedService(null)}
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
-                className="absolute top-6 right-6 z-10 p-2 bg-zinc-100 hover:bg-red-600 hover:text-white rounded-full transition-all"
+                className="absolute top-6 right-6 z-20 p-2 bg-zinc-100 hover:bg-red-600 hover:text-white rounded-full transition-all"
               >
                 <X className="w-6 h-6" />
               </motion.button>
 
               <div className="grid grid-cols-1 lg:grid-cols-2">
+                {/* ฝั่งซ้าย: เนื้อหา + ปรับจูนหัวข้อภาษาอังกฤษ */}
                 <div className="p-8 md:p-12">
                   <div className="text-red-600 mb-6">
                     {selectedService.icon}
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6">{selectedService.title}</h2>
-                  <div className="w-16 h-1 bg-red-600 mb-8" />
                   
+                  <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6 leading-tight">
+                    {selectedService.title.split(' (')[0]}
+                    <span className="block text-xl md:text-2xl font-medium text-zinc-400 mt-2 tracking-normal normal-case">
+                      {selectedService.title.match(/\(([^)]+)\)/)?.[1]}
+                    </span>
+                  </h2>
+
+                  <div className="w-16 h-1 bg-red-600 mb-8" />
                   <div className="prose prose-zinc max-w-none">
-                    <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-8 break-words">
+                    <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-10 break-words">
                       {selectedService.article}
                     </p>
                   </div>
@@ -140,56 +146,45 @@ const Services = () => {
                   </motion.button>
                 </div>
 
-                {/* --- ส่วนขวา (รูปภาพ): Slideshow พร้อมปุ่มควบคุม --- */}
-                <div className="bg-zinc-50 p-8 md:p-12 flex flex-col justify-center min-h-[400px]">
-                  <h4 className="font-bold text-zinc-900 mb-6 uppercase tracking-wider text-sm">รูปภาพตัวอย่างงาน</h4>
+                {/* ฝั่งขวา: รูปภาพ ระบบลาก (Drag) ไร้ปุ่มกด */}
+                <div className="bg-zinc-50 p-8 md:p-12 flex flex-col justify-center min-h-[450px]">
+                  <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-4 text-center">
+                    Click & Drag to Swipe
+                  </p>
                   
-                  {/* Image Container พร้อมระบบ Hover group */}
-                  <div className="group relative w-full aspect-video rounded-sm overflow-hidden shadow-md bg-zinc-200 flex items-center justify-center">
+                  <div className="relative w-full aspect-video rounded-sm overflow-hidden shadow-md bg-zinc-200 flex items-center justify-center cursor-grab active:cursor-grabbing">
                     <AnimatePresence mode="wait">
                       <motion.img 
                         key={selectedService.gallery[currentImageIndex]}
                         src={selectedService.gallery[currentImageIndex]} 
                         alt={selectedService.title}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -20 }}
-                        transition={{ duration: 0.4, ease: "easeInOut" }}
-                        className="absolute inset-0 w-full h-full object-contain p-2"
+                        
+                        // ระบบ Drag
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        onDragEnd={(_, info) => {
+                          const swipeThreshold = 50;
+                          if (info.offset.x < -swipeThreshold) {
+                            setCurrentImageIndex((prev) => (prev + 1) % selectedService.gallery.length);
+                          } else if (info.offset.x > swipeThreshold) {
+                            setCurrentImageIndex((prev) => (prev - 1 + selectedService.gallery.length) % selectedService.gallery.length);
+                          }
+                        }}
+
+                        initial={{ opacity: 0, scale: 0.95, x: 30 }}
+                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, x: -30 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute inset-0 w-full h-full object-contain p-2 select-none"
                         referrerPolicy="no-referrer"
                         onError={(e) => {
                           e.currentTarget.src = "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800";
                         }}
                       />
                     </AnimatePresence>
-
-                    {/* ปุ่มควบคุม (จะโชว์เมื่อเมาส์ Hover) */}
-                    {selectedService.gallery && selectedService.gallery.length > 1 && (
-                      <>
-                        <button 
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setCurrentImageIndex((prev) => (prev - 1 + selectedService.gallery.length) % selectedService.gallery.length);
-                          }}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/90 hover:bg-red-600 hover:text-white rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 flex items-center justify-center"
-                        >
-                          <ArrowRight className="w-5 h-5 rotate-180" />
-                        </button>
-
-                        <button 
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setCurrentImageIndex((prev) => (prev + 1) % selectedService.gallery.length);
-                          }}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-3 bg-white/90 hover:bg-red-600 hover:text-white rounded-full shadow-lg transition-all opacity-0 group-hover:opacity-100 flex items-center justify-center"
-                        >
-                          <ArrowRight className="w-5 h-5" />
-                        </button>
-                      </>
-                    )}
                   </div>
                   
-                  {/* Pagination Dots แบบขยายได้ (คลิกได้) */}
+                  {/* Indicator ลำดับรูป */}
                   {selectedService.gallery && selectedService.gallery.length > 1 && (
                     <div className="flex justify-center gap-2 mt-8">
                         {selectedService.gallery.map((_, idx) => (
@@ -199,7 +194,7 @@ const Services = () => {
                                   e.stopPropagation();
                                   setCurrentImageIndex(idx);
                                 }}
-                                className={`h-1.5 transition-all rounded-full ${idx === currentImageIndex ? 'w-8 bg-red-600' : 'w-2 bg-zinc-300 hover:bg-zinc-400'}`}
+                                className={`h-1 transition-all rounded-full ${idx === currentImageIndex ? 'w-10 bg-red-600' : 'w-2 bg-zinc-300 hover:bg-zinc-400'}`}
                             />
                         ))}
                     </div>
