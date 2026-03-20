@@ -59,6 +59,7 @@ const Services = () => {
               onClick={() => setSelectedService(service)}
               className="bg-zinc-800 rounded-sm overflow-hidden border border-zinc-700 shadow-xl hover:shadow-red-600/10 transition-all group cursor-pointer flex flex-col"
             >
+              {/* ส่วนรูปภาพหน้า Card - เอาไอคอนออกแล้ว */}
               <div className="relative h-64 overflow-hidden">
                 <img 
                   src={service.image} 
@@ -67,9 +68,6 @@ const Services = () => {
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                <div className="absolute top-6 left-6 bg-red-600 p-4 rounded-sm shadow-lg text-white">
-                  {service.icon}
-                </div>
               </div>
               
               <div className="p-10 flex-grow">
@@ -112,15 +110,10 @@ const Services = () => {
                 <X className="w-5 h-5" />
               </motion.button>
 
-              {/* ปรับสัดส่วน Grid ให้รูปกว้างกว่าเนื้อหา */}
               <div className="grid grid-cols-1 lg:grid-cols-[2fr,3fr]">
                 
-                {/* ฝั่งซ้าย: เนื้อหา */}
+                {/* ฝั่งซ้าย: เนื้อหา (ไม่มีไอคอนและปุ่ม) */}
                 <div className="p-8 md:p-16 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-zinc-100">
-                  <div className="text-red-600 mb-6 scale-125 lg:scale-150 origin-left">
-                    {selectedService.icon}
-                  </div>
-                  
                   <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6 leading-tight">
                     {selectedService.title.split(' (')[0]}
                     <span className="block text-xl md:text-3xl font-medium text-zinc-400 mt-2 tracking-normal normal-case">
@@ -129,32 +122,22 @@ const Services = () => {
                   </h2>
 
                   <div className="w-20 h-1.5 bg-red-600 mb-10" />
-                  <div className="prose prose-zinc max-w-none mb-12">
+                  
+                  <div className="prose prose-zinc max-w-none">
                     <p className="text-zinc-600 text-lg md:text-xl leading-relaxed break-words">
                       {selectedService.article}
                     </p>
                   </div>
-
-                  <motion.button 
-                    onClick={() => {
-                      setSelectedService(null);
-                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-red-600 text-white px-10 py-5 text-lg font-bold rounded-sm hover:bg-zinc-900 transition-all inline-flex items-center shadow-lg shadow-red-600/20 w-fit"
-                  >
-                    ปรึกษาเราตอนนี้ <ArrowRight className="ml-3 w-6 h-6" />
-                  </motion.button>
                 </div>
 
-                {/* ฝั่งขวา: รูปภาพ (ขยายพื้นที่สุดๆ) */}
+                {/* ฝั่งขวา: รูปภาพ (ขยายพื้นที่ + โชว์รูปแนวตั้งแบบเต็มใบ) */}
                 <div className="bg-zinc-50 p-6 md:p-10 flex flex-col justify-center items-center">
                   <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.25em] mb-5 text-center">
                     Click & Drag to Swipe
                   </p>
                   
-                  <div className="relative w-full aspect-square max-h-[70vh] rounded-md overflow-hidden shadow-xl bg-zinc-200 flex items-center justify-center cursor-grab active:cursor-grabbing border-4 border-white">
+                  {/* Container รูปภาพ: ใช้พื้นหลังขาว + object-contain เพื่อให้เห็นรูปแนวตั้งครบๆ */}
+                  <div className="relative w-full aspect-square max-h-[75vh] rounded-md overflow-hidden shadow-xl bg-white flex items-center justify-center cursor-grab active:cursor-grabbing border-4 border-white">
                     <AnimatePresence mode="wait">
                       <motion.img 
                         key={selectedService.gallery[currentImageIndex]}
@@ -172,11 +155,13 @@ const Services = () => {
                           }
                         }}
 
-                        initial={{ opacity: 0, scale: 1.05 }}
+                        initial={{ opacity: 0, scale: 1.02 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 1.05 }}
+                        exit={{ opacity: 0, scale: 1.02 }}
                         transition={{ duration: 0.4, ease: "circOut" }}
-                        className="absolute inset-0 w-full h-full object-cover select-none"
+                        
+                        // เปลี่ยนเป็น object-contain เพื่อไม่ให้รูปโดนตัด
+                        className="absolute inset-0 w-full h-full object-contain p-2 select-none"
                         referrerPolicy="no-referrer"
                         onError={(e) => {
                           e.currentTarget.src = "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800";
@@ -185,7 +170,7 @@ const Services = () => {
                     </AnimatePresence>
                   </div>
                   
-                  {/* Indicator ปรับให้ยาวขึ้นดูพรีเมียม */}
+                  {/* Indicator ด้านล่าง */}
                   {selectedService.gallery && selectedService.gallery.length > 1 && (
                     <div className="flex justify-center gap-3 mt-10">
                         {selectedService.gallery.map((_, idx) => (
