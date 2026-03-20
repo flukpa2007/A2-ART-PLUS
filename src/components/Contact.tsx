@@ -38,7 +38,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1">LINE ID</p>
-                    <a href="https://line.me/ti/p/@a2artplus1" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold text-zinc-900 hover:text-red-600 transition-colors">
+                    <a href="https://line.me/ti/p/~a2artplus1" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold text-zinc-900 hover:text-red-600 transition-colors">
                       a2artplus1
                     </a>
                   </div>
