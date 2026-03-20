@@ -18,7 +18,7 @@ const Services = () => {
       setCurrentImageIndex((prevIndex) => 
         (prevIndex + 1) % selectedService.gallery.length
       );
-    }, 2000); 
+    }, 4000); 
 
     return () => clearInterval(timer);
   }, [selectedService]); 
