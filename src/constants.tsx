@@ -86,8 +86,16 @@ export const SERVICES: Service[] = [
     title: "งานบิวท์อิน (Built-in Furniture)",
     description: "รับออกแบบและตกแต่งภายใน เฟอร์นิเจอร์บิวท์อินสำหรับร้านค้า คลินิก และออฟฟิศ",
     icon: <Hammer className="w-8 h-8" />,
-    image: "/images/service-builtin.jpg",
-    gallery: ["/images/gallery-9.jpg", "/images/gallery-10.jpg"],
+    image: "/images/bu/img-bu-03.jpg",
+    gallery: ["/images/bu/img-bu-01.jpg",
+              "/images/bu/img-bu-02.jpg",
+              "/images/bu/img-bu-04.jpg",
+              "/images/bu/img-bu-05.jpg",
+              "/images/bu/img-bu-06.jpg",
+              "/images/bu/img-bu-07.jpg",
+              "/images/bu/img-bu-08.jpg",
+              "/images/bu/img-bu-09.jpg",
+              "/images/bu/img-bu-10.jpg"],
     article: "เปลี่ยนพื้นที่ว่างให้เป็นพื้นที่ใช้งานที่ลงตัว ด้วยงานบิวท์อินดีไซน์เฉพาะตัวที่สะท้อนภาพลักษณ์แบรนด์ของคุณ"
   }
 ];
