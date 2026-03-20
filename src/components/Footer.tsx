@@ -35,7 +35,7 @@ const Footer = () => {
             <ul className="space-y-4 text-white/50">
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-red-600 shrink-0" /> 
-                <a href="tel:0876379997" className="hover:text-red-600 transition-colors break-all">087-637-9997</a>
+                <a href="tel:0876349997" className="hover:text-red-600 transition-colors break-all">087-634-9997</a>
               </li>
               <li className="flex items-center gap-3">
                 <MessageCircle size={18} className="text-red-600 shrink-0" /> 

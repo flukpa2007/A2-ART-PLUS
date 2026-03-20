@@ -27,7 +27,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1">โทรศัพท์</p>
-                    <a href="tel:0876379997" className="text-2xl font-bold text-zinc-900 hover:text-red-600 transition-colors">087-637-9997</a>
+                    <a href="tel:0876349997" className="text-2xl font-bold text-zinc-900 hover:text-red-600 transition-colors">087-634-9997</a>
                   </div>
                 </div>
 
