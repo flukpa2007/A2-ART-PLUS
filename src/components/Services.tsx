@@ -5,7 +5,14 @@ import { SERVICES } from '../constants';
 import { Service } from '../types';
 
 // --- Component ย่อย: การ์ดสไตล์ Octopus (Hover แล้วเล่นรูป + ซูม) ---
-const ServiceCard = ({ service, index, onClick }: { service: Service, index: number, onClick: () => void }) => {
+type ServiceCardProps = {
+  service: Service;
+  index: number;
+  onClick: () => void;
+  key?: React.Key;
+};
+
+const ServiceCard = ({ service, index, onClick }: ServiceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [previewIndex, setPreviewIndex] = useState(0);
 
@@ -106,7 +113,7 @@ const Services = () => {
             whileInView={{ opacity: 1 }}
             className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block"
           >
-            Our services 
+            Our services
           </motion.span>
           <motion.h3 
             initial={{ opacity: 0, y: 20 }}
