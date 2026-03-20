@@ -47,7 +47,8 @@ const Services = () => {
           </motion.h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {/* --- ส่วน Card: สไลด์บนมือถือ / Grid บนคอม --- */}
+        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 pb-10 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 md:mx-0 md:px-0 md:overflow-visible scrollbar-hide">
           {SERVICES.map((service, index) => (
             <motion.div 
               key={service.id}
@@ -57,10 +58,10 @@ const Services = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               onClick={() => setSelectedService(service)}
-              className="bg-zinc-800 rounded-sm overflow-hidden border border-zinc-700 shadow-xl hover:shadow-red-600/10 transition-all group cursor-pointer flex flex-col"
+              // snap-center และ shrink-0 คือหัวใจของการสไลด์บนมือถือ
+              className="bg-zinc-800 rounded-sm overflow-hidden border border-zinc-700 shadow-xl hover:shadow-red-600/10 transition-all group cursor-pointer flex flex-col snap-center shrink-0 w-[85%] md:w-full"
             >
-              {/* ส่วนรูปภาพหน้า Card - เอาไอคอนออกแล้ว */}
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-64 overflow-hidden shrink-0">
                 <img 
                   src={service.image} 
                   alt={service.title}
@@ -75,7 +76,7 @@ const Services = () => {
                 <p className="text-zinc-400 leading-relaxed mb-8 line-clamp-3 break-words">
                   {service.description}
                 </p>
-                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider">
+                <div className="flex items-center text-red-600 font-bold text-sm uppercase tracking-wider mt-auto">
                   ดูรายละเอียดเพิ่มเติม <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-2" />
                 </div>
               </div>
@@ -112,7 +113,7 @@ const Services = () => {
 
               <div className="grid grid-cols-1 lg:grid-cols-[2fr,3fr]">
                 
-                {/* ฝั่งซ้าย: เนื้อหา (ไม่มีไอคอนและปุ่ม) */}
+                {/* ฝั่งซ้าย: เนื้อหา */}
                 <div className="p-8 md:p-16 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-zinc-100">
                   <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 mb-6 leading-tight">
                     {selectedService.title.split(' (')[0]}
@@ -130,13 +131,12 @@ const Services = () => {
                   </div>
                 </div>
 
-                {/* ฝั่งขวา: รูปภาพ (ขยายพื้นที่ + โชว์รูปแนวตั้งแบบเต็มใบ) */}
+                {/* ฝั่งขวา: รูปภาพ (Drag & Contain) */}
                 <div className="bg-zinc-50 p-6 md:p-10 flex flex-col justify-center items-center">
                   <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.25em] mb-5 text-center">
                     Click & Drag to Swipe
                   </p>
                   
-                  {/* Container รูปภาพ: ใช้พื้นหลังขาว + object-contain เพื่อให้เห็นรูปแนวตั้งครบๆ */}
                   <div className="relative w-full aspect-square max-h-[75vh] rounded-md overflow-hidden shadow-xl bg-white flex items-center justify-center cursor-grab active:cursor-grabbing border-4 border-white">
                     <AnimatePresence mode="wait">
                       <motion.img 
@@ -160,7 +160,6 @@ const Services = () => {
                         exit={{ opacity: 0, scale: 1.02 }}
                         transition={{ duration: 0.4, ease: "circOut" }}
                         
-                        // เปลี่ยนเป็น object-contain เพื่อไม่ให้รูปโดนตัด
                         className="absolute inset-0 w-full h-full object-contain p-2 select-none"
                         referrerPolicy="no-referrer"
                         onError={(e) => {
@@ -170,7 +169,7 @@ const Services = () => {
                     </AnimatePresence>
                   </div>
                   
-                  {/* Indicator ด้านล่าง */}
+                  {/* Indicator ลำดับรูปใน Modal */}
                   {selectedService.gallery && selectedService.gallery.length > 1 && (
                     <div className="flex justify-center gap-3 mt-10">
                         {selectedService.gallery.map((_, idx) => (
