@@ -73,7 +73,12 @@ export const SERVICES: Service[] = [
     image: "/images/vn/img-vn-01.jpg",
     gallery: ["/images/vn/img-vn-02.jpg",
               "/images/vn/img-vn-03.jpg",
-              "/images/vn/img-vn-04.jpg",],
+              "/images/vn/img-vn-04.jpg",
+              "/images/vn/img-vn-05.jpg",
+              "/images/vn/img-vn-06.jpg",
+              "/images/vn/img-vn-07.jpg",
+              "/images/vn/img-vn-08.jpg",
+              "/images/vn/img-vn-09.jpg"],
     article: "งานพิมพ์ไวนิลความละเอียดสูง สีสันคมชัด เหมาะสำหรับงานโฆษณาทุกรูปแบบ พร้อมบริการออกแบบและติดตั้ง"
   },
   {
