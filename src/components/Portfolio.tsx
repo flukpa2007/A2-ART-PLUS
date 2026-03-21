@@ -57,52 +57,52 @@ const Portfolio = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* 🔥 จุดที่แก้ไข: 
+            - มือถือ (Default): ใช้ grid-cols-1 เหมือนเดิม เพื่อความเต็มตาและไม่โล่ง
+            - คอม (lg:): ใช้ columns-3 เพื่อให้เป็น Masonry สลับสั้นยาวตามที่ต้องการ
+        */}
+        <div className="grid grid-cols-1 gap-10 lg:block lg:columns-3 lg:gap-6 lg:space-y-6">
           {PROJECTS.map((project, index) => (
-  <motion.div 
-    key={project.id}
-    initial={{ opacity: 0, scale: 0.95 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    whileHover={{ scale: 1.02 }}
-    viewport={{ once: true }}
-    transition={{ delay: index * 0.1 }}
-    onClick={() => openLightbox(project)}
-    className="relative aspect-[16/10] overflow-hidden rounded-sm group cursor-pointer shadow-lg"
-  >
-    <img 
-      src={project.image} 
-      alt={project.title} 
-      className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
-      referrerPolicy="no-referrer"
-      onError={(e) => {
-        e.currentTarget.src = "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800";
-      }}
-    />
+            <motion.div 
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              onClick={() => openLightbox(project)}
+              // lg:inline-block และ lg:mb-6: จำเป็นสำหรับ Masonry ในคอม
+              // aspect-[16/10] และ mb-0: สำหรับ grid ในมือถือให้ดูสม่ำเสมอ
+              className="relative overflow-hidden rounded-sm group cursor-pointer shadow-lg lg:inline-block lg:w-full lg:mb-6 lg:break-inside-avoid aspect-[16/10] lg:aspect-auto"
+            >
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                // มือถือใช้ h-full เพื่อให้เต็ม aspect | คอมใช้ h-auto เพื่อ Masonry
+                className="w-full h-full lg:h-auto object-cover transition-transform duration-700 md:group-hover:scale-110"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800";
+                }}
+              />
 
-    {/*Overlay*/}
-    <div className={`
-      absolute inset-0 bg-zinc-900/60 flex flex-col justify-center items-center p-6 text-center transition-all duration-500
-      
-      /* ในมือถือโชว์ตลอด (opacity-100) | ในคอมซ่อนก่อน (md:opacity-0) และโชว์ตอน hover */
-      opacity-100 md:opacity-0 md:group-hover:opacity-100
-    `}>
-      {/* category */}
-      <p className="text-red-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-2 md:mb-3">
-        {project.category}
-      </p>
-
-      {/* title */}
-      <h4 className="text-white text-lg md:text-3xl font-bold mb-4 md:mb-6 leading-tight max-w-[280px]">
-        {project.title}
-      </h4>
-
-      {/* redline */}
-      <div className="w-30 md:w-12 h-0.5 md:h-1 bg-red-600 mb-6" />
-
-
-    </div>
-  </motion.div>
-))}
+              {/* Overlay */}
+              <div className={`
+                absolute inset-0 bg-zinc-900/60 flex flex-col justify-center items-center p-6 text-center transition-all duration-500
+                opacity-100 md:opacity-0 md:group-hover:opacity-100 backdrop-blur-[2px]
+              `}>
+                <p className="text-red-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-2 md:mb-3">
+                  {project.category}
+                </p>
+                <h4 className="text-white text-lg md:text-2xl font-bold mb-4 md:mb-6 leading-tight max-w-[280px]">
+                  {project.title}
+                </h4>
+                <div className="w-12 h-0.5 md:h-1 bg-red-600 mb-6" />
+                <span className="text-white/70 text-[10px] font-bold uppercase tracking-widest border border-white/20 px-3 py-1.5 rounded-sm">
+                  View Project
+                </span>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
 
@@ -114,7 +114,7 @@ const Portfolio = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeLightbox}
-            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 md:p-10"
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-10"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -123,7 +123,6 @@ const Portfolio = () => {
               onClick={(e) => e.stopPropagation()}
               className="relative max-w-5xl w-full flex flex-col items-center"
             >
-              {/* Close Button */}
               <button
                 onClick={closeLightbox}
                 className="absolute -top-12 right-0 md:-right-12 text-white hover:text-red-600 transition-colors p-2"
@@ -131,7 +130,6 @@ const Portfolio = () => {
                 <X size={32} />
               </button>
 
-              {/* Image Container */}
               <div className="relative w-full aspect-[16/10] bg-zinc-900 rounded-lg overflow-hidden shadow-2xl">
                 <AnimatePresence mode="wait">
                   <motion.img
@@ -147,7 +145,6 @@ const Portfolio = () => {
                   />
                 </AnimatePresence>
 
-                {/* Navigation Buttons */}
                 {selectedProject.images.length > 1 && (
                   <>
                     <button
@@ -166,7 +163,6 @@ const Portfolio = () => {
                 )}
               </div>
 
-              {/* Caption & Counter */}
               <div className="mt-6 text-center">
                 <h4 className="text-white text-xl font-bold mb-2">{selectedProject.title}</h4>
                 <p className="text-white/50 text-sm font-medium">
