@@ -8,6 +8,14 @@
     scroll-behavior: smooth;
   }
   body {
+    @media (min-width: 768px) {
+      cursor: none !important;
+    }
+    a, button, [role="button"], .group {
+    @media (min-width: 768px) {
+      cursor: none !important;
+    }
+  }
     @apply bg-white text-zinc-900 antialiased;
     font-family: 'Prompt', sans-serif;
     line-height: 1.625; /* leading-relaxed */

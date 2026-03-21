@@ -1,3 +1,4 @@
+import CustomCursor from './components/CustomCursor';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
 import React from 'react';
@@ -15,9 +16,11 @@ import { ReactLenis } from 'lenis/react'
 
 function App() {
   return (
+
     <ReactLenis root options={{ lerp: 0.5, duration: 1.5 }}>
     <div className="min-h-screen bg-white font-sans text-zinc-900 selection:bg-red-600 selection:text-white">
       <Navbar />
+            <CustomCursor />
       <main>
         <Hero />
         <Services />
