@@ -4,6 +4,15 @@ import { ArrowRight, X } from 'lucide-react';
 import { SERVICES } from '../constants';
 import { Service } from '../types';
 
+// --- 1. Import Swiper.js ---
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
+
+// --- 2. Import Swiper Styles ---
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+
 const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => void }> = ({ service, index, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [previewIndex, setPreviewIndex] = useState(0);
@@ -75,49 +84,26 @@ const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => vo
 const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
-  // --- ล็อค Scroll พื้นหลัง ---
   useEffect(() => {
     if (selectedService) {
       document.body.style.overflow = 'hidden';
-      document.body.style.paddingRight = 'var(--removed-body-scroll-bar-size)'; // กันหน้าจอกระตุกถ้ามี
     } else {
       document.body.style.overflow = 'unset';
-      document.body.style.paddingRight = '0';
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-      document.body.style.paddingRight = '0';
-    };
+    return () => { document.body.style.overflow = 'unset'; };
   }, [selectedService]);
 
   return (
     <section id="services" className="pt-15 pb-10 bg-[#f8f8f8] text-zinc-900">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-15 text-center">
-          <motion.span 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block"
-          >
-            Our services 
-          </motion.span>
-          <motion.h3 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900"
-          >
-            ออกแบบ ผลิต และติดตั้งครบจบในที่เดียว
-          </motion.h3>
+          <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our services</motion.span>
+          <motion.h3 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900">ออกแบบ ผลิต และติดตั้งครบจบในที่เดียว</motion.h3>
         </div>
 
-        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 md:mx-0 md:px-0 md:overflow-visible scrollbar-hide">
+        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
           {SERVICES.map((service, index) => (
-            <ServiceCard 
-              key={service.id} 
-              service={service} 
-              index={index} 
-              onClick={() => setSelectedService(service)} 
-            />
+            <ServiceCard key={service.id} service={service} index={index} onClick={() => setSelectedService(service)} />
           ))}
         </div>
       </div>
@@ -131,62 +117,73 @@ const Services = () => {
           >
             <motion.div 
               initial={{ scale: 0.95, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-white w-full max-w-6xl h-[90vh] overflow-hidden rounded-xl relative shadow-2xl flex flex-col lg:flex-row border border-zinc-100"
+              className="bg-white w-full max-w-6xl h-[90vh] md:h-[85vh] overflow-hidden rounded-xl relative shadow-2xl flex flex-col lg:flex-row border border-zinc-100"
               onClick={(e) => e.stopPropagation()}
             >
-              <button 
-                onClick={() => setSelectedService(null)} 
-                className="absolute top-5 right-5 z-20 p-2 bg-white hover:bg-red-600 hover:text-white rounded-full transition-all border border-zinc-100 shadow-sm"
+              <button onClick={() => setSelectedService(null)} className="absolute top-4 right-4 z-50 p-2 bg-white/80 backdrop-blur-md hover:bg-red-600 hover:text-white rounded-full transition-all border border-zinc-100 shadow-sm"><X className="w-5 h-5" /></button>
+
+              {/* ฝั่งรูปภาพ (Slider จะอยู่ตรงนี้) */}
+              <div 
+                className="w-full h-[45%] lg:h-full lg:w-[60%] bg-zinc-50 order-1 lg:order-2 border-b lg:border-b-0 relative group/swiper"
+                data-lenis-prevent
               >
-                <X className="w-5 h-5" />
-              </button>
+                <Swiper
+                  modules={[Pagination, Autoplay, EffectFade]}
+                  effect="fade"
+                  fadeEffect={{ crossFade: true }}
+                  pagination={{ 
+                    clickable: true,
+                    dynamicBullets: true 
+                  }}
+                  autoplay={{ delay: 3000, disableOnInteraction: false }}
+                  loop={selectedService.gallery.length > 1}
+                  className="w-full h-full"
+                >
+                  {selectedService.gallery.map((img, idx) => (
+                    <SwiperSlide key={idx} className="bg-zinc-50 flex items-center justify-center p-4">
+                      <img 
+                        src={img} 
+                        alt={`${selectedService.title} ${idx + 1}`} 
+                        className="w-full h-full object-contain rounded-lg shadow-sm"
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+
+                {/* Custom Styling สำหรับ Swiper Pagination (จุดไข่ปลา) */}
+                <style dangerouslySetInnerHTML={{ __html: `
+                  .swiper-pagination-bullet-active { background: #dc2626 !important; }
+                  .swiper-pagination-bullet { background: #a1a1aa; opacity: 0.5; }
+                  .swiper-pagination { bottom: 15px !important; }
+                `}} />
+              </div>
 
               {/* ฝั่งเนื้อหา */}
-              <div className="w-full lg:w-[40%] p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-zinc-100 bg-white flex flex-col shrink-0 overflow-y-auto" data-lenis-prevent>
+              <div className="w-full h-[55%] lg:h-full lg:w-[40%] p-6 md:p-12 bg-white flex flex-col order-2 lg:order-1 overflow-y-auto" data-lenis-prevent>
                 <div className="flex-grow">
-                  <h2 className="text-3xl md:text-4xl font-black text-zinc-900 mb-6 leading-tight">
+                  <h2 className="text-2xl md:text-4xl font-black text-zinc-900 mb-4 lg:mb-6 leading-tight uppercase">
                     {selectedService.title.split(' (')[0]}
                   </h2>
-                  <span className="block text-lg font-medium text-zinc-400 mb-6 uppercase tracking-wider">
-                    {selectedService.title.match(/\(([^)]+)\)/)?.[1] || 'Our Works'}
+                  <span className="block text-sm md:text-lg font-medium text-zinc-400 mb-4 lg:mb-6 uppercase tracking-wider">
+                    {selectedService.title.match(/\(([^)]+)\)/)?.[1] || 'Portfolio'}
                   </span>
-                  <div className="w-16 h-1.5 bg-red-600 mb-10 rounded-full" />
-                  <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-8">{selectedService.article}</p>
+                  <div className="w-12 md:w-16 h-1 md:h-1.5 bg-red-600 mb-6 lg:mb-10 rounded-full" />
+                  <p className="text-zinc-600 text-sm md:text-lg leading-relaxed mb-6 lg:mb-8">{selectedService.article}</p>
                 </div>
-                <div className="mt-auto pt-6">
+                
+                <div className="mt-auto pt-4">
                    <button 
                     onClick={() => {
                         setSelectedService(null);
                         document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="w-full py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-zinc-900 transition-all flex items-center justify-center gap-2"
+                    className="w-full py-3 md:py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-zinc-900 transition-all flex items-center justify-center gap-2 shadow-lg shadow-red-600/20"
                    >
                      เริ่มโปรเจกต์กับเรา <ArrowRight size={18} />
                    </button>
                 </div>
               </div>
 
-              {/* ฝั่งรูปภาพ (บังคับ Scroll) */}
-              <div 
-                className="w-full lg:w-[60%] bg-zinc-50 overflow-y-scroll p-4 md:p-8 h-full scroll-smooth"
-                data-lenis-prevent
-              >
-                <div className="flex flex-col gap-6">
-                  {selectedService.gallery.map((img, idx) => (
-                    <div 
-                      key={idx}
-                      className="w-full rounded-lg overflow-hidden bg-white shadow-sm border border-zinc-100 shrink-0"
-                    >
-                      <img 
-                        src={img} 
-                        alt={`${selectedService.title} ${idx + 1}`} 
-                        className="w-full h-auto object-contain p-1"
-                        loading="lazy"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
             </motion.div>
           </motion.div>
         )}
