@@ -13,8 +13,11 @@ const About = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">About Us</h2>
-            <h3 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900 mb-8">
-              A2 ART PLUS <br /> ป้ายดี บิวท์เด่น
+            <h3 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900 mb-1">
+              A2 ART PLUS
+            </h3>
+            <h3 className="text-2xl md:text-3xl font-bold leading-tight text-zinc-900 mb-8">
+              ดูแลครบจบในที่เดียว
             </h3>
             <p className="text-base md:text-lg text-zinc-600 leading-relaxed mb-8 break-words">
               หลายร้านต้องจ้างหลายทีม ทั้งช่างป้าย ช่างบิวท์อิน และช่างติดตั้ง <br className="hidden md:block" /> แต่ที่ A2 ART PLUS เราดูแลให้ครบจบในที่เดียว <br className="hidden md:block" /> ช่วยให้ร้านของคุณออกมาดูเป็นสไตล์เดียวกัน ไม่ต้องประสานงานหลายทีม <br className="hidden md:block" /> ประหยัดทั้งเวลาและงบประมาณ
