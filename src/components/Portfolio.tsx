@@ -59,33 +59,50 @@ const Portfolio = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {PROJECTS.map((project, index) => (
-            <motion.div 
-              key={project.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.02 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              onClick={() => openLightbox(project)}
-              className="relative aspect-[16/10] overflow-hidden rounded-sm group cursor-pointer shadow-lg"
-            >
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  e.currentTarget.src = "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800";
-                }}
-              />
-              <div className="absolute inset-0 bg-zinc-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center p-10 text-center">
-                <p className="text-red-600 text-sm font-bold uppercase tracking-widest mb-3">{project.category}</p>
-                <h4 className="text-3xl font-bold text-white mb-6">{project.title}</h4>
-                <div className="w-12 h-1 bg-red-600" />
-                <p className="text-white/60 text-sm mt-6 font-medium uppercase tracking-widest">Click to view gallery</p>
-              </div>
-            </motion.div>
-          ))}
+  <motion.div 
+    key={project.id}
+    initial={{ opacity: 0, scale: 0.95 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    whileHover={{ scale: 1.02 }}
+    viewport={{ once: true }}
+    transition={{ delay: index * 0.1 }}
+    onClick={() => openLightbox(project)}
+    className="relative aspect-[16/10] overflow-hidden rounded-sm group cursor-pointer shadow-lg"
+  >
+    <img 
+      src={project.image} 
+      alt={project.title} 
+      className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
+      referrerPolicy="no-referrer"
+      onError={(e) => {
+        e.currentTarget.src = "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800";
+      }}
+    />
+
+    {/* --- ส่วนที่แก้ไข: Overlay โชว์ตลอดในมือถือ --- */}
+    <div className={`
+      absolute inset-0 bg-zinc-900/60 flex flex-col justify-center items-center p-6 text-center transition-all duration-500
+      
+      /* ในมือถือโชว์ตลอด (opacity-100) | ในคอมซ่อนก่อน (md:opacity-0) และโชว์ตอน hover */
+      opacity-100 md:opacity-0 md:group-hover:opacity-100
+    `}>
+      {/* หมวดหมู่ */}
+      <p className="text-red-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-2 md:mb-3">
+        {project.category}
+      </p>
+
+      {/* ชื่อโปรเจกต์ */}
+      <h4 className="text-white text-lg md:text-3xl font-bold mb-4 md:mb-6 leading-tight max-w-[280px]">
+        {project.title}
+      </h4>
+
+      {/* เส้นขีดแดง */}
+      <div className="w-30 md:w-12 h-0.5 md:h-1 bg-red-600 mb-6" />
+
+
+    </div>
+  </motion.div>
+))}
         </div>
       </div>
 
