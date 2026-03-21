@@ -105,44 +105,52 @@ export const PROJECTS: Project[] = [
     id: 1,
     title: "งานตกแต่งภายใน Dr.Milk Clinic",
     category: "Medical / Clinic",
-    image: "/images/project-1.jpg",
+    image: "/images/ex/milk/drmilk-05.jpg",
     images: [
-      "/images/project-1.jpg",
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=1200"
+      "/images/ex/milk/drmilk-01.jpg",
+      "/images/ex/milk/drmilk-02.jpg",
+      "/images/ex/milk/drmilk-03.jpg",
+      "/images/ex/milk/drmilk-04.jpg",
+      "/images/milk/drmilk-05.jpg",
     ]
   },
   {
     id: 2,
     title: "งานตกแต่งภายใน Kamon Coffee",
     category: "Interior / Cafe",
-    image: "/images/project-2.jpg",
+    image: "/images/ex/kamon/kamon-03.jpg",
     images: [
-      "/images/project-2.jpg",
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=1200"
+      "/images/ex/kamon/kamon-01.jpg",
+      "/images/ex/kamon/kamon-02.jpg",
+      "/images/ex/kamon/kamon-03.jpg",
+      "/images/ex/kamon/kamon-04.jpg",
     ]
   },
   {
     id: 3,
     title: "งานตกแต่งภายใน ห้องประชุม The Brain",
     category: "Interior / Coporate",
-    image: "/images/project-3.jpg",
+    image: "/images/ex/thebrain/thebrain-03.jpg",
     images: [
-      "/images/project-3.jpg",
-      "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=1200"
+      "/images/ex/thebrain/thebrain-01.jpg",
+      "/images/ex/thebrain/thebrain-02.jpg",
+      "/images/ex/thebrain/thebrain-03.jpg",
+      "/images/ex/thebrain/thebrain-04.jpg",
+      "/images/ex/thebrain/thebrain-05.jpg",
     ]
   },
   {
     id: 4,
     title: "งานตกแต่งภายใน Office MLP",
     category: "School / Office",  
-    image: "/images/project-4.jpg",
+    image: "/images/ex/mlp/mlp-01.jpg",
     images: [
-      "/images/project-4.jpg",
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1200",
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=1200"
+      "/images/ex/mlp/mlp-01.jpg",
+      "/images/ex/mlp/mlp-02.jpg",
+      "/images/ex/mlp/mlp-03.jpg",
+      "/images/ex/mlp/mlp-04.jpg",
+      "/images/ex/mlp/mlp-05.jpg", 
+      "/images/ex/mlp/mlp-06.jpg",
     ]
   }
 ];

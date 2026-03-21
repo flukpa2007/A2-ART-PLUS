@@ -79,24 +79,24 @@ const Portfolio = () => {
       }}
     />
 
-    {/* --- ส่วนที่แก้ไข: Overlay โชว์ตลอดในมือถือ --- */}
+    {/*Overlay*/}
     <div className={`
       absolute inset-0 bg-zinc-900/60 flex flex-col justify-center items-center p-6 text-center transition-all duration-500
       
       /* ในมือถือโชว์ตลอด (opacity-100) | ในคอมซ่อนก่อน (md:opacity-0) และโชว์ตอน hover */
       opacity-100 md:opacity-0 md:group-hover:opacity-100
     `}>
-      {/* หมวดหมู่ */}
+      {/* category */}
       <p className="text-red-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-2 md:mb-3">
         {project.category}
       </p>
 
-      {/* ชื่อโปรเจกต์ */}
+      {/* title */}
       <h4 className="text-white text-lg md:text-3xl font-bold mb-4 md:mb-6 leading-tight max-w-[280px]">
         {project.title}
       </h4>
 
-      {/* เส้นขีดแดง */}
+      {/* redline */}
       <div className="w-30 md:w-12 h-0.5 md:h-1 bg-red-600 mb-6" />
 
 
