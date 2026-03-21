@@ -4,7 +4,6 @@ import { ArrowRight, X } from 'lucide-react';
 import { SERVICES } from '../constants';
 import { Service } from '../types';
 
-
 const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => void }> = ({ service, index, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [previewIndex, setPreviewIndex] = useState(0);
@@ -73,9 +72,23 @@ const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => vo
   );
 };
 
-// --- Main Component ---
 const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+
+  // --- ล็อค Scroll พื้นหลัง ---
+  useEffect(() => {
+    if (selectedService) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = 'var(--removed-body-scroll-bar-size)'; // กันหน้าจอกระตุกถ้ามี
+    } else {
+      document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '0';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.body.style.paddingRight = '0';
+    };
+  }, [selectedService]);
 
   return (
     <section id="services" className="pt-15 pb-10 bg-[#f8f8f8] text-zinc-900">
@@ -118,7 +131,7 @@ const Services = () => {
           >
             <motion.div 
               initial={{ scale: 0.95, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-white w-full max-w-6xl max-h-[90vh] overflow-hidden rounded-xl relative shadow-2xl flex flex-col lg:flex-row border border-zinc-100"
+              className="bg-white w-full max-w-6xl h-[90vh] overflow-hidden rounded-xl relative shadow-2xl flex flex-col lg:flex-row border border-zinc-100"
               onClick={(e) => e.stopPropagation()}
             >
               <button 
@@ -128,8 +141,9 @@ const Services = () => {
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="w-full lg:w-[40%] p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-zinc-100 bg-white flex flex-col shrink-0">
-                <div className="overflow-y-auto">
+              {/* ฝั่งเนื้อหา */}
+              <div className="w-full lg:w-[40%] p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-zinc-100 bg-white flex flex-col shrink-0 overflow-y-auto" data-lenis-prevent>
+                <div className="flex-grow">
                   <h2 className="text-3xl md:text-4xl font-black text-zinc-900 mb-6 leading-tight">
                     {selectedService.title.split(' (')[0]}
                   </h2>
@@ -139,37 +153,37 @@ const Services = () => {
                   <div className="w-16 h-1.5 bg-red-600 mb-10 rounded-full" />
                   <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-8">{selectedService.article}</p>
                 </div>
-                
-                <div className="mt-auto">
+                <div className="mt-auto pt-6">
                    <button 
                     onClick={() => {
                         setSelectedService(null);
                         document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="w-full py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-zinc-900 transition-all flex items-center justify-center gap-2 shadow-lg shadow-red-600/20"
+                    className="w-full py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-zinc-900 transition-all flex items-center justify-center gap-2"
                    >
                      เริ่มโปรเจกต์กับเรา <ArrowRight size={18} />
                    </button>
                 </div>
               </div>
 
-              <div className="w-full lg:w-[60%] bg-zinc-50 overflow-y-auto p-4 md:p-8">
+              {/* ฝั่งรูปภาพ (บังคับ Scroll) */}
+              <div 
+                className="w-full lg:w-[60%] bg-zinc-50 overflow-y-scroll p-4 md:p-8 h-full scroll-smooth"
+                data-lenis-prevent
+              >
                 <div className="flex flex-col gap-6">
                   {selectedService.gallery.map((img, idx) => (
-                    <motion.div 
+                    <div 
                       key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      className="w-full rounded-lg overflow-hidden bg-white shadow-sm border border-zinc-100"
+                      className="w-full rounded-lg overflow-hidden bg-white shadow-sm border border-zinc-100 shrink-0"
                     >
                       <img 
                         src={img} 
                         alt={`${selectedService.title} ${idx + 1}`} 
                         className="w-full h-auto object-contain p-1"
-                        referrerPolicy="no-referrer"
+                        loading="lazy"
                       />
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
