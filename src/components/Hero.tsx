@@ -77,7 +77,7 @@ const Hero = () => {
               Premium Quality & Design
             </motion.div>
 
-            <h1 className="text-7xl md:text-6xl lg:text-[5.5rem] font-extrabold tracking-tight text-zinc-900 leading-[0.9] mb-10 uppercase text-left">
+            <h1 className="text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-tight text-zinc-900 leading-[0.9] mb-10 uppercase text-left">
               Sign<br /> Furniture<br /> Built-in
             </h1>
 
