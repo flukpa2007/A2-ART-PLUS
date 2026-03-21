@@ -59,7 +59,7 @@ const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => vo
         <h4 className="text-xl md:text-2xl font-bold mb-3 group-hover:text-red-600 transition-colors duration-300 text-zinc-900 leading-tight">
           {service.title.split(' (')[0]}
         </h4>
-        <p className="text-zinc-500 leading-relaxed mb-6 line-clamp-2 text-sm">
+        <p className="text-zinc-500 leading-relaxed mb-3 line-clamp-2 text-sm">
           {service.description}
         </p>
         <div className="mt-auto pt-4 border-t border-zinc-50 flex items-center justify-between">
@@ -78,9 +78,9 @@ const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   return (
-    <section id="services" className="pt-24 pb-32 bg-[#f8f8f8] text-zinc-900">
+    <section id="services" className="pt-15 pb-10 bg-[#f8f8f8] text-zinc-900">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-20 text-center">
+        <div className="mb-15 text-center">
           <motion.span 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
