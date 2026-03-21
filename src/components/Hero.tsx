@@ -50,7 +50,7 @@ const Hero = () => {
                <motion.div 
                 className="flex gap-4 p-4 absolute left-0"
                 animate={{ x: ["0%", "-50%"] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
                >
                  {[...marqueeImages, ...marqueeImages].map((img, idx) => (
                     <div key={idx} className="w-[180px] aspect-square shrink-0 rounded-lg overflow-hidden border-2 border-white shadow-md">
