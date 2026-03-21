@@ -172,9 +172,6 @@ const Services = () => {
                     </motion.div>
                   ))}
                 </div>
-                <div className="py-12 text-center">
-                  <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.3em]">End of Portfolio</p>
-                </div>
               </div>
             </motion.div>
           </motion.div>
