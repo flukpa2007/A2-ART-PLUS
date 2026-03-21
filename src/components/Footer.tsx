@@ -1,6 +1,6 @@
 import React from 'react';
 import { Facebook, Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
-import { SERVICES } from '../constants'; // ดึงข้อมูลบริการมาใช้
+import { SERVICES } from '../constants';
 
 const Footer = () => {
   return (
@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 mb-32">
           
-          {/* Group 1: Our Services (เปลี่ยนจาก Menu เดิม) */}
+          {/* Group 1: Our Services */}
           <div className="flex flex-col">
             <h5 className="text-sm font-black mb-10 text-white uppercase tracking-[0.3em]">Our Services</h5>
             <ul className="space-y-5 text-zinc-500 font-medium">

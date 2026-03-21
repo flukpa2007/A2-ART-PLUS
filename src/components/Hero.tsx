@@ -4,14 +4,16 @@ import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   const marqueeImages = [
-    "/images/letter/img-letter-01.jpg",
-    "/images/led/img-led-01.jpg",
-    "/images/stk/img-stk-02.jpg",
     "/images/bu/img-bu-01.jpg",
-    "/images/letter/img-letter-03.jpg",
-    "/images/led/img-led-02.jpg",
-    "/images/stk/img-stk-03.jpg",
+    "/images/bu/img-bu-03.jpg",
     "/images/bu/img-bu-02.jpg",
+    "/images/bu/img-bu-04.jpg",
+    "/images/bu/img-bu-05.jpg",
+    "/images/bu/img-bu-06.jpg",
+    "/images/bu/img-bu-07.jpg",
+    "/images/bu/img-bu-08.jpg",
+    "/images/bu/img-bu-09.jpg",
+    "/images/bu/img-bu-10.jpg"
   ];
 
   return (
@@ -60,7 +62,6 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* --- Main Content (ชิดซ้าย + ขนาดใหญ่ + ความหนาเดิม) --- */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -76,7 +77,6 @@ const Hero = () => {
               Premium Quality & Design
             </motion.div>
 
-            {/* Headline: text-5xl ชิดซ้าย และ font-extrabold ตามเดิม */}
             <h1 className="text-7xl md:text-6xl lg:text-[5.5rem] font-extrabold tracking-tight text-zinc-900 leading-[0.9] mb-10 uppercase text-left">
               Sign<br /> Furniture<br /> Built-in
             </h1>

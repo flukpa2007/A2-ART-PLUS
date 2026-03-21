@@ -4,8 +4,8 @@ import { ArrowRight, X } from 'lucide-react';
 import { SERVICES } from '../constants';
 import { Service } from '../types';
 
-// --- Component ย่อย: การ์ดหน้าหลัก (สไตล์คลีนสีขาว) ---
-const ServiceCard = ({ service, index, onClick }: { service: Service; index: number; onClick: () => void }) => {
+
+const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => void }> = ({ service, index, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [previewIndex, setPreviewIndex] = useState(0);
 
@@ -30,7 +30,6 @@ const ServiceCard = ({ service, index, onClick }: { service: Service; index: num
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      // ปรับเป็นพื้นหลังขาว และขอบเทาจางๆ ตามรูปครับ
       className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group cursor-pointer flex flex-col snap-center shrink-0 w-[85%] md:w-full border border-zinc-100"
     >
       <div className="relative h-72 overflow-hidden shrink-0 bg-zinc-100">
@@ -49,7 +48,6 @@ const ServiceCard = ({ service, index, onClick }: { service: Service; index: num
         </AnimatePresence>
         <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-500" />
         
-        {/* Tag สีแดงโดดเด่น */}
         <div className="absolute top-4 right-4 bg-red-600 px-3 py-1 rounded-sm shadow-md">
            <span className="text-[10px] font-bold text-white uppercase tracking-wider">
              {service.title.match(/\(([^)]+)\)/)?.[1] || 'Portfolio'}
@@ -82,7 +80,6 @@ const Services = () => {
   return (
     <section id="services" className="pt-24 pb-32 bg-[#f8f8f8] text-zinc-900">
       <div className="max-w-7xl mx-auto px-6">
-        {/* ส่วนหัวจัดกึ่งกลางตามรูปเป๊ะ */}
         <div className="mb-20 text-center">
           <motion.span 
             initial={{ opacity: 0 }}
@@ -112,7 +109,6 @@ const Services = () => {
         </div>
       </div>
 
-      {/* Modal - แบบเรียงรูปภาพยาว (Locked Info Left / Scroll Gallery Right) */}
       <AnimatePresence>
         {selectedService && (
           <motion.div 
@@ -132,7 +128,6 @@ const Services = () => {
                 <X className="w-5 h-5" />
               </button>
 
-              {/* ฝั่งซ้าย: เนื้อหา (ล็อคตายตัว) */}
               <div className="w-full lg:w-[40%] p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-zinc-100 bg-white flex flex-col shrink-0">
                 <div className="overflow-y-auto">
                   <h2 className="text-3xl md:text-4xl font-black text-zinc-900 mb-6 leading-tight">
@@ -158,7 +153,6 @@ const Services = () => {
                 </div>
               </div>
 
-              {/* ฝั่งขวา: แกลเลอรีรูปภาพ (เรียงยาวลงมา) */}
               <div className="w-full lg:w-[60%] bg-zinc-50 overflow-y-auto p-4 md:p-8">
                 <div className="flex flex-col gap-6">
                   {selectedService.gallery.map((img, idx) => (
