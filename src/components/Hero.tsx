@@ -23,7 +23,7 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="relative min-h-screen w-full overflow-hidden bg-white flex items-center pt-32 pb-20 md:pt-10 md:pb-0">
+    <header id="home" className="relative min-h-screen w-full overflow-hidden bg-white flex items-center pt-32 pb-20 md:pt-10 md:pb-0">
       
       <div className="absolute right-0 top-0 bottom-0 w-[120px] lg:w-[420px] hidden md:block opacity-90 lg:opacity-90 z-0">
         <div className="relative h-full w-full overflow-hidden border-l border-zinc-50 bg-zinc-50/30">
@@ -136,7 +136,7 @@ const Hero = () => {
       <style dangerouslySetInnerHTML={{ __html: `
         .hero-swiper .swiper-pagination { bottom: 0px !important; }
       `}} />
-    </section>
+    </header>
   );
 };
 
