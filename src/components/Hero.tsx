@@ -2,11 +2,9 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 
-// --- 1. Import Swiper และ Modules ---
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 
-// --- 2. Import Swiper Styles ---
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -27,7 +25,6 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen w-full overflow-hidden bg-white flex items-center pt-32 pb-20 md:pt-10 md:pb-0">
       
-      {/* --- ✅ Vertical Marquee (Desktop Only) - ไหลลื่นแบบ Infinity --- */}
       <div className="absolute right-0 top-0 bottom-0 w-[120px] lg:w-[420px] hidden md:block opacity-90 lg:opacity-90 z-0">
         <div className="relative h-full w-full overflow-hidden border-l border-zinc-50 bg-zinc-50/30">
           <motion.div 
@@ -48,7 +45,7 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
           
-          {/* --- ✅ Mobile Swiper Slider (สไลด์เองอัตโนมัติ) --- */}
+
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -62,8 +59,8 @@ const Hero = () => {
                 centeredSlides={true}
                 loop={true}
                 autoplay={{
-                  delay: 1500, // สไลด์เปลี่ยนทุก 2.5 วินาที
-                  disableOnInteraction: false, // แม้เราจะเอานิ้วไปปัด มันก็จะกลับมาสไลด์ต่อเอง
+                  delay: 1500, 
+                  disableOnInteraction: false, 
                 }}
                 pagination={{ 
                   clickable: true,
@@ -79,9 +76,7 @@ const Hero = () => {
       src={img} 
       className="w-full h-full object-cover" 
       alt="Portfolio" 
-      // 🔥 แก้ตรงนี้: หน้า Hero ไม่ต้อง lazy ให้มันรีบโหลดเลย
       loading="eager" 
-      // ช่วยบอก Browser ว่านี่คืองานด่วน!
       fetchPriority="high" 
     />
   </div>
