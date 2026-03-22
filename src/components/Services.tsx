@@ -4,11 +4,11 @@ import { ArrowRight, X } from 'lucide-react';
 import { SERVICES } from '../constants';
 import { Service } from '../types';
 
-// --- 1. Import Swiper.js ---
+// --- Import Swiper.js ---
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
 
-// --- 2. Import Swiper Styles ---
+// --- Import Swiper Styles ---
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
@@ -96,6 +96,7 @@ const Services = () => {
   return (
     <section id="services" className="pt-15 pb-10 bg-[#f8f8f8] text-zinc-900">
       <div className="max-w-7xl mx-auto px-6">
+        {/* ... Header Section ... */}
         <div className="mb-15 text-center">
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our services</motion.span>
           <motion.h3 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900">ออกแบบ ผลิต และติดตั้งครบจบในที่เดียว</motion.h3>
@@ -117,14 +118,14 @@ const Services = () => {
           >
             <motion.div 
               initial={{ scale: 0.95, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-white w-full max-w-6xl h-[90vh] md:h-[85vh] overflow-hidden rounded-xl relative shadow-2xl flex flex-col lg:flex-row border border-zinc-100"
+              className="bg-white w-full max-w-6xl h-[90vh] md:h-[85vh] overflow-hidden rounded-xl relative shadow-2xl flex flex-col-reverse lg:flex-row border border-zinc-100"
               onClick={(e) => e.stopPropagation()}
             >
               <button onClick={() => setSelectedService(null)} className="absolute top-4 right-4 z-50 p-2 bg-white/80 backdrop-blur-md hover:bg-red-600 hover:text-white rounded-full transition-all border border-zinc-100 shadow-sm"><X className="w-5 h-5" /></button>
 
-              {/* ฝั่งรูปภาพ (Slider จะอยู่ตรงนี้) */}
+              {/* ฝั่งรูปภาพ (ฉบับคลีน 100%) */}
               <div 
-                className="w-full h-[45%] lg:h-full lg:w-[60%] bg-zinc-50 order-1 lg:order-2 border-b lg:border-b-0 relative group/swiper"
+                className="w-full h-[45%] lg:h-full lg:w-[60%] relative group/swiper order-2 lg:order-2 overflow-hidden"
                 data-lenis-prevent
               >
                 <Swiper
@@ -140,26 +141,20 @@ const Services = () => {
                   className="w-full h-full"
                 >
                   {selectedService.gallery.map((img, idx) => (
-                    <SwiperSlide key={idx} className="bg-zinc-50 flex items-center justify-center p-4">
+                    // 🔥 เอาพื้นหลังเทาและ Padding ออกหมด
+                    <SwiperSlide key={idx} className="flex items-center justify-center bg-white">
                       <img 
                         src={img} 
                         alt={`${selectedService.title} ${idx + 1}`} 
-                        className="w-full h-full object-contain rounded-lg shadow-sm"
+                        className="w-full h-full object-contain"
                       />
                     </SwiperSlide>
                   ))}
                 </Swiper>
-
-                {/* Custom Styling สำหรับ Swiper Pagination (จุดไข่ปลา) */}
-                <style dangerouslySetInnerHTML={{ __html: `
-                  .swiper-pagination-bullet-active { background: #dc2626 !important; }
-                  .swiper-pagination-bullet { background: #a1a1aa; opacity: 0.5; }
-                  .swiper-pagination { bottom: 15px !important; }
-                `}} />
               </div>
 
               {/* ฝั่งเนื้อหา */}
-              <div className="w-full h-[55%] lg:h-full lg:w-[40%] p-6 md:p-12 bg-white flex flex-col order-2 lg:order-1 overflow-y-auto" data-lenis-prevent>
+              <div className="w-full h-[55%] lg:h-full lg:w-[40%] p-6 md:p-12 bg-white flex flex-col order-1 lg:order-1 overflow-y-auto custom-scrollbar-hide" data-lenis-prevent>
                 <div className="flex-grow">
                   <h2 className="text-2xl md:text-4xl font-black text-zinc-900 mb-4 lg:mb-6 leading-tight uppercase">
                     {selectedService.title.split(' (')[0]}
@@ -183,6 +178,15 @@ const Services = () => {
                    </button>
                 </div>
               </div>
+
+              <style dangerouslySetInnerHTML={{ __html: `
+                .swiper-pagination-bullet-active { background: #dc2626 !important; }
+                .swiper-pagination-bullet { background: #a1a1aa; opacity: 0.5; }
+                .swiper-pagination { bottom: 15px !important; }
+                
+                .custom-scrollbar-hide::-webkit-scrollbar { display: none; }
+                .custom-scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+              `}} />
 
             </motion.div>
           </motion.div>

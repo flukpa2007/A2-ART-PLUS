@@ -111,7 +111,7 @@ export const PROJECTS: Project[] = [
       "/images/ex/milk/drmilk-02.jpg",
       "/images/ex/milk/drmilk-03.jpg",
       "/images/ex/milk/drmilk-04.jpg",
-      "/images/milk/drmilk-05.jpg",
+      "/images/ex/milk/drmilk-05.jpg",
     ]
   },
   {

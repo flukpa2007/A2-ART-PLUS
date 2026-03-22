@@ -2,6 +2,14 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 
+// --- 1. Import Swiper และ Modules ---
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+
+// --- 2. Import Swiper Styles ---
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 const Hero = () => {
   const marqueeImages = [
     "/images/bu/img-bu-01.jpg",
@@ -19,7 +27,7 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen w-full overflow-hidden bg-white flex items-center pt-32 pb-20 md:pt-10 md:pb-0">
       
-      {/* --- Vertical Marquee (Desktop Only) --- */}
+      {/* --- ✅ Vertical Marquee (Desktop Only) - ไหลลื่นแบบ Infinity --- */}
       <div className="absolute right-0 top-0 bottom-0 w-[120px] lg:w-[420px] hidden md:block opacity-90 lg:opacity-90 z-0">
         <div className="relative h-full w-full overflow-hidden border-l border-zinc-50 bg-zinc-50/30">
           <motion.div 
@@ -40,28 +48,42 @@ const Hero = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
           
-          {/* --- Mobile Marquee --- */}
+          {/* --- ✅ Mobile Swiper Slider (สไลด์เองอัตโนมัติ) --- */}
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="w-full order-1 md:hidden block mb-4"
           >
-            <div className="relative h-[250px] w-full overflow-hidden rounded-xl border border-zinc-100 shadow-inner bg-zinc-50">
-               <motion.div 
-                className="flex gap-4 p-4 absolute left-0"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-               >
-                 {[...marqueeImages, ...marqueeImages].map((img, idx) => (
-                    <div key={idx} className="w-[180px] aspect-square shrink-0 rounded-lg overflow-hidden border-2 border-white shadow-md">
+            <div className="relative w-full h-[320px]">
+              <Swiper
+                modules={[Autoplay, Pagination]}
+                spaceBetween={15}
+                slidesPerView={1.2} 
+                centeredSlides={true}
+                loop={true}
+                autoplay={{
+                  delay: 1500, // สไลด์เปลี่ยนทุก 2.5 วินาที
+                  disableOnInteraction: false, // แม้เราจะเอานิ้วไปปัด มันก็จะกลับมาสไลด์ต่อเอง
+                }}
+                pagination={{ 
+                  clickable: true,
+                  bulletClass: 'swiper-pagination-bullet !bg-red-200',
+                  bulletActiveClass: 'swiper-pagination-bullet-active !bg-red-600'
+                }}
+                className="w-full h-full hero-swiper"
+              >
+                {marqueeImages.map((img, idx) => (
+                  <SwiperSlide key={idx}>
+                    <div className="w-full aspect-square rounded-2xl overflow-hidden border-2 border-white shadow-lg">
                       <img src={img} className="w-full h-full object-cover" alt="mobile-showcase" />
                     </div>
-                 ))}
-               </motion.div>
-               <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-white/20 via-transparent to-white/20" />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </motion.div>
 
+          {/* --- Content Area --- */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -82,16 +104,16 @@ const Hero = () => {
             </h1>
 
             <div className="flex flex-col sm:flex-row items-center justify-start gap-4">
-              <a href="#services" className="w-full sm:w-auto px-8 py-4 bg-red-600 text-white text-sm font-bold rounded-sm flex items-center justify-center group shadow-xl shadow-red-600/10">
-                ดูผลงานของเรา <ArrowRight className="ml-2 w-4 h-4" />
+              <a href="#services" className="w-full sm:w-auto px-8 py-4 bg-red-600 text-white text-sm font-bold rounded-sm flex items-center justify-center group shadow-xl shadow-red-600/10 transition-all active:scale-95">
+                ดูผลงานของเรา <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
-              <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-white border border-zinc-200 text-zinc-900 text-sm font-bold rounded-sm flex items-center justify-center">
+              <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-white border border-zinc-200 text-zinc-900 text-sm font-bold rounded-sm flex items-center justify-center transition-colors hover:bg-zinc-50">
                 ติดต่อสอบถาม
               </a>
             </div>
           </motion.div>
 
-          {/* --- Logo (Bottom on Mobile) --- */}
+          {/* --- Logo --- */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -107,6 +129,10 @@ const Hero = () => {
         </div>
       </div>
       <div className="absolute bottom-10 left-0 w-full h-[1px] bg-zinc-100" />
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .hero-swiper .swiper-pagination { bottom: 0px !important; }
+      `}} />
     </section>
   );
 };
