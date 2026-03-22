@@ -74,10 +74,18 @@ const Hero = () => {
               >
                 {marqueeImages.map((img, idx) => (
                   <SwiperSlide key={idx}>
-                    <div className="w-full aspect-square rounded-2xl overflow-hidden border-2 border-white shadow-lg">
-                      <img src={img} className="w-full h-full object-cover" alt="mobile-showcase" />
-                    </div>
-                  </SwiperSlide>
+  <div className="w-full h-full rounded-sm overflow-hidden border border-white shadow-sm bg-zinc-200 select-none">
+    <img 
+      src={img} 
+      className="w-full h-full object-cover" 
+      alt="Portfolio" 
+      // 🔥 แก้ตรงนี้: หน้า Hero ไม่ต้อง lazy ให้มันรีบโหลดเลย
+      loading="eager" 
+      // ช่วยบอก Browser ว่านี่คืองานด่วน!
+      fetchPriority="high" 
+    />
+  </div>
+</SwiperSlide>
                 ))}
               </Swiper>
             </div>
