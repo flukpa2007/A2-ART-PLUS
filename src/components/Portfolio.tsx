@@ -39,8 +39,8 @@ const Portfolio = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
             <h2 className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Portfolio</h2>
-            <h3 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900">
-              ตัวอย่างผลงาน
+            <h3 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900"> ผลงานติดตั้งป้าย <br className="md:hidden" /> 
+            <span className="text-red-600">สวนเสือ - ศรีราชา - ชลบุรี</span>
             </h3>
           </div>
         </div>
@@ -59,7 +59,7 @@ const Portfolio = () => {
             >
               <img 
                 src={project.image} 
-                alt={project.title} 
+                alt={`ผลงาน ${project.title} รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี สวนเสือ`}
                 className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
@@ -125,7 +125,7 @@ const Portfolio = () => {
                     <SwiperSlide key={idx} className="flex items-center justify-center">
                       <img
                         src={img}
-                        alt={`${selectedProject.title} - ${idx + 1}`}
+                        alt={`${selectedProject.title} รูปที่ ${idx + 1} รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี - A2 ART PLUS`}
                         className="w-full h-full object-contain select-none"
                         referrerPolicy="no-referrer"
                       />
