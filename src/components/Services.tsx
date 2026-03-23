@@ -45,7 +45,7 @@ const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => vo
           <motion.img 
             key={isHovered ? service.gallery[previewIndex] : service.image}
             src={isHovered ? service.gallery[previewIndex] : service.image} 
-            alt={service.title}
+            alt={`บริการ${service.title} รับทำป้าย ตกแต่งภายใน สวนเสือ ศรีราชา ชลบุรี - A2 ART PLUS`}
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: isHovered ? 1.15 : 1 }}
             exit={{ opacity: 0 }}
@@ -123,7 +123,6 @@ const Services = () => {
             >
               <button onClick={() => setSelectedService(null)} className="absolute top-4 right-4 z-50 p-2 bg-white/80 backdrop-blur-md hover:bg-red-600 hover:text-white rounded-full transition-all border border-zinc-100 shadow-sm"><X className="w-5 h-5" /></button>
 
-              {/* ฝั่งรูปภาพ (ฉบับคลีน 100%) */}
               <div 
                 className="w-full h-[45%] lg:h-full lg:w-[60%] relative group/swiper order-2 lg:order-2 overflow-hidden"
                 data-lenis-prevent
@@ -141,11 +140,10 @@ const Services = () => {
                   className="w-full h-full"
                 >
                   {selectedService.gallery.map((img, idx) => (
-                    // 🔥 เอาพื้นหลังเทาและ Padding ออกหมด
                     <SwiperSlide key={idx} className="flex items-center justify-center bg-white">
                       <img 
                         src={img} 
-                        alt={`${selectedService.title} ${idx + 1}`} 
+                        alt={`${selectedService.title} ${idx + 1}รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี - A2 ART PLUS`} 
                         className="w-full h-full object-contain"
                       />
                     </SwiperSlide>
@@ -153,7 +151,6 @@ const Services = () => {
                 </Swiper>
               </div>
 
-              {/* ฝั่งเนื้อหา */}
               <div className="w-full h-[55%] lg:h-full lg:w-[40%] p-6 md:p-12 bg-white flex flex-col order-1 lg:order-1 overflow-y-auto custom-scrollbar-hide" data-lenis-prevent>
                 <div className="flex-grow">
                   <h2 className="text-2xl md:text-4xl font-black text-zinc-900 mb-4 lg:mb-6 leading-tight uppercase">

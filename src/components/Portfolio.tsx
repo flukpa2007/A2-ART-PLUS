@@ -59,7 +59,7 @@ const Portfolio = () => {
             >
               <img 
                 src={project.image} 
-                alt={`ผลงาน ${project.title} รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี สวนเสือ`}
+                alt={`ผลงาน ${project.title} built-in รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี - A2 ART PLUS`}
                 className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
@@ -125,7 +125,7 @@ const Portfolio = () => {
                     <SwiperSlide key={idx} className="flex items-center justify-center">
                       <img
                         src={img}
-                        alt={`${selectedProject.title} รูปที่ ${idx + 1} รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี - A2 ART PLUS`}
+                        alt={`${selectedProject.title} รูปที่ ${idx + 1} built-in รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี - A2 ART PLUS`}
                         className="w-full h-full object-contain select-none"
                         referrerPolicy="no-referrer"
                       />
