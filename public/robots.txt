@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# บอก Google ว่าแผนที่เว็บฉันอยู่ที่นี่นะ
 Sitemap: https://a2artplus.vercel.app/sitemap.xml
