@@ -10,16 +10,16 @@ import 'swiper/css/pagination';
 
 const Hero = () => {
   const marqueeImages = [
-    "/images/bu/img-bu-01.jpg",
-    "/images/bu/img-bu-03.jpg",
-    "/images/bu/img-bu-02.jpg",
-    "/images/bu/img-bu-04.jpg",
-    "/images/bu/img-bu-05.jpg",
-    "/images/bu/img-bu-06.jpg",
-    "/images/bu/img-bu-07.jpg",
-    "/images/bu/img-bu-08.jpg",
-    "/images/bu/img-bu-09.jpg",
-    "/images/bu/img-bu-10.jpg"
+    "/images/bu/img-bu-01.webp",
+    "/images/bu/img-bu-03.webp",
+    "/images/bu/img-bu-02.webp",
+    "/images/bu/img-bu-04.webp",
+    "/images/bu/img-bu-05.webp",
+    "/images/bu/img-bu-06.webp",
+    "/images/bu/img-bu-07.webp",
+    "/images/bu/img-bu-08.webp",
+    "/images/bu/img-bu-09.webp",
+    "/images/bu/img-bu-10.webp"
   ];
 
   return (
@@ -34,7 +34,7 @@ const Hero = () => {
           >
             {[...marqueeImages, ...marqueeImages].map((img, idx) => (
               <div key={idx} className="w-full aspect-[3/4] rounded-sm overflow-hidden border border-white shadow-sm bg-zinc-200">
-                <img src={img} className="w-full h-full object-cover" alt="A2 Portfolio" />
+                <img src={img} className="w-full h-full object-cover" alt="รับทำป้าย ตกแต่งภายใน สวนเสือ ศรีราชา ชลบุรี - A2 ART PLUS" />
               </div>
             ))}
           </motion.div>

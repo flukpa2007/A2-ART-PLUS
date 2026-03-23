@@ -143,7 +143,7 @@ const Services = () => {
                     <SwiperSlide key={idx} className="flex items-center justify-center bg-white">
                       <img 
                         src={img} 
-                        alt={`${selectedService.title} ${idx + 1}รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี - A2 ART PLUS`} 
+                        alt={`${selectedService.title} รูปที่ ${idx + 1} รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี - A2 ART PLUS`} 
                         className="w-full h-full object-contain"
                       />
                     </SwiperSlide>
