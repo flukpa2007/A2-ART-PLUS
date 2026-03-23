@@ -39,7 +39,7 @@ const Portfolio = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
             <h2 className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Portfolio</h2>
-            <h3 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900"> ผลงานติดตั้งป้าย <br className="md:hidden" /> 
+            <h3 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900"> ออกแบบ ผลิต ติดตั้ง <br className="md:hidden" /> 
             <span className="text-red-600">สวนเสือ - ศรีราชา - ชลบุรี</span>
             </h3>
           </div>
