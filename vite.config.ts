@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
       react(),
       Sitemap({ 
         hostname: 'https://a2artplus.vercel.app', 
-        dynamicRoutes: paths, 
+        dynamicRoutes: ['/', '/services', '/portfolio', '/contact'],
         changefreq: 'weekly', 
         priority: 1.0,
       }),
