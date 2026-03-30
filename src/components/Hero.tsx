@@ -123,7 +123,7 @@ const Hero = () => {
             className="w-full lg:w-[35%] flex justify-center lg:justify-start order-3 md:order-first"
           >
             <img 
-              src="/images/logo/logo-a2.png" 
+              src="/logo/logo-a2.png" 
               alt="Logo" 
               className="w-full max-w-[220px] md:max-w-[380px] h-auto object-contain drop-shadow-sm opacity-80 md:opacity-100"
             />
