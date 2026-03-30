@@ -48,7 +48,7 @@ const About = () => {
           >
             <div className="aspect-square rounded-sm overflow-hidden shadow-2xl border-8 border-zinc-100">
               <img 
-                src="/logo/logo-a2.png" 
+                src="/logo/logo-a2-black.png" 
                 alt="Fabrication process" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
