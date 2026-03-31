@@ -48,13 +48,13 @@ const About = () => {
           >
             <div className="aspect-square rounded-sm overflow-hidden shadow-2xl border-8 border-zinc-100">
               <img 
-                src="/logo/logo-a2-black.png" 
+                src="/logo/logo-a2-red.jpg" 
                 alt="Fabrication process" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-10 -right-10 bg-red-600 text-white p-12 rounded-sm hidden md:block shadow-xl">
+            <div className="absolute -bottom-10 -right-10 bg-black text-white p-12 rounded-sm hidden md:block shadow-xl">
               <p className="text-6xl font-bold mb-2">100%</p>
               <p className="text-sm uppercase tracking-widest font-bold">Quality Focus</p>
             </div>

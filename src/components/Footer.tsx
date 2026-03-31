@@ -70,7 +70,7 @@ const Footer = () => {
             <h5 className="text-sm font-black mb-10 text-white uppercase tracking-[0.3em]">Location</h5>
             <div className="group">
               <a 
-                href="https://maps.google.com" 
+                href="https://maps.app.goo.gl/qXvMbfMvwwV8X8Zp9" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="flex items-start gap-4 text-zinc-400 hover:text-white transition-all"

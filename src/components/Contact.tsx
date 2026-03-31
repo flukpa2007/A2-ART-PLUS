@@ -60,7 +60,6 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            {/* --- ส่วนแผนที่ที่เพิ่มเข้ามา (อยู่ใต้ Facebook เป๊ะๆ) --- */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -81,7 +80,6 @@ const Contact = () => {
             </motion.div>
           </div>
 
-          {/* ฝั่งขวา: อีเมล + ที่อยู่ + ปุ่ม LINE (lg:col-span-7) */}
           <div className="lg:col-span-7 lg:pt-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -106,7 +104,7 @@ const Contact = () => {
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">ที่อยู่สำนักงาน</p>
                     <a 
-                      href="https://maps.app.goo.gl/ChIJccZ9ll3IAjERooD7IGO444c" 
+                      href="https://maps.app.goo.gl/qXvMbfMvwwV8X8Zp9" 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="text-lg md:text-xl font-medium text-zinc-700 leading-relaxed hover:text-red-600 transition-colors"
