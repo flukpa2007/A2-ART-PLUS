@@ -40,7 +40,7 @@ const Portfolio = () => {
           <div>
             <h2 className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Portfolio</h2>
             <h3 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900"> ออกแบบ ผลิต ติดตั้ง <br className="md:hidden" /> 
-            <span className="text-red-600">สวนเสือ - ศรีราชา - ชลบุรี</span>
+            <span className="text-red-600">ครบจบที่เดียว</span>
             </h3>
           </div>
         </div>
