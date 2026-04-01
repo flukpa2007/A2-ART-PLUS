@@ -38,9 +38,9 @@ const Contact = () => {
                     <MessageCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1">LINE ID</p>
-                    <a href="https://line.me/ti/p/~a2artplus1" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold text-zinc-900 hover:text-red-600 transition-colors">
-                      a2artplus1
+                    <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1">LINE official</p>
+                    <a href="https://lin.ee/S48LXeM" target="_blank" rel="noopener noreferrer" className="text-2xl font-bold text-zinc-900 hover:text-red-600 transition-colors">
+                      A2 ART PLUS
                     </a>
                   </div>
                 </div>

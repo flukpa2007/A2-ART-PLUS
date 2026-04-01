@@ -39,11 +39,11 @@ const Footer = () => {
                 </a>
               </li>
               <li className="group">
-                <a href="https://line.me/ti/p/~a2artplus1" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 hover:text-white transition-all">
+                <a href="https://lin.ee/S48LXeM" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 hover:text-white transition-all">
                   <div className="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center group-hover:bg-red-600 transition-all shrink-0">
                     <MessageCircle size={16} />
                   </div>
-                  <span className="font-semibold tracking-tight">LINE: a2artplus1</span>
+                  <span className="font-semibold tracking-tight">A2 ART PLUS</span>
                 </a>
               </li>
               <li className="group">
