@@ -1,5 +1,67 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, Search } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+
+type GallerySlide = { src: string; alt: string };
+
+const heroGallery: GallerySlide[] = [
+  { src: '/images/letter/img-letter-02.webp', alt: 'ตัวอย่างงานป้ายตัวอักษร' },
+  { src: '/images/letter/img-letter-03.webp', alt: 'ตัวอย่างป้ายตัวอักษรอีกแบบ' },
+  { src: '/images/letter/img-letter-05.webp', alt: 'ภาพงานป้ายตัวอักษรของ A2 ART PLUS' },
+];
+
+const ledGallery: GallerySlide[] = [
+  { src: '/images/led/img-led-08.webp', alt: 'ตัวอย่างงานป้ายไฟ LED' },
+  { src: '/images/led/img-led-01.webp', alt: 'ตัวอย่างป้ายไฟ LED อีกแบบ' },
+  { src: '/images/led/img-led-03.webp', alt: 'ภาพงานป้ายไฟ LED ของ A2 ART PLUS' },
+];
+
+const interiorGallery: GallerySlide[] = [
+  { src: '/images/bu/img-bu-03.webp', alt: 'ตัวอย่างงานบิวท์อิน' },
+  { src: '/images/bu/img-bu-01.webp', alt: 'ตัวอย่างงานบิวท์อินอีกแบบ' },
+  { src: '/images/bu/img-bu-05.webp', alt: 'ภาพงานบิวท์อินของ A2 ART PLUS' },
+];
+
+const FadingImage: React.FC<{ slides: GallerySlide[]; offset: number; priority?: boolean }> = ({ slides, offset, priority = false }) => {
+  const [index, setIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (reduceMotion || slides.length < 2) return;
+    let interval: number;
+    const timeout = window.setTimeout(() => {
+      setIndex((current) => (current + 1) % slides.length);
+      interval = window.setInterval(() => {
+        if (!document.hidden) setIndex((current) => (current + 1) % slides.length);
+      }, 6000);
+    }, 6000 + offset);
+    return () => { window.clearTimeout(timeout); window.clearInterval(interval); };
+  }, [reduceMotion, slides, offset]);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    const next = new Image();
+    next.src = slides[(index + 1) % slides.length].src;
+  }, [index, reduceMotion, slides]);
+
+  const slide = slides[index];
+  return (
+    <AnimatePresence initial={false}>
+      <motion.img
+        key={slide.src}
+        src={slide.src}
+        alt={slide.alt}
+        className="absolute inset-0 w-full h-full object-cover"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: reduceMotion ? 0 : 1.1, ease: 'easeInOut' }}
+        fetchPriority={priority && index === 0 ? 'high' : undefined}
+        loading={priority && index === 0 ? 'eager' : 'lazy'}
+      />
+    </AnimatePresence>
+  );
+};
 
 type HeroProps = {
   onSearch: (query: string) => void;
@@ -50,14 +112,14 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
 
         <div className="grid grid-cols-2 gap-3 md:gap-4 min-w-0" aria-label="ภาพตัวอย่างงานของ A2 ART PLUS">
           <div className="col-span-2 relative overflow-hidden rounded-2xl h-56 sm:h-72 lg:h-80">
-            <img src="/images/letter/img-letter-02.webp" alt="ตัวอย่างงานป้ายตัวอักษร" className="w-full h-full object-cover" fetchPriority="high" />
+            <FadingImage slides={heroGallery} offset={0} priority />
             <span className="absolute bottom-4 left-4 rounded-full bg-zinc-950/85 px-4 py-2 text-xs font-bold">SIGNAGE · ป้ายตัวอักษร</span>
           </div>
           <div className="relative overflow-hidden rounded-2xl h-40 sm:h-52 lg:h-56">
-            <img src="/images/led/img-led-08.webp" alt="ตัวอย่างงานป้ายไฟ LED" className="w-full h-full object-cover" loading="lazy" />
+            <FadingImage slides={ledGallery} offset={2000} />
           </div>
           <div className="relative overflow-hidden rounded-2xl h-40 sm:h-52 lg:h-56">
-            <img src="/images/bu/img-bu-03.webp" alt="ตัวอย่างงานบิวท์อิน" className="w-full h-full object-cover" loading="lazy" />
+            <FadingImage slides={interiorGallery} offset={4000} />
           </div>
         </div>
       </div>
