@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://a2artplus.vercel.app/sitemap.xml
+Sitemap: https://a2artplus.vercel.app/sitemapa2.xml
