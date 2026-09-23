@@ -38,10 +38,9 @@ const Portfolio = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
-            <h2 className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Portfolio</h2>
-            <h3 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900"> ออกแบบ ผลิต ติดตั้ง <br className="md:hidden" /> 
-            <span className="text-red-600">ครบจบที่เดียว</span>
-            </h3>
+            <span className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Portfolio</span>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900">ตัวอย่างผลงานตกแต่งภายใน <span className="text-red-600">A2 ART PLUS</span></h2>
+            <p className="mt-6 max-w-2xl text-zinc-600 leading-relaxed">ชมภาพผลงานที่แสดงในเว็บไซต์ ทั้งงานคลินิก คาเฟ่ ห้องประชุม และออฟฟิศ กดที่แต่ละโครงการเพื่อดูภาพเพิ่มเติม</p>
           </div>
         </div>
 
@@ -55,16 +54,17 @@ const Portfolio = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               onClick={() => openLightbox(project)}
-              className="relative aspect-[16/10] overflow-hidden rounded-sm group cursor-pointer shadow-lg"
+              className="group cursor-pointer"
             >
-              <img 
-                src={project.image} 
-                alt={`ผลงาน ${project.title} built-in รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี - A2 ART PLUS`}
-                className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
+              <div className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-lg">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
+                  referrerPolicy="no-referrer"
+                />
 
-              <div className="absolute inset-0 bg-zinc-900/60 flex flex-col justify-center items-center p-6 text-center transition-all duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100">
+              <div className="absolute inset-0 bg-zinc-900/60 flex flex-col justify-center items-center p-6 text-center transition-all duration-500 opacity-0 md:group-hover:opacity-100">
                 <p className="text-red-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-2 md:mb-3">
                   {project.category}
                 </p>
@@ -72,6 +72,11 @@ const Portfolio = () => {
                   {project.title}
                 </h4>
                 <div className="w-12 md:w-16 h-1 bg-red-600 mb-6" />
+              </div>
+              </div>
+              <div className="pt-4">
+                <p className="text-xs font-bold uppercase tracking-widest text-red-600">{project.category}</p>
+                <h3 className="mt-1 text-xl font-bold text-zinc-900">{project.title}</h3>
               </div>
             </motion.div>
           ))}
@@ -125,7 +130,7 @@ const Portfolio = () => {
                     <SwiperSlide key={idx} className="flex items-center justify-center">
                       <img
                         src={img}
-                        alt={`${selectedProject.title} รูปที่ ${idx + 1} built-in รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี - A2 ART PLUS`}
+                        alt={`${selectedProject.title} ภาพที่ ${idx + 1}`}
                         className="w-full h-full object-contain select-none"
                         referrerPolicy="no-referrer"
                       />
