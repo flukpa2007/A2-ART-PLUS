@@ -34,7 +34,7 @@ const Hero = () => {
           >
             {[...marqueeImages, ...marqueeImages].map((img, idx) => (
               <div key={idx} className="w-full aspect-[3/4] rounded-sm overflow-hidden border border-white shadow-sm bg-zinc-200">
-                <img src={img} className="w-full h-full object-cover" alt="รับทำป้าย ตกแต่งภายใน สวนเสือ ศรีราชา ชลบุรี - A2 ART PLUS" />
+                <img src={img} className="w-full h-full object-cover" alt="ตัวอย่างงานบิวท์อินและตกแต่งภายในของ A2 ART PLUS" />
               </div>
             ))}
           </motion.div>
@@ -75,7 +75,7 @@ const Hero = () => {
     <img 
       src={img} 
       className="w-full h-full object-cover" 
-      alt="Portfolio" 
+      alt="ตัวอย่างงานบิวท์อินและตกแต่งภายในของ A2 ART PLUS" 
       loading="eager" 
       fetchPriority="high" 
     />
@@ -103,11 +103,13 @@ const Hero = () => {
             </motion.div>
 
             <h1 className="text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-tight text-zinc-900 leading-[0.9] mb-10 uppercase text-left">
-              Sign<br /> Furniture<br /> Built-in
+              รับทำป้าย<br />และบิวท์อิน<br />ศรีราชา
             </h1>
 
+            <p className="max-w-2xl text-zinc-600 text-base md:text-lg leading-relaxed mb-8">A2 ART PLUS ให้บริการออกแบบ ผลิต และติดตั้งป้ายตัวอักษร ป้ายไฟ LED สติกเกอร์ ป้ายไวนิล และงานบิวท์อิน ติดต่อทีมงานที่ตำบลหนองขาม อำเภอศรีราชา จังหวัดชลบุรี เพื่อปรึกษารูปแบบงานและวัสดุที่เหมาะกับพื้นที่ของคุณ</p>
+
             <div className="flex flex-col sm:flex-row items-center justify-start gap-4">
-              <a href="#services" className="w-full sm:w-auto px-8 py-4 bg-red-600 text-white text-sm font-bold rounded-sm flex items-center justify-center group shadow-xl shadow-red-600/10 transition-all active:scale-95">
+              <a href="#portfolio" className="w-full sm:w-auto px-8 py-4 bg-red-600 text-white text-sm font-bold rounded-sm flex items-center justify-center group shadow-xl shadow-red-600/10 transition-all active:scale-95">
                 ดูผลงานของเรา <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
               <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-white border border-zinc-200 text-zinc-900 text-sm font-bold rounded-sm flex items-center justify-center transition-colors hover:bg-zinc-50">
@@ -124,7 +126,7 @@ const Hero = () => {
           >
             <img 
               src="/logo/logo-a2.png" 
-              alt="Logo" 
+              alt="โลโก้ A2 ART PLUS" 
               className="w-full max-w-[220px] md:max-w-[380px] h-auto object-contain drop-shadow-sm opacity-80 md:opacity-100"
             />
           </motion.div>
