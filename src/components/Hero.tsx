@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Search } from 'lucide-react';
+import { ArrowRight, Facebook, MessageCircle, Phone } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 
 type GallerySlide = { src: string; alt: string };
@@ -63,19 +63,7 @@ const FadingImage: React.FC<{ slides: GallerySlide[]; offset: number; priority?:
   );
 };
 
-type HeroProps = {
-  onSearch: (query: string) => void;
-};
-
-const Hero: React.FC<HeroProps> = ({ onSearch }) => {
-  const [search, setSearch] = useState('');
-
-  const submitSearch = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    onSearch(search.trim());
-    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
+const Hero: React.FC = () => {
   return (
     <header id="home" className="bg-zinc-950 text-white pt-28 md:pt-36 pb-16 md:pb-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-center gap-12 lg:gap-16">
@@ -92,16 +80,14 @@ const Hero: React.FC<HeroProps> = ({ onSearch }) => {
             ออกแบบ ผลิต และติดตั้งป้ายตัวอักษร ป้ายไฟ LED สติกเกอร์ ป้ายไวนิล และงานบิวท์อิน เลือกดูบริการและผลงานของ A2 ART PLUS ก่อนคุยรายละเอียดงานกับทีมเรา
           </p>
 
-          <form onSubmit={submitSearch} role="search" className="mt-9 max-w-xl flex items-center bg-white rounded-xl p-1.5 shadow-xl shadow-black/20">
-            <Search className="w-5 h-5 text-zinc-400 mx-3 shrink-0" aria-hidden="true" />
-            <label className="sr-only" htmlFor="site-search">ค้นหาบริการหรือผลงาน</label>
-            <input id="site-search" type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="ค้นหา เช่น ป้ายไฟ สติกเกอร์ คลินิก" className="min-w-0 flex-1 py-3 text-sm md:text-base text-zinc-900 placeholder:text-zinc-400 outline-none" />
-            <button type="submit" className="rounded-lg bg-red-600 hover:bg-red-700 px-4 md:px-6 py-3 text-sm font-bold text-white transition-colors">ค้นหา</button>
-          </form>
-          <div className="mt-5 flex flex-wrap gap-2 text-xs md:text-sm">
-            {['ป้ายตัวอักษร', 'ป้ายไฟ LED', 'สติกเกอร์', 'ไวนิล', 'บิวท์อิน'].map((term) => (
-              <button key={term} type="button" onClick={() => { setSearch(term); onSearch(term); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }} className="rounded-full border border-zinc-700 px-3 py-1.5 text-zinc-300 hover:border-red-500 hover:text-white transition-colors">{term}</button>
-            ))}
+          <div className="mt-9 max-w-xl">
+            <p className="mb-3 text-sm font-semibold text-zinc-300">คุยเรื่องงานกับทีมเราได้เลย</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <a href="https://www.facebook.com/profile.php?id=61566587472075" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm font-bold hover:border-red-500 hover:bg-zinc-800 transition-colors"><Facebook className="h-5 w-5 shrink-0 text-red-500" aria-hidden="true" />Facebook</a>
+              <a href="https://lin.ee/S48LXeM" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm font-bold hover:border-red-500 hover:bg-zinc-800 transition-colors"><MessageCircle className="h-5 w-5 shrink-0 text-red-500" aria-hidden="true" />LINE</a>
+              <a href="tel:0876349997" className="flex items-center gap-3 rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm font-bold hover:border-red-500 hover:bg-zinc-800 transition-colors"><Phone className="h-5 w-5 shrink-0 text-red-500" aria-hidden="true" />โทรหาเรา</a>
+            </div>
+            <p className="mt-3 text-xs text-zinc-400">โทรศัพท์ 087-634-9997 · ศรีราชา ชลบุรี</p>
           </div>
 
           <div className="mt-9 flex flex-wrap gap-4">
