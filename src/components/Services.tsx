@@ -45,7 +45,7 @@ const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => vo
           <motion.img 
             key={isHovered ? service.gallery[previewIndex] : service.image}
             src={isHovered ? service.gallery[previewIndex] : service.image} 
-            alt={`บริการ${service.title} รับทำป้าย ตกแต่งภายใน สวนเสือ ศรีราชา ชลบุรี - A2 ART PLUS`}
+            alt={service.title.split(' (')[0]}
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: isHovered ? 1.15 : 1 }}
             exit={{ opacity: 0 }}
@@ -67,7 +67,7 @@ const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => vo
         <h4 className="text-xl md:text-2xl font-bold mb-3 group-hover:text-red-600 transition-colors duration-300 text-zinc-900 leading-tight">
           {service.title.split(' (')[0]}
         </h4>
-        <p className="text-zinc-500 leading-relaxed mb-3 line-clamp-2 text-sm">
+        <p className="text-zinc-500 leading-relaxed mb-3 text-sm">
           {service.description}
         </p>
         <div className="mt-auto pt-4 border-t border-zinc-50 flex items-center justify-between">
@@ -99,7 +99,8 @@ const Services = () => {
         {/* ... Header Section ... */}
         <div className="mb-15 text-center">
           <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our services</motion.span>
-          <motion.h3 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900">ออกแบบ ผลิต และติดตั้งครบจบในที่เดียว</motion.h3>
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900">บริการทำป้ายและงานบิวท์อินในศรีราชา</motion.h2>
+          <p className="mt-6 mx-auto max-w-3xl text-zinc-600 leading-relaxed">เลือกดูประเภทงาน วัสดุ และตัวอย่างภาพด้านล่าง ตั้งแต่ป้ายตัวอักษรอะคริลิค พลาสวูด ซิงค์และสแตนเลส ป้ายไฟ LED สติกเกอร์ ไปจนถึงไวนิลและเฟอร์นิเจอร์บิวท์อิน</p>
         </div>
 
         <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
@@ -143,7 +144,7 @@ const Services = () => {
                     <SwiperSlide key={idx} className="flex items-center justify-center bg-white">
                       <img 
                         src={img} 
-                        alt={`${selectedService.title} รูปที่ ${idx + 1} รับทำป้าย ตกแต่งภายใน ศรีราชา ชลบุรี - A2 ART PLUS`} 
+                        alt={`${selectedService.title.split(' (')[0]} ตัวอย่างภาพที่ ${idx + 1}`} 
                         className="w-full h-full object-contain"
                       />
                     </SwiperSlide>
