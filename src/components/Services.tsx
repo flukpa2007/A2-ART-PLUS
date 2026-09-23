@@ -81,12 +81,8 @@ const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => vo
   );
 };
 
-const Services: React.FC<{ query: string; onClearSearch: () => void }> = ({ query, onClearSearch }) => {
+const Services: React.FC = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const normalizedQuery = query.toLocaleLowerCase('th');
-  const visibleServices = SERVICES.filter((service) =>
-    `${service.title} ${service.description} ${service.article}`.toLocaleLowerCase('th').includes(normalizedQuery)
-  );
 
   useEffect(() => {
     if (selectedService) {
@@ -107,13 +103,11 @@ const Services: React.FC<{ query: string; onClearSearch: () => void }> = ({ quer
           <p className="mt-6 mx-auto max-w-3xl text-zinc-600 leading-relaxed">เลือกดูประเภทงาน วัสดุ และตัวอย่างภาพด้านล่าง ตั้งแต่ป้ายตัวอักษรอะคริลิค พลาสวูด ซิงค์และสแตนเลส ป้ายไฟ LED สติกเกอร์ ไปจนถึงไวนิลและเฟอร์นิเจอร์บิวท์อิน</p>
         </div>
 
-        {query && <div className="mb-6 flex items-center gap-4 text-zinc-600">ผลค้นหา “{query}” ในบริการ: {visibleServices.length} รายการ <button type="button" onClick={onClearSearch} className="text-red-600 font-bold underline">แสดงทั้งหมด</button></div>}
         <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
-          {visibleServices.map((service, index) => (
+          {SERVICES.map((service, index) => (
             <ServiceCard key={service.id} service={service} index={index} onClick={() => setSelectedService(service)} />
           ))}
         </div>
-        {query && visibleServices.length === 0 && <p className="pb-12 text-zinc-500">ไม่พบบริการที่ตรงคำค้น ลองดูผลงานด้านล่างหรือค้นด้วยคำอื่น</p>}
       </div>
 
       <AnimatePresence>
