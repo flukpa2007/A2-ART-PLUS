@@ -1,7 +1,7 @@
 import CustomCursor from './components/CustomCursor';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -15,6 +15,7 @@ import ChatPopup from './components/ChatPopup';
 import { ReactLenis } from 'lenis/react'
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState('');
   return (
 
     <ReactLenis root options={{ lerp: 0.5, duration: 1.5 }}>
@@ -22,9 +23,9 @@ function App() {
       <Navbar />
             <CustomCursor />
       <main>
-        <Hero />
-        <Services />
-        <Portfolio />
+        <Hero onSearch={setSearchQuery} />
+        <Services query={searchQuery} onClearSearch={() => setSearchQuery('')} />
+        <Portfolio query={searchQuery} onClearSearch={() => setSearchQuery('')} />
         <Process />
         <About />
         <Contact />
