@@ -38,7 +38,7 @@ const Portfolio = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
-            <h2 className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Portfolio</h2>
+            <span className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Portfolio</span>
             <h2 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900">ตัวอย่างผลงานตกแต่งภายใน <span className="text-red-600">A2 ART PLUS</span></h2>
             <p className="mt-6 max-w-2xl text-zinc-600 leading-relaxed">ชมภาพผลงานที่แสดงในเว็บไซต์ ทั้งงานคลินิก คาเฟ่ ห้องประชุม และออฟฟิศ กดที่แต่ละโครงการเพื่อดูภาพเพิ่มเติม</p>
           </div>
@@ -64,7 +64,7 @@ const Portfolio = () => {
                   referrerPolicy="no-referrer"
                 />
 
-              <div className="absolute inset-0 bg-zinc-900/60 flex flex-col justify-center items-center p-6 text-center transition-all duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100">
+              <div className="absolute inset-0 bg-zinc-900/60 flex flex-col justify-center items-center p-6 text-center transition-all duration-500 opacity-0 md:group-hover:opacity-100">
                 <p className="text-red-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-2 md:mb-3">
                   {project.category}
                 </p>
