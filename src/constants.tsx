@@ -102,6 +102,54 @@ export const SERVICES: Service[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: 5,
+    title: "ตัวอย่างป้ายไฟ LED สำหรับร้านค้า",
+    category: "ป้ายไฟ LED",
+    image: "/images/led/img-led-03.webp",
+    images: [
+      "/images/led/img-led-03.webp",
+      "/images/led/img-led-01.webp",
+      "/images/led/img-led-02.webp",
+      "/images/led/img-led-04.webp",
+    ]
+  },
+  {
+    id: 6,
+    title: "ตัวอย่างป้ายไวนิลหน้าร้านและอาคาร",
+    category: "ป้ายไวนิล",
+    image: "/images/vn/img-vn-04.webp",
+    images: [
+      "/images/vn/img-vn-04.webp",
+      "/images/vn/img-vn-02.webp",
+      "/images/vn/img-vn-06.webp",
+    ]
+  },
+  {
+    id: 7,
+    title: "ตัวอย่างป้ายตัวอักษรไฟ LED",
+    category: "ป้ายไฟ LED",
+    image: "/images/led/img-led-08.webp",
+    images: [
+      "/images/led/img-led-08.webp",
+      "/images/led/img-led-06.webp",
+      "/images/led/img-led-05.webp",
+      "/images/led/img-led-10.webp",
+    ]
+  },
+  {
+    id: 8,
+    title: "ตัวอย่างป้ายไวนิลตั้งพื้น",
+    category: "ป้ายไวนิล",
+    image: "/images/vn/img-vn-08.webp",
+    images: [
+      "/images/vn/img-vn-08.webp",
+      "/images/vn/img-vn-07.webp",
+      "/images/vn/img-vn-09.webp",
+      "/images/vn/img-vn-03.webp",
+    ]
+  },
+
+  {
     id: 1,
     title: "งานตกแต่งภายใน Dr.Milk Clinic",
     category: "Medical / Clinic",
