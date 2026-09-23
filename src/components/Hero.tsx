@@ -90,10 +90,10 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="w-full lg:w-[48%] min-w-0 text-left z-10 order-2"
+            className="w-full lg:w-[48%] min-w-0 text-left z-10 order-2 lg:py-16"
           >
             <motion.div
-              className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-sm bg-zinc-50 border border-zinc-100 text-zinc-600 text-xs font-medium mb-6 shadow-inner"
+              className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-zinc-50 border border-zinc-200 text-zinc-600 text-xs font-medium mb-7"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -102,17 +102,17 @@ const Hero = () => {
               บริษัท เอทู อาร์ท พลัส จำกัด
             </motion.div>
 
-            <h1 className="text-[clamp(2.75rem,4.2vw,4.5rem)] font-extrabold tracking-tight text-zinc-900 leading-[1.12] mb-6 text-left">
-              รับทำป้าย<br />และบิวท์อิน<br />ศรีราชา
+            <h1 className="text-[clamp(2.75rem,4.2vw,4.5rem)] font-extrabold tracking-tight text-zinc-900 leading-[1.14] mb-6 text-left">
+              ป้ายที่ใช่<br />พื้นที่ที่<span className="text-red-600">ลงตัว</span><br /><span className="text-zinc-500">ในศรีราชา</span>
             </h1>
 
-            <p className="max-w-lg text-zinc-600 text-sm sm:text-base leading-7 mb-8">A2 ART PLUS ให้บริการออกแบบ ผลิต และติดตั้งป้ายตัวอักษร ป้ายไฟ LED สติกเกอร์ ป้ายไวนิล และงานบิวท์อิน ติดต่อทีมงานที่ตำบลหนองขาม อำเภอศรีราชา จังหวัดชลบุรี เพื่อปรึกษารูปแบบงานและวัสดุที่เหมาะกับพื้นที่ของคุณ</p>
+            <p className="max-w-lg border-l-4 border-red-600 pl-5 text-zinc-600 text-sm sm:text-base leading-7 mb-8">A2 ART PLUS รับออกแบบ ผลิต และติดตั้งป้ายตัวอักษร ป้ายไฟ LED สติกเกอร์ ป้ายไวนิล และงานบิวท์อิน ในศรีราชา ชลบุรี ดูผลงานจริงแล้วคุยรูปแบบงานที่เหมาะกับพื้นที่ของคุณ</p>
 
             <div className="flex flex-col sm:flex-row items-center justify-start gap-4">
-              <a href="#portfolio" className="w-full sm:w-auto px-8 py-4 bg-red-600 text-white text-sm font-bold rounded-sm flex items-center justify-center group shadow-xl shadow-red-600/10 transition-all active:scale-95">
+              <a href="#portfolio" className="w-full sm:w-auto px-8 py-4 bg-red-600 text-white text-sm font-bold rounded-lg flex items-center justify-center group shadow-xl shadow-red-600/10 transition-all hover:bg-red-700 active:scale-95">
                 ดูผลงานของเรา <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
-              <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-white border border-zinc-200 text-zinc-900 text-sm font-bold rounded-sm flex items-center justify-center transition-colors hover:bg-zinc-50">
+              <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-white border border-zinc-300 text-zinc-900 text-sm font-bold rounded-lg flex items-center justify-center transition-colors hover:bg-zinc-50">
                 ติดต่อสอบถาม
               </a>
             </div>
