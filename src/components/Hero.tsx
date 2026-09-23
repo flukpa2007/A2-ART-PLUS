@@ -25,7 +25,7 @@ const Hero = () => {
   return (
     <header id="home" className="relative min-h-screen w-full overflow-hidden bg-white flex items-center pt-32 pb-20 md:pt-10 md:pb-0">
       
-      <div className="absolute right-0 top-0 bottom-0 w-[min(20vw,320px)] hidden 2xl:block opacity-90 z-0">
+      <div className="absolute right-0 top-0 bottom-0 w-[min(25vw,400px)] hidden lg:block opacity-90 z-0">
         <div className="relative h-full w-full overflow-hidden border-l border-zinc-50 bg-zinc-50/30">
           <motion.div 
             className="flex flex-col gap-4 p-4 absolute top-0 left-0 w-full"
@@ -42,7 +42,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 2xl:pr-[min(22vw,360px)] w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:pr-[min(27vw,430px)] w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
           
 
