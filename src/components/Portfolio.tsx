@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ArrowUpRight } from 'lucide-react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
 
@@ -13,6 +13,11 @@ import 'swiper/css/navigation';
 
 const Portfolio: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeCategory, setActiveCategory] = useState('ทั้งหมด');
+  const categories = ['ทั้งหมด', ...new Set(PROJECTS.map((project) => project.category))];
+  const visibleProjects = activeCategory === 'ทั้งหมด'
+    ? PROJECTS
+    : PROJECTS.filter((project) => project.category === activeCategory);
 
   const openLightbox = (project: Project) => {
     setSelectedProject(project);
@@ -34,43 +39,54 @@ const Portfolio: React.FC = () => {
   }, [selectedProject, closeLightbox]);
 
   return (
-    <section id="portfolio" className="py-20 md:py-28 bg-zinc-50">
+    <section id="portfolio" className="py-20 md:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
-          <div>
-            <span className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Portfolio</span>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900">ผลงานที่<span className="text-red-600">เล่าเรื่องได้</span></h2>
-            <p className="mt-5 max-w-2xl text-zinc-600 leading-relaxed">ตัวอย่างงานตกแต่งภายในสำหรับคลินิก คาเฟ่ ห้องประชุม และออฟฟิศ เลือกดูภาพเพิ่มเติมได้ในแต่ละโครงการ</p>
+        <div className="border-t-2 border-zinc-900 pt-6 md:pt-8">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+            <div>
+              <span className="text-red-600 font-bold tracking-[0.22em] uppercase text-xs">A2 ART PLUS / SELECTED WORKS</span>
+              <h2 className="mt-4 text-[clamp(3.5rem,9vw,8rem)] leading-[0.95] font-black tracking-tight text-zinc-950">PORTFOLIO<span className="text-red-600">.</span></h2>
+            </div>
+            <p className="max-w-sm text-zinc-600 leading-relaxed lg:pb-2">ผลงานออกแบบและตกแต่งพื้นที่จริงสำหรับคลินิก คาเฟ่ ห้องประชุม และออฟฟิศ กดที่ภาพเพื่อดูรายละเอียดแต่ละโครงการ</p>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {PROJECTS.map((project, index) => (
-            <motion.div 
+        <div className="mt-12 mb-9 flex flex-wrap gap-2" aria-label="เลือกหมวดผลงาน">
+          {categories.map((category) => (
+            <button key={category} type="button" onClick={() => setActiveCategory(category)} aria-pressed={activeCategory === category}
+              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${activeCategory === category ? 'border-zinc-950 bg-zinc-950 text-white' : 'border-zinc-300 text-zinc-700 hover:border-red-600 hover:text-red-600'}`}>{category}</button>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-7 gap-y-12 md:gap-y-16">
+          {visibleProjects.map((project, index) => (
+            <motion.button
+              type="button"
               key={project.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.02 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: (index % 2) * 0.1, duration: 0.5 }}
               onClick={() => openLightbox(project)}
-              className="group cursor-pointer overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition-shadow hover:shadow-xl"
+              className="group block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600"
+              aria-label={`ดูภาพผลงาน ${project.title}`}
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100">
-                <img 
-                  src={project.image} 
+              <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100">
+                <img
+                  src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-
+                <span className="absolute bottom-4 right-4 grid size-11 place-items-center rounded-full bg-white text-zinc-950 transition-colors group-hover:bg-red-600 group-hover:text-white"><ArrowUpRight size={20} aria-hidden="true" /></span>
               </div>
-              <div className="p-5 md:p-6">
-                <p className="text-xs font-bold uppercase tracking-widest text-red-600">{project.category}</p>
-                <h3 className="mt-1 text-xl font-bold text-zinc-900">{project.title}</h3>
-                <p className="mt-3 text-sm font-semibold text-zinc-500 group-hover:text-red-600 transition-colors">ดูภาพโครงการเพิ่มเติม →</p>
+              <div className="mt-5 border-t border-zinc-300 pt-4 flex items-start gap-4">
+                <span className="pt-1 text-xs font-bold tabular-nums text-red-600">{String(index + 1).padStart(2, '0')}</span>
+                <div className="min-w-0">
+                  <h3 className="text-xl md:text-2xl font-bold text-zinc-950 group-hover:text-red-600 transition-colors">{project.title}</h3>
+                  <p className="mt-1 text-sm text-zinc-500">{project.category}</p>
+                </div>
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </div>
       </div>
