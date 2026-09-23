@@ -81,7 +81,7 @@ const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => vo
   );
 };
 
-const Services = () => {
+const Services: React.FC = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   useEffect(() => {

@@ -11,7 +11,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-const Portfolio = () => {
+const Portfolio: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const openLightbox = (project: Project) => {
@@ -34,17 +34,17 @@ const Portfolio = () => {
   }, [selectedProject, closeLightbox]);
 
   return (
-    <section id="portfolio" className="py-24 bg-white">
+    <section id="portfolio" className="py-20 md:py-28 bg-zinc-50">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
           <div>
             <span className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Portfolio</span>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900">ตัวอย่างผลงานตกแต่งภายใน <span className="text-red-600">A2 ART PLUS</span></h2>
-            <p className="mt-6 max-w-2xl text-zinc-600 leading-relaxed">ชมภาพผลงานที่แสดงในเว็บไซต์ ทั้งงานคลินิก คาเฟ่ ห้องประชุม และออฟฟิศ กดที่แต่ละโครงการเพื่อดูภาพเพิ่มเติม</p>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight text-zinc-900">ผลงานที่<span className="text-red-600">เล่าเรื่องได้</span></h2>
+            <p className="mt-5 max-w-2xl text-zinc-600 leading-relaxed">ตัวอย่างงานตกแต่งภายในสำหรับคลินิก คาเฟ่ ห้องประชุม และออฟฟิศ เลือกดูภาพเพิ่มเติมได้ในแต่ละโครงการ</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {PROJECTS.map((project, index) => (
             <motion.div 
               key={project.id}
@@ -54,9 +54,9 @@ const Portfolio = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               onClick={() => openLightbox(project)}
-              className="group cursor-pointer"
+              className="group cursor-pointer overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition-shadow hover:shadow-xl"
             >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-lg">
+              <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100">
                 <img 
                   src={project.image} 
                   alt={project.title}
@@ -64,19 +64,11 @@ const Portfolio = () => {
                   referrerPolicy="no-referrer"
                 />
 
-              <div className="absolute inset-0 bg-zinc-900/60 flex flex-col justify-center items-center p-6 text-center transition-all duration-500 opacity-0 md:group-hover:opacity-100">
-                <p className="text-red-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-2 md:mb-3">
-                  {project.category}
-                </p>
-                <h4 className="text-white text-lg md:text-3xl font-bold mb-4 md:mb-6 leading-tight max-w-[280px]">
-                  {project.title}
-                </h4>
-                <div className="w-12 md:w-16 h-1 bg-red-600 mb-6" />
               </div>
-              </div>
-              <div className="pt-4">
+              <div className="p-5 md:p-6">
                 <p className="text-xs font-bold uppercase tracking-widest text-red-600">{project.category}</p>
                 <h3 className="mt-1 text-xl font-bold text-zinc-900">{project.title}</h3>
+                <p className="mt-3 text-sm font-semibold text-zinc-500 group-hover:text-red-600 transition-colors">ดูภาพโครงการเพิ่มเติม →</p>
               </div>
             </motion.div>
           ))}

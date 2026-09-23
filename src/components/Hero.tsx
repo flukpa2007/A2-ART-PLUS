@@ -1,143 +1,114 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ArrowRight, Facebook, MessageCircle, Phone } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
+type GallerySlide = { src: string; alt: string };
 
-import 'swiper/css';
-import 'swiper/css/pagination';
+const heroGallery: GallerySlide[] = [
+  { src: '/images/letter/img-letter-02.webp', alt: 'ตัวอย่างงานป้ายตัวอักษร' },
+  { src: '/images/letter/img-letter-03.webp', alt: 'ตัวอย่างป้ายตัวอักษรอีกแบบ' },
+  { src: '/images/letter/img-letter-05.webp', alt: 'ภาพงานป้ายตัวอักษรของ A2 ART PLUS' },
+];
 
-const Hero = () => {
-  const marqueeImages = [
-    "/images/bu/img-bu-01.webp",
-    "/images/bu/img-bu-03.webp",
-    "/images/bu/img-bu-02.webp",
-    "/images/bu/img-bu-04.webp",
-    "/images/bu/img-bu-05.webp",
-    "/images/bu/img-bu-06.webp",
-    "/images/bu/img-bu-07.webp",
-    "/images/bu/img-bu-08.webp",
-    "/images/bu/img-bu-09.webp",
-    "/images/bu/img-bu-10.webp"
-  ];
+const ledGallery: GallerySlide[] = [
+  { src: '/images/led/img-led-08.webp', alt: 'ตัวอย่างงานป้ายไฟ LED' },
+  { src: '/images/led/img-led-01.webp', alt: 'ตัวอย่างป้ายไฟ LED อีกแบบ' },
+  { src: '/images/led/img-led-03.webp', alt: 'ภาพงานป้ายไฟ LED ของ A2 ART PLUS' },
+];
 
+const interiorGallery: GallerySlide[] = [
+  { src: '/images/bu/img-bu-03.webp', alt: 'ตัวอย่างงานบิวท์อิน' },
+  { src: '/images/bu/img-bu-01.webp', alt: 'ตัวอย่างงานบิวท์อินอีกแบบ' },
+  { src: '/images/bu/img-bu-05.webp', alt: 'ภาพงานบิวท์อินของ A2 ART PLUS' },
+];
+
+const FadingImage: React.FC<{ slides: GallerySlide[]; offset: number; priority?: boolean }> = ({ slides, offset, priority = false }) => {
+  const [index, setIndex] = useState(0);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (reduceMotion || slides.length < 2) return;
+    let interval: number;
+    const timeout = window.setTimeout(() => {
+      setIndex((current) => (current + 1) % slides.length);
+      interval = window.setInterval(() => {
+        if (!document.hidden) setIndex((current) => (current + 1) % slides.length);
+      }, 6000);
+    }, 6000 + offset);
+    return () => { window.clearTimeout(timeout); window.clearInterval(interval); };
+  }, [reduceMotion, slides, offset]);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    const next = new Image();
+    next.src = slides[(index + 1) % slides.length].src;
+  }, [index, reduceMotion, slides]);
+
+  const slide = slides[index];
   return (
-    <header id="home" className="relative min-h-screen w-full overflow-hidden bg-white flex items-center pt-32 pb-20 md:pt-10 md:pb-0">
-      
-      <div className="absolute right-0 top-0 bottom-0 w-[min(25vw,400px)] hidden lg:block opacity-90 z-0">
-        <div className="relative h-full w-full overflow-hidden border-l border-zinc-50 bg-zinc-50/30">
-          <motion.div 
-            className="flex flex-col gap-4 p-4 absolute top-0 left-0 w-full"
-            animate={{ y: ["0%", "-50%"] }}
-            transition={{ duration: 60, repeat: Infinity, ease: "linear", repeatType: "loop" }}
-          >
-            {[...marqueeImages, ...marqueeImages].map((img, idx) => (
-              <div key={idx} className="w-full aspect-[3/4] rounded-sm overflow-hidden border border-white shadow-sm bg-zinc-200">
-                <img src={img} className="w-full h-full object-cover" alt="ตัวอย่างงานบิวท์อินและตกแต่งภายในของ A2 ART PLUS" />
-              </div>
-            ))}
-          </motion.div>
-          <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-white via-transparent to-white z-10" />
+    <AnimatePresence initial={false}>
+      <motion.img
+        key={slide.src}
+        src={slide.src}
+        alt={slide.alt}
+        className="absolute inset-0 w-full h-full object-cover"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: reduceMotion ? 0 : 1.1, ease: 'easeInOut' }}
+        fetchPriority={priority && index === 0 ? 'high' : undefined}
+        loading={priority && index === 0 ? 'eager' : 'lazy'}
+      />
+    </AnimatePresence>
+  );
+};
+
+const Hero: React.FC = () => {
+  return (
+    <header id="home" className="bg-zinc-950 text-white pt-28 md:pt-36 pb-16 md:pb-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-center gap-12 lg:gap-16">
+        <div className="min-w-0">
+          <span className="inline-flex items-center gap-2 text-xs md:text-sm text-zinc-300 mb-7">
+            <span className="w-2 h-2 rounded-full bg-red-600" />
+            บริษัท เอทู อาร์ท พลัส จำกัด · ศรีราชา ชลบุรี
+          </span>
+          <h1 className="text-[clamp(2.7rem,5vw,5rem)] font-black leading-[1.12] tracking-tight max-w-2xl">
+            รับทำป้ายที่<span className="text-red-500">โดดเด่น</span><br />
+            งานบิวท์อินที่<span className="text-red-500">ลงตัว</span>
+          </h1>
+          <p className="mt-7 max-w-xl text-zinc-300 text-base md:text-lg leading-8">
+            ออกแบบ ผลิต และติดตั้งป้ายตัวอักษร ป้ายไฟ LED สติกเกอร์ ป้ายไวนิล และงานบิวท์อิน เลือกดูบริการและผลงานของ A2 ART PLUS ก่อนคุยรายละเอียดงานกับทีมเรา
+          </p>
+
+          <div className="mt-9 max-w-xl">
+            <p className="mb-3 text-sm font-semibold text-zinc-300">คุยเรื่องงานกับทีมเราได้เลย</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <a href="https://www.facebook.com/profile.php?id=61566587472075" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm font-bold hover:border-red-500 hover:bg-zinc-800 transition-colors"><Facebook className="h-5 w-5 shrink-0 text-red-500" aria-hidden="true" />Facebook</a>
+              <a href="https://lin.ee/S48LXeM" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm font-bold hover:border-red-500 hover:bg-zinc-800 transition-colors"><MessageCircle className="h-5 w-5 shrink-0 text-red-500" aria-hidden="true" />LINE</a>
+              <a href="tel:0876349997" className="flex items-center gap-3 rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-sm font-bold hover:border-red-500 hover:bg-zinc-800 transition-colors"><Phone className="h-5 w-5 shrink-0 text-red-500" aria-hidden="true" />โทรหาเรา</a>
+            </div>
+            <p className="mt-3 text-xs text-zinc-400">โทรศัพท์ 087-634-9997 · ศรีราชา ชลบุรี</p>
+          </div>
+
+          <div className="mt-9 flex flex-wrap gap-4">
+            <a href="#portfolio" className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-6 py-3.5 text-sm font-bold hover:bg-red-700 transition-colors">ดูผลงาน <ArrowRight size={18} /></a>
+            <a href="#contact" className="inline-flex items-center rounded-lg border border-zinc-600 px-6 py-3.5 text-sm font-bold hover:border-white transition-colors">ปรึกษางานกับเรา</a>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 md:gap-4 min-w-0" aria-label="ภาพตัวอย่างงานของ A2 ART PLUS">
+          <div className="col-span-2 relative overflow-hidden rounded-2xl h-56 sm:h-72 lg:h-80">
+            <FadingImage slides={heroGallery} offset={0} priority />
+            <span className="absolute bottom-4 left-4 rounded-full bg-zinc-950/85 px-4 py-2 text-xs font-bold">SIGNAGE · ป้ายตัวอักษร</span>
+          </div>
+          <div className="relative overflow-hidden rounded-2xl h-40 sm:h-52 lg:h-56">
+            <FadingImage slides={ledGallery} offset={2000} />
+          </div>
+          <div className="relative overflow-hidden rounded-2xl h-40 sm:h-52 lg:h-56">
+            <FadingImage slides={interiorGallery} offset={4000} />
+          </div>
         </div>
       </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:pr-[min(27vw,430px)] w-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
-          
-
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="w-full order-1 md:hidden block mb-4"
-          >
-            <div className="relative w-full h-[320px]">
-              <Swiper
-                modules={[Autoplay, Pagination]}
-                spaceBetween={15}
-                slidesPerView={1.2} 
-                centeredSlides={true}
-                loop={true}
-                autoplay={{
-                  delay: 1500, 
-                  disableOnInteraction: false, 
-                }}
-                pagination={{ 
-                  clickable: true,
-                  bulletClass: 'swiper-pagination-bullet !bg-red-200',
-                  bulletActiveClass: 'swiper-pagination-bullet-active !bg-red-600'
-                }}
-                className="w-full h-full hero-swiper"
-              >
-                {marqueeImages.map((img, idx) => (
-                  <SwiperSlide key={idx}>
-  <div className="w-full h-full rounded-sm overflow-hidden border border-white shadow-sm bg-zinc-200 select-none">
-    <img 
-      src={img} 
-      className="w-full h-full object-cover" 
-      alt="ตัวอย่างงานบิวท์อินและตกแต่งภายในของ A2 ART PLUS" 
-      loading="eager" 
-      fetchPriority="high" 
-    />
-  </div>
-</SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          </motion.div>
-
-          {/* --- Content Area --- */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="w-full lg:w-[48%] min-w-0 text-left z-10 order-2"
-          >
-            <motion.div
-              className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-sm bg-zinc-50 border border-zinc-100 text-zinc-600 text-xs font-medium mb-6 shadow-inner"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-              </span>
-              บริษัท เอทู อาร์ท พลัส จำกัด
-            </motion.div>
-
-            <h1 className="text-[clamp(2.75rem,4.2vw,4.5rem)] font-extrabold tracking-tight text-zinc-900 leading-[1.12] mb-6 text-left">
-              รับทำป้าย<br />และบิวท์อิน<br />ศรีราชา
-            </h1>
-
-            <p className="max-w-lg text-zinc-600 text-sm sm:text-base leading-7 mb-8">A2 ART PLUS ให้บริการออกแบบ ผลิต และติดตั้งป้ายตัวอักษร ป้ายไฟ LED สติกเกอร์ ป้ายไวนิล และงานบิวท์อิน ติดต่อทีมงานที่ตำบลหนองขาม อำเภอศรีราชา จังหวัดชลบุรี เพื่อปรึกษารูปแบบงานและวัสดุที่เหมาะกับพื้นที่ของคุณ</p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-start gap-4">
-              <a href="#portfolio" className="w-full sm:w-auto px-8 py-4 bg-red-600 text-white text-sm font-bold rounded-sm flex items-center justify-center group shadow-xl shadow-red-600/10 transition-all active:scale-95">
-                ดูผลงานของเรา <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
-              <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-white border border-zinc-200 text-zinc-900 text-sm font-bold rounded-sm flex items-center justify-center transition-colors hover:bg-zinc-50">
-                ติดต่อสอบถาม
-              </a>
-            </div>
-          </motion.div>
-
-          {/* --- Logo --- */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="w-full lg:w-[35%] flex justify-center lg:justify-start order-3 md:order-first"
-          >
-            <img 
-              src="/logo/logo-a2.png" 
-              alt="โลโก้ A2 ART PLUS" 
-              className="w-full max-w-[220px] md:max-w-[380px] h-auto object-contain drop-shadow-sm opacity-80 md:opacity-100"
-            />
-          </motion.div>
-
-        </div>
-      </div>
-      <div className="absolute bottom-10 left-0 w-full h-[1px] bg-zinc-100" />
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        .hero-swiper .swiper-pagination { bottom: 0px !important; }
-      `}} />
     </header>
   );
 };
