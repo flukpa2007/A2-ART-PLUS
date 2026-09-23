@@ -11,8 +11,12 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-const Portfolio = () => {
+const Portfolio: React.FC<{ query: string; onClearSearch: () => void }> = ({ query, onClearSearch }) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const normalizedQuery = query.toLocaleLowerCase('th');
+  const visibleProjects = PROJECTS.filter((project) =>
+    `${project.title} ${project.category}`.toLocaleLowerCase('th').includes(normalizedQuery)
+  );
 
   const openLightbox = (project: Project) => {
     setSelectedProject(project);
@@ -44,8 +48,9 @@ const Portfolio = () => {
           </div>
         </div>
 
+        {query && <div className="mb-6 flex items-center gap-4 text-zinc-600">ผลค้นหา “{query}” ในผลงาน: {visibleProjects.length} รายการ <button type="button" onClick={onClearSearch} className="text-red-600 font-bold underline">แสดงทั้งหมด</button></div>}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {PROJECTS.map((project, index) => (
+          {visibleProjects.map((project, index) => (
             <motion.div 
               key={project.id}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -73,6 +78,7 @@ const Portfolio = () => {
             </motion.div>
           ))}
         </div>
+        {query && visibleProjects.length === 0 && <p className="mt-6 text-zinc-500">ไม่พบผลงานที่ตรงคำค้น ลองค้นด้วยประเภทงานหรือชื่อโครงการอื่น</p>}
       </div>
 
       <AnimatePresence>
