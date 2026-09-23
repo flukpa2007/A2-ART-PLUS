@@ -47,7 +47,7 @@ const Portfolio: React.FC = () => {
               <span className="text-red-600 font-bold tracking-[0.22em] uppercase text-xs">A2 ART PLUS / SELECTED WORKS</span>
               <h2 className="mt-4 text-[clamp(3.5rem,9vw,8rem)] leading-[0.95] font-black tracking-tight text-zinc-950">PORTFOLIO<span className="text-red-600">.</span></h2>
             </div>
-            <p className="max-w-sm text-zinc-600 leading-relaxed lg:pb-2">ผลงานออกแบบและตกแต่งพื้นที่จริงสำหรับคลินิก คาเฟ่ ห้องประชุม และออฟฟิศ กดที่ภาพเพื่อดูรายละเอียดแต่ละโครงการ</p>
+            <p className="max-w-sm text-zinc-600 leading-relaxed lg:pb-2">ตัวอย่างงานป้ายไฟ LED ป้ายไวนิล และงานตกแต่งภายในของ A2 ART PLUS เลือกหมวดที่สนใจแล้วกดภาพเพื่อดูตัวอย่างเพิ่มเติม</p>
           </div>
         </div>
         <div className="mt-12 mb-9 flex flex-wrap gap-2" aria-label="เลือกหมวดผลงาน">
