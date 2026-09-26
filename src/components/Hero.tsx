@@ -79,11 +79,11 @@ const Hero: React.FC = () => {
             บริษัท เอทู อาร์ท พลัส จำกัด · ศรีราชา ชลบุรี
           </span>
           <h1 className="text-[clamp(2.5rem,4.3vw,4.5rem)] font-bold leading-[1.3] tracking-normal max-w-2xl">
-            รับทำป้ายที่<span className="text-red-500">โดดเด่น</span><br />
-            งานบิวท์อินที่<span className="text-red-500">ลงตัว</span>
+            ออกแบบ ผลิต ติดตั้ง<br />
+            <span className="text-red-500">ป้ายและงานบิวท์อิน</span>
           </h1>
           <p className="mt-7 max-w-xl text-zinc-300 text-base md:text-lg leading-8">
-            ออกแบบ ผลิต และติดตั้งป้ายตัวอักษร ป้ายไฟ LED สติกเกอร์ ป้ายไวนิล และงานบิวท์อิน เลือกดูบริการและผลงานของ A2 ART PLUS ก่อนคุยรายละเอียดงานกับทีมเรา
+            A2 ART PLUS ดูแลงานตั้งแต่แนวคิด ออกแบบ ผลิต จนติดตั้งจริง ทั้งงานป้าย เฟอร์นิเจอร์บิวท์อิน และงานตกแต่งพื้นที่ สำหรับแบรนด์ใหม่ ร้านค้า โรงงาน โรงเรียน และสำนักงาน
           </p>
 
           <div className="mt-9 max-w-xl">
