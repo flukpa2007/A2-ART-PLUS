@@ -137,7 +137,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 5,
-    title: "ตัวอย่างป้ายไฟ LED สำหรับร้านค้า",
+    title: "ป้ายไฟตัวอักษรหน้าร้าน SUGOI FIGURE",
     category: "ป้ายไฟ LED",
     image: "/images/led/img-led-03.webp",
     images: [
@@ -149,7 +149,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 6,
-    title: "ตัวอย่างป้ายไวนิลหน้าร้านและอาคาร",
+    title: "ป้ายไวนิลหน้าร้านสถาบันสอนตัดผม Barber Academy",
     category: "ป้ายไวนิล",
     image: "/images/vn/img-vn-04.webp",
     images: [
@@ -160,7 +160,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 7,
-    title: "ตัวอย่างป้ายตัวอักษรไฟ LED",
+    title: "ป้ายไฟตัวอักษร LAEM CHABANG COUNTRY CLUB",
     category: "ป้ายไฟ LED",
     image: "/images/led/img-led-08.webp",
     images: [
@@ -172,7 +172,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 8,
-    title: "ตัวอย่างป้ายไวนิลตั้งพื้น",
+    title: "ป้ายไวนิลตั้งพื้นสำหรับประชาสัมพันธ์หน้าร้าน",
     category: "ป้ายไวนิล",
     image: "/images/vn/img-vn-08.webp",
     images: [
