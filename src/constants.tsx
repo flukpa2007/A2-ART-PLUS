@@ -174,10 +174,15 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 5,
-    title: "ป้ายไฟตัวอักษรหน้าร้าน SUGOI FIGURE",
-    category: "ป้ายไฟ LED",
-    image: "/images/led/img-led-03.webp",
-    images: ["/images/led/img-led-03.webp"]
+    title: "ชุดป้ายร้าน SUGOI FIGURE",
+    category: "ชุดป้ายร้านค้า",
+    image: "/images/ex/sugoi-figure/sugoi-figure-01.webp",
+    images: [
+      "/images/ex/sugoi-figure/sugoi-figure-01.webp",
+      "/images/ex/sugoi-figure/sugoi-figure-02.webp",
+      "/images/ex/sugoi-figure/sugoi-figure-03.webp",
+      "/images/ex/sugoi-figure/sugoi-figure-04.webp",
+    ]
   },
   {
     id: 6,
