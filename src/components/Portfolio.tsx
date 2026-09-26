@@ -156,7 +156,7 @@ const Portfolio: React.FC = () => {
 
               {/* Caption */}
               <div className="mt-6 text-center">
-                <h4 className="text-white text-xl md:text-2xl font-bold mb-2 uppercase tracking-tight">
+                <h4 className="text-white text-xl md:text-2xl font-bold mb-2 tracking-normal">
                   {selectedProject.title}
                 </h4>
                 <p className="text-red-500 text-xs font-bold uppercase tracking-[0.2em]">
