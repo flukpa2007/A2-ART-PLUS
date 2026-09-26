@@ -27,7 +27,7 @@ const Contact = () => {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1">โทรศัพท์</p>
+                    <p className="text-xs font-bold tracking-normal text-zinc-400 mb-1">โทรศัพท์</p>
                     <a href="tel:0876349997" className="text-2xl font-bold text-zinc-900 hover:text-red-600 transition-colors">087-634-9997</a>
                   </div>
                 </div>
@@ -93,7 +93,7 @@ const Contact = () => {
                 <div className="flex items-start gap-6">
                   <Mail className="w-8 h-8 md:w-6 md:h-6 text-red-600 mt-1 shrink-0" />
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">อีเมล</p>
+                    <p className="text-xs font-bold tracking-normal text-zinc-400 mb-2">อีเมล</p>
                     <a href="mailto:a2artbuiltin@gmail.com" className="text-xl md:text-2xl font-bold text-zinc-900 break-all">a2artbuiltin@gmail.com</a>
                   </div>
                 </div>
@@ -102,7 +102,7 @@ const Contact = () => {
                 <div className="flex items-start gap-6">
                   <MapPin className="w-8 h-8 md:w-6 md:h-6 text-red-600 mt-1 shrink-0" />
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-2">ที่อยู่สำนักงาน</p>
+                    <p className="text-xs font-bold tracking-normal text-zinc-400 mb-2">ที่อยู่สำนักงาน</p>
                     <a 
                       href="https://maps.app.goo.gl/qXvMbfMvwwV8X8Zp9" 
                       target="_blank" 
