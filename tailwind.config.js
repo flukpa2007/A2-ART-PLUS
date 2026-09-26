@@ -10,7 +10,7 @@ export default {
         'brand-red': '#E31E24',
       },
       fontFamily: {
-        sans: ['Prompt', 'Inter', 'sans-serif'],
+        sans: ['Noto Sans Thai', 'Tahoma', 'sans-serif'],
       },
     },
   },
