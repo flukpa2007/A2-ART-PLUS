@@ -188,10 +188,16 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 7,
-    title: "ป้ายไฟตัวอักษร LAEM CHABANG COUNTRY CLUB",
+    title: "ชุดป้ายไฟตัวอักษรและโลโก้ LAEM CHABANG COUNTRY CLUB",
     category: "ป้ายไฟ LED",
-    image: "/images/led/img-led-08.webp",
-    images: ["/images/led/img-led-08.webp"]
+    image: "/images/ex/laem-chabang/laem-chabang-01.webp",
+    images: [
+      "/images/ex/laem-chabang/laem-chabang-01.webp",
+      "/images/ex/laem-chabang/laem-chabang-02.webp",
+      "/images/ex/laem-chabang/laem-chabang-03.webp",
+      "/images/ex/laem-chabang/laem-chabang-04.webp",
+      "/images/ex/laem-chabang/laem-chabang-05.webp",
+    ]
   },
   {
     id: 8,
