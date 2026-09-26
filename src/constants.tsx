@@ -102,6 +102,20 @@ export const SERVICES: Service[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: 10,
+    title: "ป้ายตัวอักษรไฟ LED ออกหลัง ISAN Station 168",
+    category: "ป้ายไฟ LED",
+    image: "/images/ex/isan-station/isan-station-01.webp",
+    images: [
+      "/images/ex/isan-station/isan-station-01.webp",
+      "/images/ex/isan-station/isan-station-02.webp",
+      "/images/ex/isan-station/isan-station-03.webp",
+      "/images/ex/isan-station/isan-station-04.webp",
+      "/images/ex/isan-station/isan-station-05.webp",
+      "/images/ex/isan-station/isan-station-06.webp",
+    ]
+  },
+  {
     id: 9,
     title: "งานตกแต่งภายใน The Canteen @Suntory",
     category: "Interior / Corporate",
