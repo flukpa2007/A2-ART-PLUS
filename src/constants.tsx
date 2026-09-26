@@ -102,6 +102,19 @@ export const SERVICES: Service[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: 12,
+    title: "ป้ายไม้แกะสลัก สวนเสี้ยวฟ้า",
+    category: "ป้ายไม้แกะสลัก",
+    image: "/images/ex/carved-wood/carved-wood-01.webp",
+    images: [
+      "/images/ex/carved-wood/carved-wood-01.webp",
+      "/images/ex/carved-wood/carved-wood-02.webp",
+      "/images/ex/carved-wood/carved-wood-03.webp",
+      "/images/ex/carved-wood/carved-wood-04.webp",
+      "/images/ex/carved-wood/carved-wood-05.webp",
+    ]
+  },
+  {
     id: 11,
     title: "ป้ายสถิติความปลอดภัยโรงงาน Nippon Steel Logistics",
     category: "ป้ายสถิติ / โรงงาน",
