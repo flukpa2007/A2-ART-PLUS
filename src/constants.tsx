@@ -102,6 +102,18 @@ export const SERVICES: Service[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: 13,
+    title: "ชุดป้ายตัวอักษร COME HOME SAFE ติดป้อม รปภ. โรงงาน",
+    category: "ป้ายตัวอักษร / โรงงาน",
+    image: "/images/ex/guardhouse-sign/guardhouse-sign-01.webp",
+    images: [
+      "/images/ex/guardhouse-sign/guardhouse-sign-01.webp",
+      "/images/ex/guardhouse-sign/guardhouse-sign-02.webp",
+      "/images/ex/guardhouse-sign/guardhouse-sign-03.webp",
+      "/images/ex/guardhouse-sign/guardhouse-sign-04.webp",
+    ]
+  },
+  {
     id: 12,
     title: "ป้ายไม้แกะสลัก ศาลา เสียดฟ้า",
     category: "ป้ายไม้แกะสลัก",
