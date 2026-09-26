@@ -106,12 +106,7 @@ export const PROJECTS: Project[] = [
     title: "ชุดป้ายตัวอักษร COME HOME SAFE ติดป้อม รปภ. โรงงาน",
     category: "ป้ายตัวอักษร / โรงงาน",
     image: "/images/ex/guardhouse-sign/guardhouse-sign-01.webp",
-    images: [
-      "/images/ex/guardhouse-sign/guardhouse-sign-01.webp",
-      "/images/ex/guardhouse-sign/guardhouse-sign-02.webp",
-      "/images/ex/guardhouse-sign/guardhouse-sign-03.webp",
-      "/images/ex/guardhouse-sign/guardhouse-sign-04.webp",
-    ]
+    images: ["/images/ex/guardhouse-sign/guardhouse-sign-01.webp"]
   },
   {
     id: 12,
@@ -189,35 +184,21 @@ export const PROJECTS: Project[] = [
     title: "ป้ายไวนิลหน้าร้านสถาบันสอนตัดผม Barber Academy",
     category: "ป้ายไวนิล",
     image: "/images/vn/img-vn-04.webp",
-    images: [
-      "/images/vn/img-vn-04.webp",
-      "/images/vn/img-vn-02.webp",
-      "/images/vn/img-vn-06.webp",
-    ]
+    images: ["/images/vn/img-vn-04.webp"]
   },
   {
     id: 7,
     title: "ป้ายไฟตัวอักษร LAEM CHABANG COUNTRY CLUB",
     category: "ป้ายไฟ LED",
     image: "/images/led/img-led-08.webp",
-    images: [
-      "/images/led/img-led-08.webp",
-      "/images/led/img-led-06.webp",
-      "/images/led/img-led-05.webp",
-      "/images/led/img-led-10.webp",
-    ]
+    images: ["/images/led/img-led-08.webp"]
   },
   {
     id: 8,
     title: "ป้ายไวนิลตั้งพื้นสำหรับประชาสัมพันธ์หน้าร้าน",
     category: "ป้ายไวนิล",
     image: "/images/vn/img-vn-08.webp",
-    images: [
-      "/images/vn/img-vn-08.webp",
-      "/images/vn/img-vn-07.webp",
-      "/images/vn/img-vn-09.webp",
-      "/images/vn/img-vn-03.webp",
-    ]
+    images: ["/images/vn/img-vn-08.webp"]
   },
 
   {
