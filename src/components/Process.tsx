@@ -7,7 +7,7 @@ const Process = () => {
     <section className="py-24 bg-zinc-900 text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <h3 className="text-4xl md:text-5xl font-bold tracking-tight">
+          <h3 className="text-4xl md:text-5xl font-bold tracking-normal">
             เราดูแลคุณในทุกขั้นตอน
           </h3>
           <div className="w-20 h-1 bg-red-600 mx-auto mt-6" />
