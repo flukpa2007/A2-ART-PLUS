@@ -176,7 +176,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 3,
-    title: "งานตกแต่งภายใน ห้องประชุม The Brain",
+    title: "งานตกแต่งภายใน ห้องประชุม Brand's",
     category: "Interior / Coporate",
     image: "/images/ex/thebrain/thebrain-03.webp",
     images: [
