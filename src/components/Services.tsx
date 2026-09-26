@@ -154,10 +154,10 @@ const Services: React.FC = () => {
 
               <div className="w-full h-[55%] lg:h-full lg:w-[40%] p-6 md:p-12 bg-white flex flex-col order-1 lg:order-1 overflow-y-auto custom-scrollbar-hide" data-lenis-prevent>
                 <div className="flex-grow">
-                  <h2 className="text-2xl md:text-4xl font-black text-zinc-900 mb-4 lg:mb-6 leading-tight uppercase">
+                  <h2 className="text-2xl md:text-4xl font-black text-zinc-900 mb-4 lg:mb-6 leading-[1.3]">
                     {selectedService.title.split(' (')[0]}
                   </h2>
-                  <span className="block text-sm md:text-lg font-medium text-zinc-400 mb-4 lg:mb-6 uppercase tracking-wider">
+                  <span className="block text-sm md:text-lg font-medium text-zinc-400 mb-4 lg:mb-6 tracking-normal">
                     {selectedService.title.match(/\(([^)]+)\)/)?.[1] || 'Portfolio'}
                   </span>
                   <div className="w-12 md:w-16 h-1 md:h-1.5 bg-red-600 mb-6 lg:mb-10 rounded-full" />
