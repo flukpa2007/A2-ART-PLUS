@@ -103,7 +103,7 @@ export const SERVICES: Service[] = [
 export const PROJECTS: Project[] = [
   {
     id: 12,
-    title: "ป้ายไม้แกะสลัก สวนเสี้ยวฟ้า",
+    title: "ป้ายไม้แกะสลัก ศาลา เสียดฟ้า",
     category: "ป้ายไม้แกะสลัก",
     image: "/images/ex/carved-wood/carved-wood-01.webp",
     images: [
