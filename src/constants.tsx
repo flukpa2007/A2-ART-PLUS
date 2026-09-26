@@ -189,8 +189,9 @@ export const PROJECTS: Project[] = [
     id: 6,
     title: "ชุดป้ายร้านตัดผม Barber Academy",
     category: "ชุดป้ายร้านค้า",
-    image: "/images/ex/barber-academy/barber-academy-01.webp",
+    image: "/images/vn/img-vn-04.webp",
     images: [
+      "/images/vn/img-vn-04.webp",
       "/images/ex/barber-academy/barber-academy-01.webp",
       "/images/ex/barber-academy/barber-academy-02.webp",
       "/images/ex/barber-academy/barber-academy-03.webp",
@@ -201,9 +202,10 @@ export const PROJECTS: Project[] = [
     id: 7,
     title: "ชุดป้ายไฟตัวอักษรและโลโก้ LAEM CHABANG COUNTRY CLUB",
     category: "ป้ายไฟ LED",
-    image: "/images/ex/laem-chabang/laem-chabang-01.webp",
+    image: "/images/led/img-led-08.webp",
     images: [
-      "/images/ex/laem-chabang/laem-chabang-01.webp",
+      "/images/led/img-led-08.webp",
+      "/images/ex/laem-chabang/laem-chabang-01.webp
       "/images/ex/laem-chabang/laem-chabang-02.webp",
       "/images/ex/laem-chabang/laem-chabang-03.webp",
       "/images/ex/laem-chabang/laem-chabang-04.webp",
