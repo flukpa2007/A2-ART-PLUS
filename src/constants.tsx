@@ -106,7 +106,12 @@ export const PROJECTS: Project[] = [
     title: "ชุดป้ายตัวอักษร COME HOME SAFE ติดป้อม รปภ. โรงงาน",
     category: "ป้ายตัวอักษร / โรงงาน",
     image: "/images/ex/guardhouse-sign/guardhouse-sign-01.webp",
-    images: ["/images/ex/guardhouse-sign/guardhouse-sign-01.webp"]
+    images: [
+      "/images/ex/guardhouse-sign/guardhouse-sign-01.webp",
+      "/images/ex/guardhouse-sign/guardhouse-sign-02.webp",
+      "/images/ex/guardhouse-sign/guardhouse-sign-03.webp",
+      "/images/ex/guardhouse-sign/guardhouse-sign-04.webp",
+    ]
   },
   {
     id: 12,
@@ -172,12 +177,7 @@ export const PROJECTS: Project[] = [
     title: "ป้ายไฟตัวอักษรหน้าร้าน SUGOI FIGURE",
     category: "ป้ายไฟ LED",
     image: "/images/led/img-led-03.webp",
-    images: [
-      "/images/led/img-led-03.webp",
-      "/images/led/img-led-01.webp",
-      "/images/led/img-led-02.webp",
-      "/images/led/img-led-04.webp",
-    ]
+    images: ["/images/led/img-led-03.webp"]
   },
   {
     id: 6,
