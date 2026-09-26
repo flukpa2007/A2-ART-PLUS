@@ -102,6 +102,18 @@ export const SERVICES: Service[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: 11,
+    title: "ป้ายสถิติความปลอดภัยโรงงาน Nippon Steel Logistics",
+    category: "ป้ายสถิติ / โรงงาน",
+    image: "/images/ex/factory-statistics/factory-statistics-01.webp",
+    images: [
+      "/images/ex/factory-statistics/factory-statistics-01.webp",
+      "/images/ex/factory-statistics/factory-statistics-02.webp",
+      "/images/ex/factory-statistics/factory-statistics-03.webp",
+      "/images/ex/factory-statistics/factory-statistics-04.webp",
+    ]
+  },
+  {
     id: 10,
     title: "ป้ายตัวอักษรไฟ LED ออกหลัง ISAN Station 168",
     category: "ป้ายไฟ LED",
