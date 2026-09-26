@@ -102,6 +102,26 @@ export const SERVICES: Service[] = [
 
 export const PROJECTS: Project[] = [
   {
+    id: 9,
+    title: "งานตกแต่งภายใน The Canteen @Suntory",
+    category: "Interior / Corporate",
+    image: "/images/ex/canteen/canteen-15.webp",
+    images: [
+      "/images/ex/canteen/canteen-15.webp",
+      "/images/ex/canteen/canteen-18.webp",
+      "/images/ex/canteen/canteen-11.webp",
+      "/images/ex/canteen/canteen-12.webp",
+      "/images/ex/canteen/canteen-14.webp",
+      "/images/ex/canteen/canteen-13.webp",
+      "/images/ex/canteen/canteen-16.webp",
+      "/images/ex/canteen/canteen-19.webp",
+      "/images/ex/canteen/canteen-17.webp",
+      "/images/ex/canteen/canteen-08.webp",
+      "/images/ex/canteen/canteen-09.webp",
+      "/images/ex/canteen/canteen-10.webp",
+    ]
+  },
+  {
     id: 5,
     title: "ตัวอย่างป้ายไฟ LED สำหรับร้านค้า",
     category: "ป้ายไฟ LED",
@@ -177,7 +197,7 @@ export const PROJECTS: Project[] = [
   {
     id: 3,
     title: "งานตกแต่งภายใน ห้องประชุม Brand's",
-    category: "Interior / Coporate",
+    category: "Interior / Corporate",
     image: "/images/ex/thebrain/thebrain-03.webp",
     images: [
       "/images/ex/thebrain/thebrain-01.webp",
