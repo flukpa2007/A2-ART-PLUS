@@ -29,7 +29,7 @@ const Navbar = () => {
               <a 
                 key={link.name} 
                 href={link.href} 
-                className="text-sm font-semibold uppercase tracking-widest transition-colors text-white hover:text-red-500"
+                className="text-sm font-semibold tracking-normal transition-colors text-white hover:text-red-500"
               >
                 {link.name}
               </a>
@@ -81,7 +81,7 @@ const Navbar = () => {
                   key={link.name} 
                   href={link.href} 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-2xl font-bold text-white hover:text-red-500 transition-colors tracking-widest uppercase"
+                  className="text-2xl font-bold text-white hover:text-red-500 transition-colors tracking-normal"
                 >
                   {link.name}
                 </a>
