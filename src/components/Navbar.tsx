@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -11,6 +11,11 @@ const Navbar = () => {
     { name: 'ผลงาน', href: '#portfolio' },
     { name: 'ติดต่อเรา', href: '#contact' },
   ];
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
 
   return (
     <>
@@ -40,7 +45,9 @@ const Navbar = () => {
           <button 
             className="md:hidden text-white p-2 focus:outline-none"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle Menu"
+            aria-label={isMobileMenuOpen ? 'ปิดเมนู' : 'เปิดเมนู'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -66,12 +73,15 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: "-100%" }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              id="mobile-navigation"
+              aria-label="เมนูหลักบนมือถือ"
               className="fixed top-0 left-0 w-full h-screen bg-black text-white z-50 flex flex-col items-center justify-center space-y-8 md:hidden"
             >
               {/* Close Button inside menu for better UX as requested */}
               <button 
                 className="absolute top-6 right-6 text-white p-2"
                 onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="ปิดเมนู"
               >
                 <X size={32} />
               </button>

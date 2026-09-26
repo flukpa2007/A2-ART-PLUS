@@ -30,7 +30,8 @@ const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => vo
   }, [isHovered, service.gallery]);
 
   return (
-    <motion.div 
+    <motion.button
+      type="button"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -38,7 +39,8 @@ const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => vo
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group cursor-pointer flex flex-col snap-center shrink-0 w-[85%] md:w-full border border-zinc-100"
+      className="bg-white text-left rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group cursor-pointer flex flex-col snap-center shrink-0 w-[85%] md:w-full border border-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600"
+      aria-label={`ดูรายละเอียด${service.title.split(' (')[0]}`}
     >
       <div className="relative h-72 overflow-hidden shrink-0 bg-zinc-100">
         <AnimatePresence mode="wait">
@@ -77,7 +79,7 @@ const ServiceCard: React.FC<{ service: Service; index: number; onClick: () => vo
           </div>
         </div>
       </div>
-    </motion.div>
+    </motion.button>
   );
 };
 
@@ -116,13 +118,16 @@ const Services = () => {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-zinc-900/95 backdrop-blur-sm"
             onClick={() => setSelectedService(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`รายละเอียด${selectedService.title.split(' (')[0]}`}
           >
             <motion.div 
               initial={{ scale: 0.95, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.95, opacity: 0, y: 20 }}
               className="bg-white w-full max-w-6xl h-[90vh] md:h-[85vh] overflow-hidden rounded-xl relative shadow-2xl flex flex-col-reverse lg:flex-row border border-zinc-100"
               onClick={(e) => e.stopPropagation()}
             >
-              <button onClick={() => setSelectedService(null)} className="absolute top-4 right-4 z-50 p-2 bg-white/80 backdrop-blur-md hover:bg-red-600 hover:text-white rounded-full transition-all border border-zinc-100 shadow-sm"><X className="w-5 h-5" /></button>
+              <button onClick={() => setSelectedService(null)} aria-label="ปิดรายละเอียดบริการ" className="absolute top-4 right-4 z-50 p-2 bg-white/80 backdrop-blur-md hover:bg-red-600 hover:text-white rounded-full transition-all border border-zinc-100 shadow-sm"><X className="w-5 h-5" /></button>
 
               <div 
                 className="w-full h-[45%] lg:h-full lg:w-[60%] relative group/swiper order-2 lg:order-2 overflow-hidden"

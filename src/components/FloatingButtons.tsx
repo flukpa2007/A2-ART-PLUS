@@ -24,7 +24,7 @@ const FloatingButtons = () => {
 
       {/* Phone Button */}
       <motion.a
-        href="tel:0876379997"
+        href="tel:0876349997"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         className="w-14 h-14 bg-black text-white rounded-full flex items-center justify-center shadow-2xl shadow-black/30 transition-all duration-300 group relative"

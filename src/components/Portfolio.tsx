@@ -46,7 +46,8 @@ const Portfolio = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {PROJECTS.map((project, index) => (
-            <motion.div 
+            <motion.button
+              type="button"
               key={project.id}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -54,7 +55,8 @@ const Portfolio = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               onClick={() => openLightbox(project)}
-              className="group cursor-pointer"
+              className="group cursor-pointer text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600"
+              aria-label={`ดูภาพผลงาน ${project.title}`}
             >
               <div className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-lg">
                 <img 
@@ -78,7 +80,7 @@ const Portfolio = () => {
                 <p className="text-xs font-bold uppercase tracking-widest text-red-600">{project.category}</p>
                 <h3 className="mt-1 text-xl font-bold text-zinc-900">{project.title}</h3>
               </div>
-            </motion.div>
+            </motion.button>
           ))}
         </div>
       </div>
@@ -91,6 +93,9 @@ const Portfolio = () => {
             exit={{ opacity: 0 }}
             onClick={closeLightbox}
             className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-10"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`ภาพผลงาน ${selectedProject.title}`}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -101,6 +106,7 @@ const Portfolio = () => {
             >
               <button
                 onClick={closeLightbox}
+                aria-label="ปิดแกลเลอรี"
                 className="absolute -top-12 right-0 md:-right-12 text-white hover:text-red-600 transition-colors p-2 z-50"
               >
                 <X size={32} />
