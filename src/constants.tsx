@@ -205,7 +205,7 @@ export const PROJECTS: Project[] = [
     image: "/images/led/img-led-08.webp",
     images: [
       "/images/led/img-led-08.webp",
-      "/images/ex/laem-chabang/laem-chabang-01.webp
+      "/images/ex/laem-chabang/laem-chabang-01.webp",
       "/images/ex/laem-chabang/laem-chabang-02.webp",
       "/images/ex/laem-chabang/laem-chabang-03.webp",
       "/images/ex/laem-chabang/laem-chabang-04.webp",
