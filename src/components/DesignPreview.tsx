@@ -19,7 +19,7 @@ const ContactButton = ({ children = 'คุยเรื่องงานกั�
 
 function PreviewNav() {
   const [open, setOpen] = useState(false);
-  const links = [['เกี่ยวกับเรา', '#about'], ['บริการ', '#services'], ['ผลงาน', '#projects'], ['ติดต่อ', '#contact']];
+  const links = [['เกี่ยวกับเรา', '#about'], ['บริการ', '/services'], ['ผลงาน', '/portfolio'], ['ติดต่อ', '#contact']];
   return <nav className="dp-nav" aria-label="เมนูหลัก">
     <a href="#home" className="dp-logo" aria-label="A2 ART PLUS หน้าแรก">A2<span>ART PLUS</span><i>.</i></a>
     <button className="dp-menu-button" type="button" aria-label={open ? 'ปิดเมนู' : 'เปิดเมนู'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
@@ -52,7 +52,7 @@ function About() {
 }
 
 function Services() {
-  return <section className="dp-services" id="services"><div className="dp-shell"><Reveal><p className="dp-section-kicker">WHAT WE DO</p><h2 className="dp-display">SERVICES<span className="dp-dot">.</span></h2></Reveal><div className="dp-service-list">{SERVICES.map((service, i) => <Reveal key={service.id} delay={i * 0.06}><a href="#contact" className="dp-service-item"><span className="dp-service-no">{String(i + 1).padStart(2, '0')}</span><span className="dp-service-body"><strong>{service.title.replace(/\s*\([^)]*\)/, '')}</strong><span>{service.description}</span></span><ArrowUpRight className="dp-service-arrow" size={25} aria-hidden="true" /></a></Reveal>)}</div><p className="dp-services-note">ออกแบบ · ผลิต · ติดตั้ง ครบในทีมเดียว</p></div></section>;
+  return <section className="dp-services" id="services"><div className="dp-shell"><Reveal><p className="dp-section-kicker">WHAT WE DO</p><h2 className="dp-display">SERVICES<span className="dp-dot">.</span></h2></Reveal><div className="dp-service-list">{SERVICES.map((service, i) => <Reveal key={service.id} delay={i * 0.06}><a href="/services" className="dp-service-item"><span className="dp-service-no">{String(i + 1).padStart(2, '0')}</span><span className="dp-service-body"><strong>{service.title.replace(/\s*\([^)]*\)/, '')}</strong><span>{service.description}</span></span><ArrowUpRight className="dp-service-arrow" size={25} aria-hidden="true" /></a></Reveal>)}</div><p className="dp-services-note">ออกแบบ · ผลิต · ติดตั้ง ครบในทีมเดียว</p></div></section>;
 }
 
 const FeaturedCard: React.FC<{ project: Project; index: number; total: number }> = ({ project, index, total }) => {
@@ -65,7 +65,7 @@ const FeaturedCard: React.FC<{ project: Project; index: number; total: number }>
 };
 
 function Projects() {
-  return <section className="dp-projects" id="projects"><div className="dp-shell"><Reveal><p className="dp-section-kicker">SELECTED PROJECTS / 2026</p><h2 className="dp-display dp-gradient">PROJECTS<span className="dp-dot">.</span></h2><p className="dp-project-intro">ผลงานจริงจากหน้างาน เลือกดูรายละเอียดและภาพเพิ่มเติมได้ในแกลเลอรีด้านล่าง</p></Reveal>{featured.map((project, index) => <FeaturedCard key={project.id} project={project} index={index} total={featured.length} />)}<a className="dp-all-work" href="#portfolio">ดูผลงานทั้งหมด <ArrowUpRight size={22} /></a></div></section>;
+  return <section className="dp-projects" id="projects"><div className="dp-shell"><Reveal><p className="dp-section-kicker">SELECTED PROJECTS / 2026</p><h2 className="dp-display dp-gradient">PROJECTS<span className="dp-dot">.</span></h2><p className="dp-project-intro">ผลงานจริงจากหน้างาน เลือกดูรายละเอียดและภาพเพิ่มเติมได้ในแกลเลอรีด้านล่าง</p></Reveal>{featured.map((project, index) => <FeaturedCard key={project.id} project={project} index={index} total={featured.length} />)}<a className="dp-all-work" href="/portfolio">ดูผลงานทั้งหมด <ArrowUpRight size={22} /></a></div></section>;
 }
 
 export default function DesignPreview() {
