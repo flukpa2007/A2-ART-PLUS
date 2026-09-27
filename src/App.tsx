@@ -1,12 +1,8 @@
 import CustomCursor from './components/CustomCursor';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Services from './components/Services';
+import DesignPreview from './components/DesignPreview';
 import Portfolio from './components/Portfolio';
-import Process from './components/Process';
-import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingButtons from './components/FloatingButtons';
@@ -17,15 +13,11 @@ function App() {
   return (
 
     <ReactLenis root options={{ lerp: 0.5, duration: 1.5 }}>
-    <div className="min-h-screen bg-white font-sans text-zinc-900 selection:bg-red-600 selection:text-white">
-      <Navbar />
-            <CustomCursor />
+    <div className="min-h-screen bg-[#0c0c0c] font-sans text-zinc-900 selection:bg-red-600 selection:text-white">
+      <CustomCursor />
       <main>
-        <Hero />
-        <Services />
+        <DesignPreview />
         <Portfolio />
-        <Process />
-        <About />
         <Contact />
       </main>
       <Footer />
