@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Phone, Mail, MapPin, Facebook, MessageCircle } from 'lucide-react';
+
+const facebookPage = 'https://www.facebook.com/profile.php?id=61566587472075';
+
+function FacebookTimeline() {
+  const holder = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(300);
+
+  useEffect(() => {
+    if (!holder.current) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setWidth(Math.max(180, Math.min(500, Math.floor(entry.contentRect.width))));
+    });
+    observer.observe(holder.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const src = `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(facebookPage)}&tabs=timeline&width=${width}&height=650&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false`;
+  return <div ref={holder} className="w-full max-w-[500px] mx-auto">
+    <iframe key={width} title="โพสต์ล่าสุดจาก Facebook A2 ART PLUS" src={src} width={width} height="650"
+      className="block max-w-full mx-auto rounded-xl" style={{ border: 0, overflow: 'hidden' }}
+      scrolling="no" loading="lazy" allow="encrypted-media" />
+  </div>;
+}
 
 const Contact = () => {
   return (
@@ -60,6 +83,29 @@ const Contact = () => {
               </div>
             </motion.div>
 
+            <div className="space-y-8 border-t border-zinc-200 pt-10">
+              <div className="flex items-start gap-6">
+                <Mail className="w-6 h-6 text-red-600 mt-1 shrink-0" />
+                <div>
+                  <p className="text-xs font-bold text-zinc-400 mb-2">อีเมล</p>
+                  <a href="mailto:a2artbuiltin@gmail.com" className="text-xl font-bold text-zinc-900 break-all">a2artbuiltin@gmail.com</a>
+                </div>
+              </div>
+              <div className="flex items-start gap-6">
+                <MapPin className="w-6 h-6 text-red-600 mt-1 shrink-0" />
+                <div>
+                  <p className="text-xs font-bold text-zinc-400 mb-2">ที่อยู่สำนักงาน</p>
+                  <a href="https://maps.app.goo.gl/qXvMbfMvwwV8X8Zp9" target="_blank" rel="noopener noreferrer" className="text-lg font-medium text-zinc-700 leading-relaxed hover:text-red-600 transition-colors">
+                    190/1 หมู่ที่ 11 ตำบลหนองขาม<br />อำเภอศรีราชา จ.ชลบุรี 20230
+                  </a>
+                </div>
+              </div>
+              <div className="border-t border-zinc-200 pt-7">
+                <p className="text-zinc-500 text-sm leading-relaxed mb-5">เราพร้อมให้คำปรึกษาและประเมินราคาเบื้องต้นฟรี<br />ทีมงานของเราจะติดต่อกลับภายใน 24 ชั่วโมงในวันทำการ</p>
+                <a href="https://lin.ee/S48LXeM" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-4 bg-zinc-900 text-white font-bold rounded-sm hover:bg-red-600 transition-colors shadow-lg">ทักแชทปรึกษาผ่าน LINE</a>
+              </div>
+            </div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -81,58 +127,12 @@ const Contact = () => {
           </div>
 
           <div className="lg:col-span-7 lg:pt-24">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-zinc-50 p-10 md:p-16 rounded-sm border border-zinc-100"
-            >
-              <div className="grid grid-cols-1 gap-12">
-                {/* Email */}
-                <div className="flex items-start gap-6">
-                  <Mail className="w-8 h-8 md:w-6 md:h-6 text-red-600 mt-1 shrink-0" />
-                  <div>
-                    <p className="text-xs font-bold tracking-normal text-zinc-400 mb-2">อีเมล</p>
-                    <a href="mailto:a2artbuiltin@gmail.com" className="text-xl md:text-2xl font-bold text-zinc-900 break-all">a2artbuiltin@gmail.com</a>
-                  </div>
-                </div>
-
-                {/* Address */}
-                <div className="flex items-start gap-6">
-                  <MapPin className="w-8 h-8 md:w-6 md:h-6 text-red-600 mt-1 shrink-0" />
-                  <div>
-                    <p className="text-xs font-bold tracking-normal text-zinc-400 mb-2">ที่อยู่สำนักงาน</p>
-                    <a 
-                      href="https://maps.app.goo.gl/qXvMbfMvwwV8X8Zp9" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="text-lg md:text-xl font-medium text-zinc-700 leading-relaxed hover:text-red-600 transition-colors"
-                    >
-                      190/1 หมู่ที่ 11 ตำบลหนองขาม <br className="hidden md:block" />
-                      อำเภอศรีราชา จ.ชลบุรี 20230
-                    </a>
-                  </div>
-                </div>
-
-                <div className="pt-8 border-t border-zinc-200">
-                  <p className="text-zinc-500 text-sm leading-relaxed mb-6">
-                    เราพร้อมให้คำปรึกษาและประเมินราคาเบื้องต้นฟรี <br />
-                    ทีมงานของเราจะติดต่อกลับภายใน 24 ชั่วโมงในวันทำการ
-                  </p>
-                  <motion.a 
-                    href="https://line.me/ti/p/~a2artplus1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center px-10 py-4 bg-zinc-900 text-white font-bold rounded-sm hover:bg-red-600 transition-all shadow-lg"
-                  >
-                    ทักแชทปรึกษาผ่าน LINE
-                  </motion.a>
-                </div>
-              </div>
-            </motion.div>
+            <div className="bg-zinc-50 p-6 md:p-12 rounded-sm border border-zinc-100">
+              <p className="text-red-600 font-bold tracking-[0.3em] uppercase text-xs mb-3">Facebook / Latest work</p>
+              <h3 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-7">อัปเดตผลงานจากเพจ</h3>
+              <FacebookTimeline />
+              <a href={facebookPage} target="_blank" rel="noopener noreferrer" className="mt-5 inline-block text-sm font-semibold text-zinc-700 underline underline-offset-4 hover:text-red-600">ดูโพสต์ทั้งหมดบน Facebook</a>
+            </div>
           </div>
         </div>
       </div>
