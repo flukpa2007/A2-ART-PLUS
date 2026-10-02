@@ -1,10 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { ArrowDown, ArrowUpRight, Facebook, Menu, X } from 'lucide-react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { PROJECTS, SERVICES } from '../constants';
 import { Project } from '../types';
 import './design-preview.css';
-import Logo3D from './Logo3D';
+const Logo3D = lazy(() => import('./Logo3D'));
+function LogoVisual() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  const fallback = <div className="dp-model-wrap"><div className="dp-model-canvas"><img src="/logo/a2-3d-preview.webp" alt="โลโก้ A2 ART PLUS" className="dp-model-fallback" /></div></div>;
+  return mounted ? <Suspense fallback={fallback}><Logo3D /></Suspense> : fallback;
+}
+import { servicePath } from '../paths';
+import { responsiveImage } from '../responsive-images';
 
 const featured = [9, 10, 12].map(id => PROJECTS.find(project => project.id === id)).filter((project): project is Project => Boolean(project));
 const gallery = PROJECTS.filter(project => project.image).slice(0, 11);
@@ -12,7 +20,7 @@ const galleryTwo = [...PROJECTS].reverse().filter(project => project.image).slic
 
 const Reveal: React.FC<{ children: React.ReactNode; delay?: number; className?: string }> = ({ children, delay = 0, className = '' }) => {
   const reduce = useReducedMotion();
-  return <motion.div className={className} initial={reduce ? false : { opacity: 0, y: 35 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: reduce ? 0 : 0.7, delay }}>{children}</motion.div>;
+  return <motion.div className={className} initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: reduce ? 0 : 0.7, delay }}>{children}</motion.div>;
 };
 
 const ContactButton = ({ children = 'คุยเรื่องงานกับเรา' }: { children?: string }) => <a className="dp-contact-button" href="#contact">{children}<ArrowUpRight size={19} aria-hidden="true" /></a>;
@@ -31,7 +39,7 @@ function Hero() {
   return <section className="dp-hero" id="home">
     <PreviewNav />
     <div className="dp-hero-heading-wrap"><Reveal><p className="dp-eyebrow">DESIGN · PRODUCTION · INSTALLATION</p><h1 className="dp-display dp-hero-title">ONE STOP <span className="dp-hero-title-accent">SERVICE<span className="dp-dot">.</span></span></h1></Reveal></div>
-    <Logo3D />
+    <LogoVisual />
     <div className="dp-hero-bottom"><Reveal delay={0.15}><p className="dp-hero-statement">ออกแบบ ผลิต และติดตั้ง<br />ป้าย บิวท์อิน และพื้นที่<br />ที่ทำให้แบรนด์เป็นตัวเอง</p></Reveal><Reveal delay={0.3}><ContactButton /></Reveal></div>
     <a className="dp-scroll-cue" href="#selected-work" aria-label="เลื่อนดูผลงาน"><ArrowDown size={18} /></a>
   </section>;
@@ -43,7 +51,7 @@ function ImageMarquee() {
   const rowOne = useTransform(scrollYProgress, [0, 1], ['-18%', '0%']);
   const rowTwo = useTransform(scrollYProgress, [0, 1], ['0%', '-18%']);
   const reduce = useReducedMotion();
-  const row = (projects: Project[], style: React.CSSProperties | object) => <motion.div className="dp-marquee-row" style={reduce ? undefined : style}>{[...projects, ...projects].map((project, index) => <div className="dp-marquee-tile" key={`${project.id}-${index}`}><img src={project.image} alt={index < projects.length ? project.title : ''} loading="lazy" /><span>{project.title}</span></div>)}</motion.div>;
+  const row = (projects: Project[], style: React.CSSProperties | object) => <motion.div className="dp-marquee-row" style={reduce ? undefined : style}>{[...projects, ...projects].map((project, index) => <div className="dp-marquee-tile" key={`${project.id}-${index}`}><img src={project.image} {...responsiveImage(project.image, "(max-width: 640px) 245px, 420px")} alt={index < projects.length ? project.title : ''} loading="lazy" /><span>{project.title}</span></div>)}</motion.div>;
   return <section ref={section} id="selected-work" className="dp-marquee" aria-label="ภาพผลงานของเรา"><p className="dp-section-kicker">A2 ART PLUS / SELECTED WORKS</p>{row(gallery, { x: rowOne })}{row(galleryTwo, { x: rowTwo })}</section>;
 }
 
@@ -52,7 +60,7 @@ function About() {
 }
 
 function Services() {
-  return <section className="dp-services" id="services"><div className="dp-shell"><Reveal><p className="dp-section-kicker">WHAT WE DO</p><h2 className="dp-display">SERVICES<span className="dp-dot">.</span></h2></Reveal><div className="dp-service-list">{SERVICES.map((service, i) => <Reveal key={service.id} delay={i * 0.06}><a href="/services" className="dp-service-item"><span className="dp-service-no">{String(i + 1).padStart(2, '0')}</span><span className="dp-service-body"><strong>{service.title.replace(/\s*\([^)]*\)/, '')}</strong><span>{service.description}</span></span><ArrowUpRight className="dp-service-arrow" size={25} aria-hidden="true" /></a></Reveal>)}</div><p className="dp-services-note">ออกแบบ · ผลิต · ติดตั้ง ครบในทีมเดียว</p></div></section>;
+  return <section className="dp-services" id="services"><div className="dp-shell"><Reveal><p className="dp-section-kicker">WHAT WE DO</p><h2 className="dp-display">SERVICES<span className="dp-dot">.</span></h2></Reveal><div className="dp-service-list">{SERVICES.map((service, i) => <Reveal key={service.id} delay={i * 0.06}><a href={servicePath(service.id)} className="dp-service-item"><span className="dp-service-no">{String(i + 1).padStart(2, '0')}</span><span className="dp-service-body"><strong>{service.title.replace(/\s*\([^)]*\)/, '')}</strong><span>{service.description}</span></span><ArrowUpRight className="dp-service-arrow" size={25} aria-hidden="true" /></a></Reveal>)}</div><p className="dp-services-note">ออกแบบ · ผลิต · ติดตั้ง ครบในทีมเดียว</p></div></section>;
 }
 
 const FeaturedCard: React.FC<{ project: Project; index: number; total: number }> = ({ project, index, total }) => {

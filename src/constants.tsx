@@ -15,6 +15,7 @@ import { Service, Project, ProcessStep } from './types';
 export const SERVICES: Service[] = [
   {
     id: 1,
+    slug: "sign-letters",
     title: "ป้ายตัวอักษร (Signage Letters)",
     description: "รับผลิตและติดตั้งป้ายตัวอักษร อะคริลิค พลาสวูด ซิงค์ สแตนเลส",
     icon: <Layout className="w-8 h-8" />,
@@ -31,6 +32,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 2,
+    slug: "led-signs",
     title: "ป้ายไฟ LED (LED Signage)",
     description: "ป้ายไฟตัวอักษร ตู้ไฟ LED ประหยัดพลังงาน สว่างสม่ำเสมอ โดดเด่นทั้งกลางวันและกลางคืน",
     icon: <Box className="w-8 h-8" />,
@@ -48,6 +50,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 3,
+    slug: "stickers",
     title: "งานสติกเกอร์ (Sticker Graphics)",
     description: "สติกเกอร์ติดกระจก สติกเกอร์ไดคัท สติกเกอร์ติดรถยนต์ งานพิมพ์คุณภาพสูง สีสดทนทาน",
     icon: <Monitor className="w-8 h-8" />,
@@ -67,6 +70,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 4,
+    slug: "vinyl-banners",
     title: "งานไวนิล (Vinyl Banners)",
     description: "ป้ายไวนิลโฆษณา สแตนดี้ ธงญี่ปุ่น งานพิมพ์ขนาดใหญ่สำหรับงานอีเวนต์และโปรโมชั่น",
     icon: <Paintbrush className="w-8 h-8" />,
@@ -83,6 +87,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 5,
+    slug: "built-in",
     title: "งานบิวท์อิน (Built-in Furniture)",
     description: "รับออกแบบและตกแต่งภายใน เฟอร์นิเจอร์บิวท์อินสำหรับร้านค้า คลินิก และออฟฟิศ",
     icon: <Hammer className="w-8 h-8" />,
@@ -103,6 +108,7 @@ export const SERVICES: Service[] = [
 export const PROJECTS: Project[] = [
   {
     id: 13,
+    slug: "guardhouse-sign",
     title: "ชุดป้ายตัวอักษร COME HOME SAFE ติดป้อม รปภ. โรงงาน",
     category: "ป้ายตัวอักษร / โรงงาน",
     image: "/images/ex/guardhouse-sign/guardhouse-sign-01.webp",
@@ -115,6 +121,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 12,
+    slug: "sala-siad-fah",
     title: "ป้ายไม้แกะสลัก ศาลา เสียดฟ้า",
     category: "ป้ายไม้แกะสลัก",
     image: "/images/ex/carved-wood/carved-wood-01.webp",
@@ -128,6 +135,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 11,
+    slug: "factory-statistics",
     title: "ป้ายสถิติความปลอดภัยโรงงาน Nippon Steel Logistics",
     category: "ป้ายสถิติ / โรงงาน",
     image: "/images/ex/factory-statistics/factory-statistics-01.webp",
@@ -140,6 +148,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 10,
+    slug: "isan-station-168",
     title: "ป้ายตัวอักษรไฟ LED ออกหลัง ISAN Station 168",
     category: "ป้ายไฟ LED",
     image: "/images/ex/isan-station/isan-station-01.webp",
@@ -154,6 +163,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 9,
+    slug: "suntory-canteen",
     title: "งานตกแต่งภายใน The Canteen @Suntory",
     category: "Interior / Corporate",
     image: "/images/ex/canteen/canteen-15.webp",
@@ -174,6 +184,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 5,
+    slug: "sugoi-figure",
     title: "ชุดป้ายร้าน SUGOI FIGURE",
     category: "ชุดป้ายร้านค้า",
     image: "/images/led/img-led-03.webp",
@@ -187,6 +198,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 6,
+    slug: "barber-academy",
     title: "ชุดป้ายร้านตัดผม Barber Academy",
     category: "ชุดป้ายร้านค้า",
     image: "/images/vn/img-vn-04.webp",
@@ -200,6 +212,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 7,
+    slug: "laem-chabang-country-club",
     title: "ชุดป้ายไฟตัวอักษรและโลโก้ LAEM CHABANG COUNTRY CLUB",
     category: "ป้ายไฟ LED",
     image: "/images/led/img-led-08.webp",
@@ -214,6 +227,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 8,
+    slug: "freestanding-vinyl-sign",
     title: "ป้ายไวนิลตั้งพื้นสำหรับประชาสัมพันธ์หน้าร้าน",
     category: "ป้ายไวนิล",
     image: "/images/vn/img-vn-08.webp",
@@ -222,6 +236,7 @@ export const PROJECTS: Project[] = [
 
   {
     id: 1,
+    slug: "dr-milk-clinic",
     title: "งานตกแต่งภายใน Dr.Milk Clinic",
     category: "Medical / Clinic",
     image: "/images/ex/milk/drmilk-05.webp",
@@ -235,6 +250,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 2,
+    slug: "kamon-coffee",
     title: "งานตกแต่งภายใน Kamon Coffee",
     category: "Interior / Cafe",
     image: "/images/ex/kamon/kamon-03.webp",
@@ -247,6 +263,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 3,
+    slug: "brands-meeting-room",
     title: "งานตกแต่งภายใน ห้องประชุม Brand's",
     category: "Interior / Corporate",
     image: "/images/ex/thebrain/thebrain-03.webp",
@@ -260,6 +277,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 4,
+    slug: "office-mlp",
     title: "งานตกแต่งภายใน Office MLP",
     category: "School / Office",  
     image: "/images/ex/mlp/mlp-01.webp",

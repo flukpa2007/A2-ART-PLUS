@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ArrowUpRight } from 'lucide-react';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
+import { projectPath } from '../paths';
+import { responsiveImage } from '../responsive-images';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation, A11y } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -14,28 +16,40 @@ import 'swiper/css/navigation';
 const Portfolio: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeCategory, setActiveCategory] = useState('ทั้งหมด');
+  const dialog = useRef<HTMLDivElement>(null);
+  const trigger = useRef<HTMLElement | null>(null);
   const categories = ['ทั้งหมด', ...new Set(PROJECTS.map((project) => project.category))];
   const visibleProjects = activeCategory === 'ทั้งหมด'
     ? PROJECTS
     : PROJECTS.filter((project) => project.category === activeCategory);
 
   const openLightbox = (project: Project) => {
+    trigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setSelectedProject(project);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeLightbox = useCallback(() => {
     setSelectedProject(null);
-    document.body.style.overflow = 'auto';
+    trigger.current?.focus();
   }, []);
 
   useEffect(() => {
+    if (!selectedProject) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const focusable = () => Array.from<HTMLElement>((dialog.current?.querySelectorAll('button, a[href], [tabindex="0"]') ?? []) as Iterable<HTMLElement>).filter(element => element.getClientRects().length > 0);
+    const frame = requestAnimationFrame(() => focusable()[0]?.focus());
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!selectedProject) return;
       if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'Tab') {
+        const elements = focusable();
+        const first = elements[0], last = elements[elements.length - 1];
+        if (e.shiftKey && (document.activeElement === first || !dialog.current?.contains(document.activeElement))) { e.preventDefault(); last?.focus(); }
+        else if (!e.shiftKey && (document.activeElement === last || !dialog.current?.contains(document.activeElement))) { e.preventDefault(); first?.focus(); }
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => { cancelAnimationFrame(frame); document.body.style.overflow = previousOverflow; window.removeEventListener('keydown', handleKeyDown); };
   }, [selectedProject, closeLightbox]);
 
   return (
@@ -61,7 +75,7 @@ const Portfolio: React.FC = () => {
             <motion.button
               type="button"
               key={project.id}
-              initial={{ opacity: 0, y: 24 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: (index % 2) * 0.1, duration: 0.5 }}
@@ -72,6 +86,7 @@ const Portfolio: React.FC = () => {
               <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100">
                 <img
                   src={project.image}
+                  {...responsiveImage(project.image)}
                   alt={project.title}
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
@@ -101,6 +116,10 @@ const Portfolio: React.FC = () => {
             className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-10"
           >
             <motion.div
+              ref={dialog}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="project-dialog-title"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -108,6 +127,7 @@ const Portfolio: React.FC = () => {
               className="relative max-w-5xl w-full flex flex-col items-center"
             >
               <button
+                aria-label="ปิดภาพผลงาน"
                 onClick={closeLightbox}
                 className="absolute -top-12 right-0 md:-right-12 text-white hover:text-red-600 transition-colors p-2 z-50"
               >
@@ -115,7 +135,8 @@ const Portfolio: React.FC = () => {
               </button>
               <div className="relative w-full aspect-[16/10] bg-zinc-900 rounded-lg overflow-hidden shadow-2xl">
                 <Swiper
-                  modules={[Autoplay, Pagination, Navigation]}
+                  modules={[Autoplay, Pagination, Navigation, A11y]}
+                  a11y={{ prevSlideMessage: 'ภาพก่อนหน้า', nextSlideMessage: 'ภาพถัดไป', slideLabelMessage: 'ภาพที่ {{index}} จาก {{slidesLength}}' }}
                   spaceBetween={0}
                   slidesPerView={1}
                   loop={selectedProject.images.length > 1}
@@ -156,12 +177,13 @@ const Portfolio: React.FC = () => {
 
               {/* Caption */}
               <div className="mt-6 text-center">
-                <h4 className="text-white text-xl md:text-2xl font-bold mb-2 tracking-normal">
+                <h4 id="project-dialog-title" className="text-white text-xl md:text-2xl font-bold mb-2 tracking-normal">
                   {selectedProject.title}
                 </h4>
                 <p className="text-red-500 text-xs font-bold uppercase tracking-[0.2em]">
                   {selectedProject.category}
                 </p>
+                <a href={projectPath(selectedProject.id)} className="mt-3 inline-block text-white underline underline-offset-4">เปิดหน้ารายละเอียดผลงาน</a>
               </div>
             </motion.div>
 

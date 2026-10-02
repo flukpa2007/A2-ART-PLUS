@@ -1,66 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { useEffect, useRef } from 'react';
 
-const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  const [isHovering, setIsHovering] = useState(false);
-
+export default function CustomCursor() {
+  const cursor = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const mouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY
-      });
+    const element = cursor.current;
+    if (!element) return;
+    const media = window.matchMedia('(min-width: 769px) and (pointer: fine)');
+    let frame = 0, x = 0, y = 0;
+    const draw = () => {
+      frame = 0;
+      element.style.transform = `translate3d(${x - 12}px, ${y - 12}px, 0)`;
     };
-
-    const checkHover = () => {
-      const hoveredElement = document.querySelector(':hover');
-      if (
-        hoveredElement?.tagName === 'A' ||
-        hoveredElement?.tagName === 'BUTTON' ||
-        hoveredElement?.getAttribute('role') === 'button' ||
-        hoveredElement?.classList.contains('group')
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+    const move = (event: MouseEvent) => {
+      if (!media.matches) return;
+      x = event.clientX; y = event.clientY;
+      element.dataset.visible = 'true';
+      element.dataset.hover = String(event.target instanceof Element && Boolean(event.target.closest('a, button, [role="button"], canvas')));
+      if (!frame) frame = requestAnimationFrame(draw);
     };
-
-    window.addEventListener('mousemove', mouseMove);
-    window.addEventListener('mouseover', checkHover);
-
+    const hide = () => { element.dataset.visible = 'false'; };
+    window.addEventListener('mousemove', move, { passive: true });
+    document.documentElement.addEventListener('mouseleave', hide);
+    window.addEventListener('blur', hide);
+    media.addEventListener('change', hide);
     return () => {
-      window.removeEventListener('mousemove', mouseMove);
-      window.removeEventListener('mouseover', checkHover);
+      cancelAnimationFrame(frame);
+      window.removeEventListener('mousemove', move);
+      document.documentElement.removeEventListener('mouseleave', hide);
+      window.removeEventListener('blur', hide);
+      media.removeEventListener('change', hide);
     };
   }, []);
-
-  const offset = 12; 
-
-  return (
-    <motion.div
-      className="fixed top-0 left-0 z-[1000] pointer-events-none rounded-full backdrop-blur-sm border-2 border-red-600 bg-red-600/10 shadow-lg shadow-red-600/20"
-      animate={{
-        x: mousePosition.x - offset,
-        y: mousePosition.y - offset,
-
-        scale: isHovering ? 2 : 1,
-        opacity: isHovering ? 0.3 : 1,
-      }}
-      transition={{
-        type: 'tween',
-        ease: 'linear',
-        duration: 0
-      }}
-      style={{
-        width: '24px',
-        height: '24px',
-        display: typeof window !== 'undefined' && window.innerWidth > 768 ? 'block' : 'none'
-      }}
-    />
-  );
-};
-
-export default CustomCursor;
+  return <div ref={cursor} className="a2-cursor" aria-hidden="true"><span /></div>;
+}

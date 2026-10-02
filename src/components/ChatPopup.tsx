@@ -6,10 +6,10 @@ const ChatPopup = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Show popup after 3 seconds
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 3000);
+    // Show once per browser session on larger screens, after time to read.
+    if (!window.matchMedia('(min-width: 1024px)').matches) return;
+    try { if (sessionStorage.getItem('a2-chat-dismissed')) return; } catch { /* Optional preference. */ }
+    const timer = setTimeout(() => { setIsVisible(true); }, 20000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -20,7 +20,7 @@ const ChatPopup = () => {
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
-          className="fixed bottom-24 right-6 w-72 bg-white rounded-2xl shadow-2xl border border-zinc-100 p-5 z-50 overflow-hidden"
+          className="fixed bottom-44 right-6 w-72 bg-white rounded-2xl shadow-2xl border border-zinc-100 p-5 z-50 overflow-hidden"
         >
           {/* Header */}
           <div className="flex justify-between items-start mb-4">
@@ -30,11 +30,12 @@ const ChatPopup = () => {
               </div>
               <div>
                 <p className="text-sm font-bold text-zinc-900">A2 ART PLUS</p>
-                <p className="text-[10px] text-blue-500 font-bold uppercase tracking-wider">Online Now</p>
+                <p className="text-[10px] text-blue-500 font-bold uppercase tracking-wider">สอบถามผ่าน Facebook</p>
               </div>
             </div>
             <button 
-              onClick={() => setIsVisible(false)}
+              aria-label="ปิดข้อความแนะนำการติดต่อ"
+              onClick={() => { setIsVisible(false); try { sessionStorage.setItem('a2-chat-dismissed', '1'); } catch { /* Optional preference. */ } }}
               className="text-zinc-400 hover:text-zinc-600 transition-colors"
             >
               <X size={18} />
