@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface Service {
   id: number;
+  slug: string;
   title: string;
   description: string;
   icon: React.ReactNode;
@@ -13,6 +14,7 @@ export interface Service {
 
 export interface Project {
   id: number;
+  slug: string;
   title: string;
   category: string;
   image: string;

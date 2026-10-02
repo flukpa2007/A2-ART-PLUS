@@ -29,3 +29,17 @@ for (const loc of locs) {
   }
 }
 console.log(`Sitemap, robots.txt and ${locs.length} URLs verified in dist/`);
+
+const home = readFileSync('dist/index.html', 'utf8');
+if (!home.includes('<h1') || !home.includes('href="/services/led-signs"') || !home.includes('LocalBusiness')) {
+  throw new Error('Homepage must include rendered content, detail links and business schema');
+}
+for (const loc of locs) {
+  const path = new URL(loc).pathname;
+  const html = readFileSync(path === '/' ? 'dist/index.html' : `dist${path}.html`, 'utf8');
+  for (const match of html.matchAll(/(?:src|href)="(\/[^"#?]+)"/g)) {
+    const target = match[1];
+    if (!existsSync(`dist${target}`) && !existsSync(`dist${target}.html`)) throw new Error(`Broken internal reference on ${path}: ${target}`);
+  }
+}
+console.log('Homepage HTML and internal page/asset references verified');

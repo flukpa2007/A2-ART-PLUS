@@ -1,28 +1,21 @@
-import { mkdirSync, writeFileSync, existsSync } from 'node:fs';
+import { mkdirSync, writeFileSync, existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { PROJECTS, SERVICES } from '../src/constants';
+import { SERVICE_SLUGS as serviceSlugs, PROJECT_SLUGS as projectSlugs, projectPath } from '../src/paths';
+import { responsiveImage } from '../src/responsive-images';
 
 const origin = 'https://a2artplus.vercel.app';
 const out = 'dist';
-const serviceSlugs: Record<number, string> = {
-  1: 'sign-letters', 2: 'led-signs', 3: 'stickers',
-  4: 'vinyl-banners', 5: 'built-in',
-};
-const projectSlugs: Record<number, string> = {
-  13: 'guardhouse-sign', 12: 'sala-siad-fah', 11: 'factory-statistics',
-  10: 'isan-station-168', 9: 'suntory-canteen', 5: 'sugoi-figure',
-  6: 'barber-academy', 7: 'laem-chabang-country-club',
-  1: 'dr-milk-clinic', 2: 'kamon-coffee', 3: 'brands-meeting-room', 4: 'office-mlp',
-};
-
 const esc = (value: string) => value.replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 }[char] ?? char));
 const plainTitle = (title: string) => title.replace(/\s*\([^)]*\)/, '');
 const url = (path: string) => origin + path;
 const imageExists = (path: string) => path.startsWith('/images/') && existsSync(join(out, path.slice(1)));
-const image = (path: string, alt: string, eager = false) =>
-  `<img src="${esc(path)}" alt="${esc(alt)}" loading="${eager ? 'eager' : 'lazy'}">`;
+const image = (path: string, alt: string, eager = false) => {
+  const attrs = Object.entries(responsiveImage(path)).map(([key, value]) => ` ${key.toLowerCase()}="${esc(String(value))}"`).join('');
+  return `<img src="${esc(path)}"${attrs} alt="${esc(alt)}" loading="${eager ? 'eager' : 'lazy'}" decoding="async">`;
+};
 const link = (href: string, label: string, cls = '') =>
   `<a href="${esc(href)}"${cls ? ` class="${cls}"` : ''}>${esc(label)} <span aria-hidden="true">↗</span></a>`;
 const unique = <T,>(items: T[]) => [...new Set(items)];
@@ -30,6 +23,10 @@ const unique = <T,>(items: T[]) => [...new Set(items)];
 function page(path: string, title: string, description: string, content: string, picture?: string) {
   const canonical = url(path);
   const socialImage = picture && imageExists(picture) ? url(picture) : url('/logo/logo-a2-red.jpg');
+  const breadcrumbs = [{ '@type': 'ListItem', position: 1, name: 'หน้าแรก', item: url('/') },
+    { '@type': 'ListItem', position: 2, name: path.startsWith('/services') ? 'บริการ' : 'ผลงาน', item: url(path.startsWith('/services') ? '/services' : '/portfolio') }];
+  if (path.split('/').length > 2) breadcrumbs.push({ '@type': 'ListItem', position: 3, name: title, item: canonical });
+  const schema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: breadcrumbs }).replace(/</g, '\u003c');
   const html = `<!doctype html>
 <html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(title)} | A2 ART PLUS</title>
@@ -39,6 +36,7 @@ function page(path: string, title: string, description: string, content: string,
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(canonical)}"><meta property="og:image" content="${esc(socialImage)}">
 <link rel="icon" type="image/jpeg" href="/logo/logo-a2-red.jpg">
+<script type="application/ld+json">${schema}</script>
 <link rel="stylesheet" href="/seo.css"></head><body>
 <header class="site-head"><a class="brand" href="/">A2 <span>ART PLUS</span><b>.</b></a>
 <nav aria-label="เมนูหลัก"><a href="/">หน้าแรก</a><a href="/services">บริการ</a><a href="/portfolio">ผลงาน</a><a href="/#contact">ติดต่อ</a></nav></header>
@@ -50,8 +48,17 @@ function page(path: string, title: string, description: string, content: string,
   writeFileSync(filename, html);
 }
 
-const projects = PROJECTS.filter(project => projectSlugs[project.id] && project.images.some(imageExists));
-const projectPath = (id: number) => `/portfolio/${projectSlugs[id]}`;
+for (const project of PROJECTS) {
+  if (!projectSlugs[project.id]) throw new Error(`Missing project slug: ${project.id}`);
+  if (!project.images.some(imageExists)) throw new Error(`Project has no images: ${project.id}`);
+}
+for (const service of SERVICES) {
+  if (!serviceSlugs[service.id] || !imageExists(service.image)) throw new Error(`Incomplete service: ${service.id}`);
+}
+const slugs = [...SERVICES.map(s => `/services/${s.slug}`), ...PROJECTS.map(p => `/portfolio/${p.slug}`)];
+if (new Set(slugs).size !== slugs.length) throw new Error('Duplicate service/project slug');
+if ([...SERVICES, ...PROJECTS].some(item => !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.slug))) throw new Error('Invalid service/project slug');
+const projects = PROJECTS;
 const projectImages = (project: typeof PROJECTS[number]) => {
   const specific = project.images.filter(imageExists).filter(path => path.startsWith('/images/ex/'));
   return unique(specific.length ? specific : project.images.filter(imageExists));
@@ -88,7 +95,7 @@ for (const project of projects) {
   const photos = projectImages(project);
   page(projectPath(project.id), project.title,
     `ภาพผลงาน ${project.title} ประเภท${project.category} โดย A2 ART PLUS ดูภาพงานจริงของโปรเจกต์นี้`,
-    `<section class="intro"><p class="eyebrow">${link('/portfolio', 'ผลงานทั้งหมด')} / ${esc(project.category)}</p><h1 class="project-title">${esc(project.title)}<span>.</span></h1><p class="lead">ประเภทงาน: ${esc(project.category)} · ภาพผลงานของโปรเจกต์นี้</p></section>
+    `<section class="intro"><p class="eyebrow">${link('/portfolio', 'ผลงานทั้งหมด')} / ${esc(project.category)}</p><h1 class="project-title">${esc(project.title)}<span>.</span></h1><p class="lead">${esc(project.title)} เป็นผลงานประเภท ${esc(project.category)} ของ A2 ART PLUS ชมภาพหน้างานจริงด้านล่าง และติดต่อทีมงานเพื่อคุยรูปแบบ วัสดุ ขนาด และรายละเอียดการติดตั้งสำหรับงานของคุณ</p></section>
     <section class="shell"><div class="project-gallery">${photos.map((src, i) => image(src, `${project.title} ภาพที่ ${i + 1}`, i === 0)).join('')}</div>
     <p class="closing">${link('/portfolio', 'กลับไปดูผลงานทั้งหมด')} &nbsp; ${link('/#contact', 'ติดต่อเรา')}</p></section>`, photos[0]);
 }
@@ -101,3 +108,10 @@ ${paths.map(path => `  <url><loc>${url(path)}</loc></url>`).join('\n')}
 </urlset>\n`;
 writeFileSync(join(out, 'sitemapa2.xml'), sitemap);
 console.log(`Generated ${paths.length - 1} static pages and a ${paths.length}-URL sitemap`);
+
+// Render the existing React homepage ahead of time; hydrate the same tree in the browser.
+const { render } = await import(new URL('../.ssr/entry-server.js', import.meta.url).href);
+const homeFile = join(out, 'index.html');
+const home = readFileSync(homeFile, 'utf8');
+if (!home.includes('<div id="root"></div>')) throw new Error('Homepage root is missing');
+writeFileSync(homeFile, home.replace('<div id="root"></div>', `<div id="root">${render()}</div>`));

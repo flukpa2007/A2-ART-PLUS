@@ -13,7 +13,7 @@ function makeShape(polygon: Polygon) {
 
 export default function Logo3D() {
   const mount = useRef<HTMLDivElement>(null);
-  const [fallback, setFallback] = useState(false);
+  const [fallback, setFallback] = useState(true);
 
   useEffect(() => {
     const container = mount.current;
@@ -32,6 +32,7 @@ export default function Logo3D() {
     renderer.domElement.setAttribute('aria-label', 'โลโก้สามมิติ A2 ART PLUS ลากเพื่อเอียงดูได้ในมุมด้านหน้า');
     renderer.domElement.setAttribute('role', 'img');
     container.appendChild(renderer.domElement);
+    setFallback(false);
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(37, 1, 0.1, 100);
@@ -84,6 +85,8 @@ export default function Logo3D() {
     strip.position.set(-5, 5, 5); scene.add(strip);
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0;
+    let inView = true;
     group.rotation.set(-0.035, -0.12, 0);
     let dragging = false;
     let dragX = 0;
@@ -98,8 +101,10 @@ export default function Logo3D() {
       pointerY = event.clientY;
       startX = group.rotation.x;
       startY = group.rotation.y;
+      dragX = startX; dragY = startY;
       renderer.domElement.setPointerCapture(event.pointerId);
       renderer.domElement.classList.add('is-dragging');
+      if (!frame && inView && !document.hidden) frame = requestAnimationFrame(animate);
     };
     const pointerMove = (event: PointerEvent) => {
       if (!dragging) return;
@@ -127,27 +132,40 @@ export default function Logo3D() {
       camera.position.set(0, 0.25, distance);
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
+      renderer.render(scene, camera);
     };
     const observer = new ResizeObserver(resize);
     observer.observe(container);
     resize();
-    let frame = 0;
     const started = performance.now();
-    const animate = () => {
-      frame = requestAnimationFrame(animate);
+    function animate() {
+      frame = 0;
+      if (!inView || document.hidden) return;
       const phase = (performance.now() - started) / 1000;
       const targetY = dragging ? dragY : reducedMotion.matches ? -0.12 : -0.12 + Math.sin(phase * 0.75) * 0.29;
       const targetX = dragging ? dragX : reducedMotion.matches ? -0.035 : -0.035 + Math.sin(phase * 0.75 + 0.8) * 0.045;
       group.rotation.y += (targetY - group.rotation.y) * (dragging ? 0.22 : 0.045);
       group.rotation.x += (targetX - group.rotation.x) * (dragging ? 0.22 : 0.045);
       renderer.render(scene, camera);
+      if (!reducedMotion.matches || dragging) frame = requestAnimationFrame(animate);
+    }
+    const resume = () => {
+      if (inView && !document.hidden && !frame) frame = requestAnimationFrame(animate);
+      else if (!inView || document.hidden) { cancelAnimationFrame(frame); frame = 0; }
     };
-    animate();
-    const lost = (event: Event) => { event.preventDefault(); setFallback(true); };
+    const visibility = new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; resume(); });
+    visibility.observe(container);
+    document.addEventListener('visibilitychange', resume);
+    reducedMotion.addEventListener('change', resume);
+    resume();
+    const lost = (event: Event) => { event.preventDefault(); inView = false; cancelAnimationFrame(frame); frame = 0; setFallback(true); };
     renderer.domElement.addEventListener('webglcontextlost', lost);
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
+      visibility.disconnect();
+      document.removeEventListener('visibilitychange', resume);
+      reducedMotion.removeEventListener('change', resume);
       renderer.domElement.removeEventListener('pointerdown', pointerDown);
       renderer.domElement.removeEventListener('pointermove', pointerMove);
       renderer.domElement.removeEventListener('pointerup', pointerUp);

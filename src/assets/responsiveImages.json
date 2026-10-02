@@ -1,0 +1,240 @@
+{
+  "/images/bu/img-bu-03.webp": {
+    "width": 1280,
+    "height": 720,
+    "variants": [
+      {
+        "src": "/images/responsive/bu/img-bu-03-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/bu/img-bu-03-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/ex/canteen/canteen-15.webp": {
+    "width": 960,
+    "height": 960,
+    "variants": [
+      {
+        "src": "/images/responsive/ex/canteen/canteen-15-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/ex/canteen/canteen-15-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/ex/carved-wood/carved-wood-01.webp": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/images/responsive/ex/carved-wood/carved-wood-01-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/ex/carved-wood/carved-wood-01-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/ex/factory-statistics/factory-statistics-01.webp": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/images/responsive/ex/factory-statistics/factory-statistics-01-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/ex/factory-statistics/factory-statistics-01-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/ex/guardhouse-sign/guardhouse-sign-01.webp": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/images/responsive/ex/guardhouse-sign/guardhouse-sign-01-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/ex/guardhouse-sign/guardhouse-sign-01-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/ex/isan-station/isan-station-01.webp": {
+    "width": 1600,
+    "height": 898,
+    "variants": [
+      {
+        "src": "/images/responsive/ex/isan-station/isan-station-01-480.webp",
+        "width": 479
+      },
+      {
+        "src": "/images/responsive/ex/isan-station/isan-station-01-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/ex/kamon/kamon-03.webp": {
+    "width": 1600,
+    "height": 1200,
+    "variants": [
+      {
+        "src": "/images/responsive/ex/kamon/kamon-03-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/ex/kamon/kamon-03-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/ex/milk/drmilk-05.webp": {
+    "width": 900,
+    "height": 681,
+    "variants": [
+      {
+        "src": "/images/responsive/ex/milk/drmilk-05-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/ex/milk/drmilk-05-960.webp",
+        "width": 900
+      }
+    ]
+  },
+  "/images/ex/mlp/mlp-01.webp": {
+    "width": 1600,
+    "height": 1143,
+    "variants": [
+      {
+        "src": "/images/responsive/ex/mlp/mlp-01-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/ex/mlp/mlp-01-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/ex/thebrain/thebrain-03.webp": {
+    "width": 1200,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/images/responsive/ex/thebrain/thebrain-03-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/ex/thebrain/thebrain-03-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/led/img-led-03.webp": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/images/responsive/led/img-led-03-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/led/img-led-03-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/led/img-led-08.webp": {
+    "width": 1277,
+    "height": 958,
+    "variants": [
+      {
+        "src": "/images/responsive/led/img-led-08-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/led/img-led-08-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/letter/img-letter-02.webp": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/images/responsive/letter/img-letter-02-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/letter/img-letter-02-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/stk/img-stk-09.webp": {
+    "width": 1600,
+    "height": 1143,
+    "variants": [
+      {
+        "src": "/images/responsive/stk/img-stk-09-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/stk/img-stk-09-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/vn/img-vn-01.webp": {
+    "width": 1600,
+    "height": 1143,
+    "variants": [
+      {
+        "src": "/images/responsive/vn/img-vn-01-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/vn/img-vn-01-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/vn/img-vn-04.webp": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/images/responsive/vn/img-vn-04-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/vn/img-vn-04-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/vn/img-vn-08.webp": {
+    "width": 900,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/images/responsive/vn/img-vn-08-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/responsive/vn/img-vn-08-960.webp",
+        "width": 900
+      }
+    ]
+  }
+}

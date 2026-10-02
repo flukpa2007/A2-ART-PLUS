@@ -34,7 +34,7 @@ const Contact = () => {
           {/* ฝั่งซ้าย: ข้อมูลติดต่อหลัก + แผนที่ (lg:col-span-5) */}
           <div className="lg:col-span-5 flex flex-col gap-12">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
@@ -107,7 +107,7 @@ const Contact = () => {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
